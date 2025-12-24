@@ -52,7 +52,14 @@ class MovieController extends Controller implements HasMiddleware
     public function show(Movie $movie) 
     {
         $userPlan = Auth::user()->getCurrentPlan();
-        $streamingUrl = $movie->getStreamingUrl($userPlan->resolution);
+        
+        // Redirect to subscribe page if user has no active plan
+        if (!$userPlan) {
+            return redirect()->route('subscribe.plans')
+                ->with('warning', 'You need an active subscription to watch movies.');
+        }
+
+        $streamingUrl = $movie->getStreamingUrl($userPlan->resolution ?? null);
 
         return view('movies.show', [
             'movie' => $movie,

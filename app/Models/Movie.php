@@ -14,8 +14,11 @@ class Movie extends Model
         'writers',
         'stars',
         'poster',
+        'trailer_url',
+        'banner',
         'release_date',
         'duration',
+        'age_rating',
         'url_720',
         'url_1080',
         'url_4k',
@@ -39,6 +42,11 @@ class Movie extends Model
         return $this->hasMany(Rating::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class)->latest();
+    }
+
     /**
      * Accessor untuk atribut 'average_rating'.
      * Menghitung rata-rata rating dari semua rating yang terkait dengan movie ini.
@@ -53,18 +61,25 @@ class Movie extends Model
     /**
      * Get the streaming URL based on the given plan resolution.
      *
-     * @param string $planResolution The resolution of the streaming plan (e.g., '720p', '1080p', '4k').
-     * @return string The URL for streaming the movie at the given resolution.
+     * @param string|null $planResolution The resolution of the streaming plan (e.g., '720p', '1080p', '4k').
+     * @return string The URL for streaming the movie at the given resolution, or empty string if unavailable.
      */
-    public function getStreamingUrl(string $planResolution): string
+    public function getStreamingUrl(?string $planResolution): string
     {
-        // Return the corresponding URL based on the plan resolution
-        return match ($planResolution) {
-            '720p' => $this->url_720,  // URL for 720p resolution
-            '1080p' => $this->url_1080, // URL for 1080p resolution
-            '4k' => $this->url_4k,      // URL for 4k resolution
-            default => $this->url_720,  // Default URL if resolution is not matched
+        // If no resolution specified, default to lowest available
+        if ($planResolution === null) {
+            $planResolution = '720p';
+        }
+
+        // Get the URL based on resolution with fallback chain
+        $url = match ($planResolution) {
+            '4k' => $this->url_4k ?? $this->url_1080 ?? $this->url_720,
+            '1080p' => $this->url_1080 ?? $this->url_720,
+            '720p' => $this->url_720,
+            default => $this->url_720,
         };
+
+        return $url ?? '';
     }
 
     /**

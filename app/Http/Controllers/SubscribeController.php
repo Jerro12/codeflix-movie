@@ -36,8 +36,19 @@ class SubscribeController extends Controller implements HasMiddleware
 
     public function processCheckout(Request $request)
     {
-        $user = Auth::user(); // ini otomatis ngebind "user_id" nya
+        // Validate the request
+        $request->validate([
+            'plan_id' => 'required|exists:plans,id',
+        ]);
+
+        $user = Auth::user();
         $plan = Plan::findOrFail($request->plan_id);
+
+        // Check if user already has an active membership
+        if ($user->hasMembershipPlan()) {
+            return redirect()->route('home')
+                ->with('warning', 'You already have an active subscription plan.');
+        }
 
         $user->memberships()->create([
             'plan_id' => $request->plan_id,

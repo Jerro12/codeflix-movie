@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     background-color: #132029;
     height: 100%;
     overflow-x: hidden;
@@ -7,17 +8,17 @@ body, html {
 }
 
 @font-face {
-    font-family: 'kanit-regular';
-    src: url('../fonts/Kanit/Kanit-Regular.ttf');
+    font-family: "kanit-regular";
+    src: url("../fonts/Kanit/Kanit-Regular.ttf");
 }
 
 @font-face {
-    font-family: 'Montserrat-Regular';
-    src: url('../fonts/Montserrat/static/Montserrat-Regular.ttf');
+    font-family: "Montserrat-Regular";
+    src: url("../fonts/Montserrat/static/Montserrat-Regular.ttf");
 }
 
 .bg-body-nav {
-    background-color: #142A36;
+    background-color: #142a36;
 }
 
 .navbar-icon {
@@ -32,14 +33,14 @@ body, html {
     font-size: 18px;
 }
 
-.navbar-nav .dropdown-toggle:focus, 
+.navbar-nav .dropdown-toggle:focus,
 .navbar-nav .dropdown-toggle:hover {
     color: #fff;
 }
 
 .navbar-nav .dropdown-menu {
     background-color: #132029;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
     border-radius: 20px;
     width: 450px;
 }
@@ -49,7 +50,7 @@ body, html {
     padding: 0;
 }
 
-.kategori-dropdown .dropdown-menu.show{
+.kategori-dropdown .dropdown-menu.show {
     display: flex;
 }
 
@@ -60,9 +61,9 @@ body, html {
     font-weight: 600;
 }
 
-.navbar-nav .dropdown-item:hover, 
+.navbar-nav .dropdown-item:hover,
 .navbar-nav .dropdown-item:focus {
-    color: #1ABC9C;
+    color: #1abc9c;
     background-color: transparent;
 }
 
@@ -77,11 +78,11 @@ body, html {
 .search-box:focus {
     color: #fff;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .search-box::placeholder {
-    color: #455D6A;
+    color: #455d6a;
     opacity: 1;
     font-family: "Montserrat", sans-serif;
     font-weight: 400;
@@ -104,20 +105,19 @@ body, html {
     margin-top: 0.5rem;
 }
 
-
 .dropdown-menu.notification {
     background-color: #132029;
     margin-left: -200px;
-    border: 1px solid #1ABC9C;
-    width:250px;
+    border: 1px solid #1abc9c;
+    width: 250px;
     height: auto;
 }
 
-.dropdown-item.notification-item{
-    color: #1ABC9C;
+.dropdown-item.notification-item {
+    color: #1abc9c;
 }
 
-.dropdown-item.notification-item:hover{
+.dropdown-item.notification-item:hover {
     background-color: transparent;
     color: #fff;
 }
@@ -125,26 +125,24 @@ body, html {
 .dropdown-menu.user-info {
     background-color: #132029;
     margin-left: -170px;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
-.dropdown-item.user-info-item{
+.dropdown-item.user-info-item {
     font-family: "Montserrat", sans-serif;
     color: #fff;
     font-size: 16px;
     font-weight: 400;
 }
 
-
-.dropdown-item.user-info-item:hover{
+.dropdown-item.user-info-item:hover {
     background-color: transparent;
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 
 .section-jumbotron {
     padding: 0px 70px;
 }
-
 
 .jumbotron {
     width: 100%;
@@ -153,29 +151,29 @@ body, html {
     position: relative;
     z-index: 1;
 }
-.jumbotron-layer{
+.jumbotron-layer {
     position: absolute;
     z-index: 9;
     width: 100%;
     height: 100%;
     top: 0;
     right: 0;
-    background: linear-gradient(to right, 
-    rgba(20, 42, 54, .9) 10%, 
-    transparent 90%);
-    border-radius: 20px;  
-
+    background: linear-gradient(
+        to right,
+        rgba(20, 42, 54, 0.9) 10%,
+        transparent 90%
+    );
+    border-radius: 20px;
 }
-.jumbotron-content{
+.jumbotron-content {
     z-index: 999;
     position: relative;
 }
-.jumbotron-img{
+.jumbotron-img {
     position: relative;
     z-index: 8;
     top: 0;
 }
-
 
 .jumbotron-title {
     color: #fff;
@@ -196,13 +194,13 @@ body, html {
 .btn-play {
     width: 284px;
     border-radius: 10px;
-    background-color: #1ABC9C;
-    border: 1px solid #1ABC9C;
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
 }
 
-.btn-play:hover{
+.btn-play:hover {
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .new-added-title {
@@ -222,7 +220,6 @@ body, html {
     color: #fff;
     margin-top: 8rem;
 }
-
 
 .card {
     max-width: 205px;
@@ -254,13 +251,11 @@ section {
     display: flex;
 }
 
-
 .swiper {
     width: calc(100% - 15%);
     height: auto;
     margin-top: 1rem;
 }
-
 
 .swiper-slide > img {
     width: 100%;
@@ -284,7 +279,7 @@ section {
 
 .notification-item p {
     text-align: left;
-    color: #1ABC9C;
+    color: #1abc9c;
     font-size: 14px;
     font-weight: 600;
     font-family: "Kanit", sans-serif;
@@ -302,7 +297,7 @@ section {
 }
 .multi-line-text-subscribe {
     margin: 0;
-    color: #1ABC9C; 
+    color: #1abc9c;
     font-size: 14px;
     font-weight: 600;
     font-family: "Kanit", sans-serif;
@@ -313,7 +308,7 @@ section {
 }
 
 .multi-line-text-new-movie {
-    margin: 0; 
+    margin: 0;
     color: #fff;
     font-size: 14px;
     font-weight: 600;
@@ -321,7 +316,7 @@ section {
 }
 
 .multi-line-text-subscribe:hover {
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 
 .notification-date {
@@ -330,7 +325,7 @@ section {
     color: #aaa;
 }
 
-.breadcrumb{
+.breadcrumb {
     margin-left: 6rem;
     margin-top: 7rem;
     background: transparent;
@@ -344,19 +339,19 @@ section {
     font-family: "Montserrat", sans-serif;
 }
 
-.breadcrumb-item.active{
-    color: #1ABC9C;
+.breadcrumb-item.active {
+    color: #1abc9c;
     font-size: 18px;
     font-weight: 600;
     font-family: "Montserrat", sans-serif;
 }
 
-.breadcrumb-item+.breadcrumb-item::before{
-    color: #1ABC9C;
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #1abc9c;
 }
 
 .container-movie {
-    background-color: #142A36;
+    background-color: #142a36;
     border-radius: 20px;
     margin: 0 64px;
 }
@@ -376,19 +371,19 @@ section {
 }
 
 .year-movie {
-    color: #1ABC9C;
+    color: #1abc9c;
     font-family: "Kanit", sans-serif;
     font-size: 22px;
     font-weight: 400;
 }
 
 .dash {
-    color: #1ABC9C;
+    color: #1abc9c;
     font-size: 22px;
 }
 
 .duration-movie {
-    color: #1ABC9C;
+    color: #1abc9c;
     font-family: "Kanit", sans-serif;
     font-size: 22px;
     font-weight: 400;
@@ -410,7 +405,6 @@ section {
     font-family: "Montserrat", sans-serif;
     justify-content: space-between;
 }
-
 
 .rectangle-rating {
     width: 100%;
@@ -437,7 +431,7 @@ section {
 }
 
 .star-ratings {
-    color: #FFC807;
+    color: #ffc807;
     font-size: 29px;
 }
 
@@ -451,7 +445,7 @@ section {
 
 .per {
     font-family: "Montserrat", sans-serif;
-    color: #455D6A;
+    color: #455d6a;
     font-weight: 200;
     font-size: 18px;
 }
@@ -469,7 +463,7 @@ section {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     display: inline-block;
-    color: #1ABC9C;
+    color: #1abc9c;
     margin-left: 2rem;
 }
 
@@ -489,15 +483,15 @@ section {
     font-weight: 600;
 }
 
-.writters-movie-name{
-    color: #1ABC9C;
+.writters-movie-name {
+    color: #1abc9c;
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     margin-left: 2.2rem;
 }
 
-.star-movie-name{
-    color: #1ABC9C;
+.star-movie-name {
+    color: #1abc9c;
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     margin-left: 4.2rem;
@@ -507,7 +501,6 @@ section {
     width: 100%;
 }
 
-
 .badge-frame-video {
     margin-left: 2%;
     margin-right: 2%;
@@ -515,15 +508,14 @@ section {
 }
 
 .badge-frame-video-tools {
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
     font-weight: 100;
     font-size: 14px;
     font-family: "Montserrat", sans-serif;
 }
 
-
 .badge-frame-video-rating {
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
     font-weight: 100;
     font-size: 14px;
     font-family: "Montserrat", sans-serif;
@@ -531,15 +523,14 @@ section {
 }
 
 .light-icon {
-    color: #1ABC9C;
+    color: #1abc9c;
     width: 15px;
 }
 
 .film-icon {
-    color: #1ABC9C;
+    color: #1abc9c;
     width: 15px;
 }
-
 
 .container-info {
     background: transparent;
@@ -551,19 +542,19 @@ section {
     width: 328px;
     height: 182px;
     border-radius: 21px;
-    background: #142A36;
+    background: #142a36;
     box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
     margin-top: 7rem;
     margin-left: 5rem;
 }
 
-.list-group{
-    background-color: #142A36;
+.list-group {
+    background-color: #142a36;
     border-radius: 20px;
     padding: 25px;
 }
 
-.list-group-item{
+.list-group-item {
     background-color: transparent;
     border: none;
     margin-bottom: 10px;
@@ -575,11 +566,11 @@ section {
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 18px;
-
 }
 
-.group-profile:focus, .group-profile.active {
-    color: #1ABC9C;
+.group-profile:focus,
+.group-profile.active {
+    color: #1abc9c;
 }
 
 .content-section {
@@ -601,7 +592,7 @@ section {
 }
 
 .load-more {
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
     color: #fff;
     width: 233px;
     height: auto;
@@ -609,12 +600,12 @@ section {
 
 .load-more:hover {
     background-color: transparent;
-    color: #1ABC9C;
-    border: 1px solid #1ABC9C;
+    color: #1abc9c;
+    border: 1px solid #1abc9c;
 }
 
 .rotate-right {
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 
 .column-rating {
@@ -629,7 +620,7 @@ section {
     font-size: 26px;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
-    color: #1ABC9C;
+    color: #1abc9c;
     margin-left: 1rem;
 }
 
@@ -644,7 +635,7 @@ section {
 .rectangle-overview {
     height: auto;
     border-radius: 20px;
-    background-color: #142A36;
+    background-color: #142a36;
     margin-left: 1rem;
 }
 
@@ -652,7 +643,7 @@ section {
     font-size: 36px;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    color: #1ABC9C;
+    color: #1abc9c;
     margin-left: 1rem;
     margin-top: 1rem;
     width: 193px;
@@ -671,7 +662,7 @@ section {
     font-size: 18px;
     font-family: "Montserrat", sans-serif;
     margin-left: 2rem;
-    max-width: max-content;;
+    max-width: max-content;
 }
 
 .overview-plan-membership {
@@ -687,8 +678,8 @@ section {
     height: auto;
 }
 
-.e-payment-number { /
-    margin-left: -10px;
+.e-payment-number {
+    /margin-left: -10px;
 }
 
 .payment-number {
@@ -711,7 +702,7 @@ section {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     font-weight: 600;
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 
 .manage-membership:hover {
@@ -720,7 +711,7 @@ section {
 
 .arrow {
     font-size: 16px;
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 .arrow-payment {
     margin-top: -30px;
@@ -730,7 +721,7 @@ section {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     font-weight: 600;
-    color: #1ABC9C;
+    color: #1abc9c;
     margin-left: 66rem;
     margin-top: -30px;
 }
@@ -739,11 +730,11 @@ section {
     color: #fff;
 }
 
-.rectangle-plan-membership{
+.rectangle-plan-membership {
     width: 1200px;
     height: auto;
     border-radius: 20px;
-    background-color: #142A36;
+    background-color: #142a36;
     margin-left: 1rem;
     margin-top: -40px;
 }
@@ -783,13 +774,13 @@ section {
     border-radius: 5px;
     background-color: transparent;
     color: #fff;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .form-full-name:focus {
     color: #fff;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .form-full-name-checkout {
@@ -798,7 +789,7 @@ section {
     border-radius: 5px;
     background-color: transparent;
     color: #fff;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
     margin-left: 3.5rem;
     margin-top: 1rem;
     display: block;
@@ -807,22 +798,21 @@ section {
 .form-full-name-checkout:focus {
     color: #fff;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
-
 
 .form-address {
     width: 95%;
     border-radius: 5px;
     background-color: transparent;
     color: #fff;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .form-address:focus {
     color: #fff;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .form-new-password {
@@ -831,7 +821,7 @@ section {
     border-radius: 5px;
     background-color: transparent;
     color: #fff;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
     margin-left: 14.5rem;
     margin-top: 1rem;
 }
@@ -839,7 +829,7 @@ section {
 .form-new-password:focus {
     color: #fff;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .form-confirm-password {
@@ -848,7 +838,7 @@ section {
     border-radius: 5px;
     background-color: transparent;
     color: #fff;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
     margin-left: 9.5rem;
     margin-top: 1rem;
 }
@@ -856,20 +846,20 @@ section {
 .form-confirm-password:focus {
     color: #fff;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .btn-submit {
     width: 100px;
     height: auto;
     border-radius: 5px;
-    background-color: #1ABC9C;
-    border: 1px solid #1ABC9C;
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
 }
 
 .btn-submit:hover {
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .btn-cancel {
@@ -884,36 +874,35 @@ section {
 
 .btn-cancel:hover {
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
-
-.btn-cancel-membership{
+.btn-cancel-membership {
     width: 100px;
     height: auto;
     border-radius: 5px;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
-    color: #1ABC9C;
+    border: 1px solid #1abc9c;
+    color: #1abc9c;
 }
 
 .btn-cancel-membership:hover {
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .btn-submit-password {
     width: 100px;
     height: auto;
     border-radius: 5px;
-    background-color: #1ABC9C;
-    border: 1px solid #1ABC9C;
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
     margin-left: 1rem;
 }
 
 .btn-submit-password:hover {
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .btn-cancel-password {
@@ -923,12 +912,12 @@ section {
     background-color: transparent;
     border: none;
     margin-left: 57rem;
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 
 .btn-cancel-password:hover {
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 
 .btn-delete-account {
@@ -936,21 +925,20 @@ section {
     width: 100%;
     margin-left: 1rem;
     background-color: transparent;
-    border: 3px solid #1ABC9C;
+    border: 3px solid #1abc9c;
     font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 22px;
 }
 
-
-.btn-delete-account:hover{
+.btn-delete-account:hover {
     background-color: #fff;
-    border: 3px solid #1ABC9C;
-    color: #1ABC9C;
+    border: 3px solid #1abc9c;
+    color: #1abc9c;
 }
 
-footer{
-    background-color: #142A36;
+footer {
+    background-color: #142a36;
 }
 
 .footer-title {
@@ -959,7 +947,7 @@ footer{
     font-weight: 600;
 }
 
-.col-md-20{
+.col-md-20 {
     flex: 0 0 auto;
     width: 20%;
 }
@@ -967,7 +955,7 @@ footer{
 .card-plan {
     width: 300px;
     height: auto;
-    border: 2px solid #1ABC9C;
+    border: 2px solid #1abc9c;
     border-radius: 10px;
 }
 
@@ -979,25 +967,25 @@ footer{
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     font-weight: 600;
-    border-bottom: 2px solid #1ABC9C;
+    border-bottom: 2px solid #1abc9c;
 }
 
 .plan-detail-days {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     font-weight: 600;
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 
 .btn-plan:hover {
-    border: 2px solid #1ABC9C;
-    background-color: #1ABC9C;
+    border: 2px solid #1abc9c;
+    background-color: #1abc9c;
     color: #fff;
 }
 
 .btn-plan:focus {
-    border: 2px solid #1ABC9C;
-    background-color: #1ABC9C;
+    border: 2px solid #1abc9c;
+    background-color: #1abc9c;
     color: #fff;
 }
 
@@ -1005,7 +993,7 @@ footer{
     color: #fff;
 }
 
-.plan-detail-days:focus{
+.plan-detail-days:focus {
     color: #fff;
 }
 
@@ -1018,7 +1006,7 @@ footer{
 }
 
 .resolution {
-    color: #1ABC9C;
+    color: #1abc9c;
     font-family: "Montserrat", sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -1062,86 +1050,86 @@ footer{
 }
 
 .text-term {
-    color: #1ABC9C;
+    color: #1abc9c;
 }
 
 .btn-continue {
     width: 100px;
     height: auto;
     border-radius: 10px;
-    background-color: #1ABC9C;
+    background-color: #1abc9c;
     color: #132029;
     margin-left: 34rem;
 }
 
 /* overview-account : membership */
-.membership{
-    color: #FFF;
+.membership {
+    color: #fff;
 }
-.membership .membership-title{
+.membership .membership-title {
     font-size: 26px;
     font-weight: 700;
     font-family: "Montserrat", sans-serif;
-    color: #1ABC9C;
+    color: #1abc9c;
     margin-bottom: 1rem;
 }
-.membership .box{
+.membership .box {
     height: auto;
     border-radius: 20px;
-    background-color: #142A36;
+    background-color: #142a36;
     padding: 2rem;
 }
-.membership .payment-info{
+.membership .payment-info {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     font-weight: 300;
 }
-.membership .payment-dana{
+.membership .payment-dana {
     max-width: 40px;
     margin-right: 5px;
 }
-.membership .btn-cancel-membership{
+.membership .btn-cancel-membership {
     width: 100%;
     border-radius: 25px;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
-    color: #1ABC9C;
+    border: 1px solid #1abc9c;
+    color: #1abc9c;
     margin: 1rem 0 4rem;
 }
 
-.membership .card{
+.membership .card {
     border: 1px solid #1abc9c;
     height: max-content;
     border-radius: 5px;
 }
-.membership .card-header{
+.membership .card-header {
     background: #132029;
     color: #fff;
-    border-bottom: 1px solid #1ABC9C;
+    border-bottom: 1px solid #1abc9c;
 }
-.membership .card-header.active{
+.membership .card-header.active {
     background: #1abc9c;
     color: #132029;
 }
-.membership .card-body{
+.membership .card-body {
     background: #132029;
     color: #fff;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-.membership h5{
+.membership h5 {
     font-size: 16px;
 }
-.membership h5.text-green{
-    color: #1ABC9C;
+.membership h5.text-green {
+    color: #1abc9c;
 }
-.f-input{
+.f-input {
     display: flex;
     flex-direction: column-reverse;
     position: relative;
 }
 .f-input input:focus + label {
-    color: #1ABC9C!important;
+    color: #1abc9c !important;
 }
 .f-input label {
     color: #fff;
@@ -1152,63 +1140,62 @@ footer{
     border-radius: 5px;
     background-color: transparent;
     color: #fff;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
 .f-input input:focus {
     color: #fff;
     background-color: transparent;
-    border: 1px solid #1ABC9C;
+    border: 1px solid #1abc9c;
 }
-.membership .box-table{
+.membership .box-table {
     height: auto;
     border-radius: 10px;
     background-color: #132029;
     padding: 1rem;
 }
-.membership table tr.border-bottom{
-    border-bottom: 1px solid #FFF;
+.membership table tr.border-bottom {
+    border-bottom: 1px solid #fff;
 }
-.membership table tr td{
+.membership table tr td {
     padding: 10px 0;
 }
-.membership table tr td:last-child{
+.membership table tr td:last-child {
     text-align: right;
 }
-.membership .btn-continue-membership{
+.membership .btn-continue-membership {
     border-radius: 5px;
-    background-color: #1ABC9C;
-    border: 1px solid #1ABC9C;
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
     padding: 0.5rem 2rem;
-    color: #142A36;
+    color: #142a36;
     font-size: 1rem;
     font-weight: bold;
 }
-.membership .aggrement{
-    color: #1ABC9C;
+.membership .aggrement {
+    color: #1abc9c;
 }
-.membership .img-logo-success{
+.membership .img-logo-success {
     width: 150px;
     margin-top: 4rem;
     margin-bottom: 2rem;
 }
-.membership .icon-check{
+.membership .icon-check {
     font-size: 200px;
-    color: #1ABC9C;
+    color: #1abc9c;
     margin-bottom: 1rem;
 }
-.membership .btn-mulai-nonton{
+.membership .btn-mulai-nonton {
     border-radius: 5px;
-    background-color: #1ABC9C;
-    border: 1px solid #1ABC9C;
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
     padding: 0.5rem 3rem;
-    color: #142A36;
+    color: #142a36;
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 4rem;
 }
 
-
-.payment-detial-title{
+.payment-detial-title {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;
     font-weight: 300;
@@ -1219,7 +1206,7 @@ footer{
         width: 100%;
     }
 
-    .nav-icon .dropdown-menu.show{
+    .nav-icon .dropdown-menu.show {
         right: 0;
         margin: auto;
     }
@@ -1227,7 +1214,7 @@ footer{
     .jumbotron-title {
         font-size: 12px;
     }
-    .lead{
+    .lead {
         font-size: 8px;
         margin-top: 0;
     }
@@ -1239,13 +1226,13 @@ footer{
         font-size: 10px;
     }
 
-    .card{
+    .card {
         height: 250px;
     }
 
     .navbar-nav .dropdown-menu {
         background-color: #132029;
-        border: 1px solid #1ABC9C;
+        border: 1px solid #1abc9c;
         border-radius: 20px;
         width: 97%;
     }
@@ -1264,7 +1251,7 @@ footer{
     }
 
     .search-box::placeholder {
-        color: #455D6A;
+        color: #455d6a;
         opacity: 1;
         font-family: "Montserrat", sans-serif;
         font-weight: 400;
@@ -1287,7 +1274,6 @@ footer{
         margin: 10px 20px;
     }
 
-
     .col-6 {
         flex: 0 0 auto;
         width: 50%;
@@ -1306,7 +1292,6 @@ footer{
         width: 100px;
         height: auto;
         margin-top: 1rem;
-        
     }
 
     .movie-title {
@@ -1317,32 +1302,32 @@ footer{
         margin-top: 2rem;
     }
 
-    .breadcrumb{
+    .breadcrumb {
         margin-left: 2rem;
         margin-top: 7rem;
         background: transparent;
-      }
-    
-      .breadcrumb-link-home {
+    }
+
+    .breadcrumb-link-home {
         text-decoration: none;
         color: #fff;
         font-size: 18px;
         font-weight: 600;
         font-family: "Montserrat", sans-serif;
-      }
-    
-      .breadcrumb-item.active{
-        color: #1ABC9C;
+    }
+
+    .breadcrumb-item.active {
+        color: #1abc9c;
         font-size: 18px;
         font-weight: 600;
         font-family: "Montserrat", sans-serif;
-      }
-    
-      .breadcrumb-item+.breadcrumb-item::before{
-        color: #1ABC9C;
-      }
+    }
 
-      .prolog-movie {
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: #1abc9c;
+    }
+
+    .prolog-movie {
         font-family: "Montserrat", sans-serif;
         font-weight: 100;
         font-size: 14px;
@@ -1382,7 +1367,7 @@ footer{
         font-family: "Montserrat", sans-serif;
         font-size: 14px;
         display: inline-block;
-        color: #1ABC9C;
+        color: #1abc9c;
         margin-left: 2rem;
     }
 
@@ -1393,16 +1378,16 @@ footer{
         font-weight: 600;
         padding: 0 20px;
     }
-    
+
     .writters-movie-name {
-        color: #1ABC9C;
+        color: #1abc9c;
         font-family: "Montserrat", sans-serif;
         font-size: 14px;
         margin-left: 2.2rem;
     }
-    
-    .star-movie-name{
-        color: #1ABC9C;
+
+    .star-movie-name {
+        color: #1abc9c;
         font-family: "Montserrat", sans-serif;
         font-size: 14px;
         margin-left: 3.7rem;
@@ -1415,15 +1400,14 @@ footer{
     }
 
     .badge-frame-video-tools {
-        border: 1px solid #1ABC9C;
+        border: 1px solid #1abc9c;
         font-weight: 100;
         font-size: 10px;
         font-family: "Montserrat", sans-serif;
     }
-    
-    
+
     .badge-frame-video-rating {
-        border: 1px solid #1ABC9C;
+        border: 1px solid #1abc9c;
         font-weight: unset;
         font-size: 10px;
         font-family: "Montserrat", sans-serif;
@@ -1434,7 +1418,7 @@ footer{
     .sidebar-left {
         width: 330px;
         border-radius: 21px;
-        background: #142A36;
+        background: #142a36;
         box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.25);
         margin-top: 7rem;
         margin-left: 2rem;
@@ -1452,7 +1436,7 @@ footer{
         font-size: 18px;
         font-weight: 700;
         font-family: "Montserrat", sans-serif;
-        color: #1ABC9C;
+        color: #1abc9c;
         margin-left: 3rem;
         margin-top: 1rem;
     }
@@ -1465,10 +1449,10 @@ footer{
         margin-left: 3rem;
     }
 
-    .rectangle-overview{
+    .rectangle-overview {
         width: 330px;
         border-radius: 20px;
-        background-color: #142A36;
+        background-color: #142a36;
         margin-left: 1rem;
     }
 
@@ -1476,7 +1460,7 @@ footer{
         font-size: 18px;
         font-family: "Montserrat", sans-serif;
         font-weight: 600;
-        color: #1ABC9C;
+        color: #1abc9c;
         margin-left: 2rem;
         margin-top: 1rem;
         width: 193px;
@@ -1527,7 +1511,6 @@ footer{
         margin-left: 1rem;
     }
 
-
     .form-address {
         margin-top: 1rem;
     }
@@ -1536,8 +1519,8 @@ footer{
         width: 100px;
         height: auto;
         border-radius: 5px;
-        background-color: #1ABC9C;
-        border: 1px solid #1ABC9C;
+        background-color: #1abc9c;
+        border: 1px solid #1abc9c;
         margin-left: 1rem;
     }
 
@@ -1545,7 +1528,7 @@ footer{
         width: 90%;
     }
 
-    .btn-cancel{
+    .btn-cancel {
         margin-left: 1rem;
     }
 
@@ -1558,6 +1541,704 @@ footer{
     }
 }
 
+/* ============================================
+   NETFLIX-STYLE ENHANCEMENTS
+   ============================================ */
 
+/* CSS Variables for consistency */
+:root {
+    --codeflix-primary: #1abc9c;
+    --codeflix-bg-dark: #132029;
+    --codeflix-bg-card: #142a36;
+    --codeflix-text: #ffffff;
+    --codeflix-text-muted: #8899a6;
+    --codeflix-danger: #e50914;
+    --codeflix-success: #46d369;
+    --codeflix-warning: #f5c518;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+/* Enhanced Movie Card with Hover Effects */
+.card {
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    cursor: pointer;
+}
 
+.card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        transparent 100%
+    );
+    padding: 20px 15px 15px;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    transform: translateY(10px);
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-overlay-title {
+    color: var(--codeflix-text);
+    font-family: "Kanit", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-overlay-meta {
+    color: var(--codeflix-text-muted);
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.card-overlay-rating {
+    color: var(--codeflix-warning);
+}
+
+/* Watchlist Button */
+.btn-watchlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--codeflix-text);
+    color: var(--codeflix-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    z-index: 5;
+}
+
+.card:hover .btn-watchlist {
+    opacity: 1;
+}
+
+.btn-watchlist:hover {
+    background: var(--codeflix-primary);
+    border-color: var(--codeflix-primary);
+    transform: scale(1.1);
+}
+
+.btn-watchlist.active {
+    background: var(--codeflix-primary);
+    border-color: var(--codeflix-primary);
+}
+
+.btn-watchlist i {
+    font-size: 14px;
+}
+
+/* Continue Watching Section */
+.continue-watching-section {
+    margin-bottom: 2rem;
+}
+
+.continue-watching-card {
+    position: relative;
+}
+
+.continue-watching-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.continue-watching-progress-bar {
+    height: 100%;
+    background: var(--codeflix-danger);
+    transition: width 0.3s ease;
+}
+
+.continue-watching-resume {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    color: var(--codeflix-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.continue-watching-card:hover .continue-watching-resume {
+    opacity: 1;
+}
+
+.continue-watching-resume:hover {
+    background: var(--codeflix-primary);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Loading Skeleton Animation */
+@keyframes skeleton-loading {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--codeflix-bg-card) 0%,
+        #1a3a4a 50%,
+        var(--codeflix-bg-card) 100%
+    );
+    background-size: 200px 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 8px;
+}
+
+.skeleton-card {
+    width: 205px;
+    height: 308px;
+    border-radius: 20px;
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 8px;
+}
+
+.skeleton-text-sm {
+    height: 12px;
+    width: 60%;
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    min-width: 300px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    background: var(--codeflix-bg-card);
+    border-left: 4px solid var(--codeflix-primary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: toast-slide-in 0.3s ease-out;
+    color: var(--codeflix-text);
+    font-family: "Montserrat", sans-serif;
+}
+
+@keyframes toast-slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast.toast-success {
+    border-left-color: var(--codeflix-success);
+}
+
+.toast.toast-error {
+    border-left-color: var(--codeflix-danger);
+}
+
+.toast.toast-warning {
+    border-left-color: var(--codeflix-warning);
+}
+
+.toast-icon {
+    font-size: 20px;
+}
+
+.toast-success .toast-icon {
+    color: var(--codeflix-success);
+}
+
+.toast-error .toast-icon {
+    color: var(--codeflix-danger);
+}
+
+.toast-warning .toast-icon {
+    color: var(--codeflix-warning);
+}
+
+.toast-message {
+    flex: 1;
+    font-size: 14px;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: var(--codeflix-text-muted);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0;
+    transition: color 0.2s;
+}
+
+.toast-close:hover {
+    color: var(--codeflix-text);
+}
+
+/* My List / Watchlist Page */
+.watchlist-empty {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.watchlist-empty-icon {
+    font-size: 80px;
+    color: var(--codeflix-text-muted);
+    margin-bottom: 20px;
+}
+
+.watchlist-empty-title {
+    font-family: "Kanit", sans-serif;
+    font-size: 28px;
+    color: var(--codeflix-text);
+    margin-bottom: 10px;
+}
+
+.watchlist-empty-text {
+    font-family: "Montserrat", sans-serif;
+    color: var(--codeflix-text-muted);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.watchlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Admin Dashboard Styles */
+.admin-sidebar {
+    background: var(--codeflix-bg-card);
+    min-height: 100vh;
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 80px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-sidebar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 25px;
+    color: var(--codeflix-text-muted);
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    transition: var(--transition-smooth);
+    border-left: 3px solid transparent;
+}
+
+.admin-sidebar-nav li a:hover,
+.admin-sidebar-nav li a.active {
+    background: rgba(26, 188, 156, 0.1);
+    color: var(--codeflix-primary);
+    border-left-color: var(--codeflix-primary);
+}
+
+.admin-sidebar-nav li a i {
+    width: 20px;
+    text-align: center;
+}
+
+.admin-content {
+    margin-left: 250px;
+    padding: 100px 30px 30px;
+    min-height: 100vh;
+}
+
+.admin-stat-card {
+    background: var(--codeflix-bg-card);
+    border-radius: 12px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: var(--transition-smooth);
+}
+
+.admin-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.admin-stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background: rgba(26, 188, 156, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--codeflix-primary);
+}
+
+.admin-stat-info h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--codeflix-text);
+    margin: 0;
+}
+
+.admin-stat-info p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: var(--codeflix-text-muted);
+    margin: 5px 0 0;
+}
+
+.admin-table {
+    width: 100%;
+    background: var(--codeflix-bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.admin-table th {
+    background: rgba(26, 188, 156, 0.1);
+    color: var(--codeflix-primary);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 20px;
+    text-align: left;
+}
+
+.admin-table td {
+    padding: 15px 20px;
+    color: var(--codeflix-text);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-table tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-table-actions .btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.btn-admin-primary {
+    background: var(--codeflix-primary);
+    border: none;
+    color: var(--codeflix-text);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.btn-admin-primary:hover {
+    background: #17a589;
+    transform: translateY(-2px);
+}
+
+.btn-admin-danger {
+    background: var(--codeflix-danger);
+    border: none;
+    color: var(--codeflix-text);
+}
+
+.btn-admin-danger:hover {
+    background: #b81d13;
+}
+
+/* Hero Section Enhancement */
+.hero-featured {
+    position: relative;
+    height: 80vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    margin-top: 60px;
+}
+
+.hero-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            to right,
+            rgba(19, 32, 41, 0.95) 0%,
+            rgba(19, 32, 41, 0.4) 50%,
+            transparent 100%
+        ),
+        linear-gradient(to top, rgba(19, 32, 41, 1) 0%, transparent 50%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    padding: 150px 80px;
+}
+
+.hero-title {
+    font-family: "Kanit", sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: var(--codeflix-text);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-description {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    color: var(--codeflix-text);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-hero-play {
+    background: var(--codeflix-text);
+    color: var(--codeflix-bg-dark);
+    padding: 12px 35px;
+    border-radius: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-smooth);
+}
+
+.btn-hero-play:hover {
+    background: #e5e5e5;
+}
+
+.btn-hero-info {
+    background: rgba(109, 109, 110, 0.7);
+    color: var(--codeflix-text);
+    padding: 12px 35px;
+    border-radius: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-smooth);
+}
+
+.btn-hero-info:hover {
+    background: rgba(109, 109, 110, 0.5);
+}
+
+/* Section Title Enhancement */
+.section-title {
+    font-family: "Kanit", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--codeflix-text);
+    margin: 40px 0 20px 80px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(26, 188, 156, 0.3), transparent);
+    max-width: 200px;
+}
+
+/* Form Enhancements for Admin */
+.form-group-admin {
+    margin-bottom: 20px;
+}
+
+.form-group-admin label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--codeflix-text);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-control-admin {
+    width: 100%;
+    padding: 12px 15px;
+    background: var(--codeflix-bg-dark);
+    border: 1px solid rgba(26, 188, 156, 0.3);
+    border-radius: 8px;
+    color: var(--codeflix-text);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.form-control-admin:focus {
+    outline: none;
+    border-color: var(--codeflix-primary);
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.1);
+}
+
+.form-control-admin::placeholder {
+    color: var(--codeflix-text-muted);
+}
+
+textarea.form-control-admin {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Badge Enhancements */
+.badge-admin {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-admin-success {
+    background: rgba(70, 211, 105, 0.2);
+    color: var(--codeflix-success);
+}
+
+.badge-admin-danger {
+    background: rgba(229, 9, 20, 0.2);
+    color: var(--codeflix-danger);
+}
+
+.badge-admin-warning {
+    background: rgba(245, 197, 24, 0.2);
+    color: var(--codeflix-warning);
+}
+
+.badge-admin-primary {
+    background: rgba(26, 188, 156, 0.2);
+    color: var(--codeflix-primary);
+}
+
+/* Responsive Admin */
+@media (max-width: 991px) {
+    .admin-sidebar {
+        width: 70px;
+    }
+
+    .admin-sidebar-nav li a span {
+        display: none;
+    }
+
+    .admin-content {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-featured {
+        height: 60vh;
+    }
+
+    .hero-content {
+        padding: 100px 20px;
+    }
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .section-title {
+        margin-left: 20px;
+        font-size: 20px;
+    }
+
+    .watchlist-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+}

@@ -20,7 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'check.device.limit' => \App\Http\Middleware\CheckDeviceLimit::class,
-            'logoutDevice' => \App\Http\Middleware\LogoutDevice::class
+            'logoutDevice' => \App\Http\Middleware\LogoutDevice::class,
+            'admin' => \App\Http\Middleware\AdminMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
