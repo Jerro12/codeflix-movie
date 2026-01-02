@@ -1,62 +1,117 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
-@section('title', 'Login')
-@section('page-title', 'Sign In')
+@section('title', 'Sign In')
 
 @section('content')
-    <form class="form" action="{{ route('login') }}" method="POST">
-        @csrf
-
-        <!-- Email input -->
-        <div class="mb-3 f-email">
-            <input type="email" name="email" class="form-control form-email @error('email') is-invalid @enderror"
-                id="InputEmail" value="{{ old('email') }}" required autofocus>
-            <label for="InputEmail" class="form-label form-label-email">Email</label>
-        </div>
-
-        <!-- Password input -->
-        <div class="mb-3 f-password">
-            <input type="password" name="password"
-                class="form-control form-password @error('password') is-invalid @enderror" id="InputPassword" required>
-            <label for="InputPassword" class="form-label form-label-password">Password</label>
-            <!-- Toggle password visibility -->
-            <i class="fa fa-eye-slash toggle-password" id="togglePassword"></i>
-        </div>
-
-        <!-- Remember me checkbox -->
-        <div class="mb-3 form-check d-flex justify-content-between">
-            <div>
-                <input type="checkbox" name="remember" class="form-check-input" id="remember">
-                <label class="form-check-label label-check" for="remember">Remember Me</label>
+<div class="min-h-screen flex items-center justify-center px-4 py-20">
+    <div class="w-full max-w-md">
+        <!-- Card -->
+        <div class="bg-codeflix-card/80 backdrop-blur-xl rounded-2xl p-8 shadow-2xl border border-gray-800">
+            <!-- Logo -->
+            <div class="text-center mb-8">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('assets/img/codeflix_logo.png') }}" alt="Codeflix" class="h-10 mx-auto mb-4">
+                </a>
+                <h1 class="font-outfit text-2xl font-bold text-white">Welcome Back</h1>
+                <p class="text-gray-400 mt-2">Sign in to continue watching</p>
             </div>
-            <!-- Forgot password link -->
-            <a class="forgot-password" href="{{ route('password.request') }}">
-                Forgot Password?
+
+            <!-- Form -->
+            <form action="{{ route('login') }}" method="POST" class="space-y-5">
+                @csrf
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+                        Email Address
+                    </label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                            <i class="fa-solid fa-envelope"></i>
+                        </span>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus
+                               class="w-full bg-codeflix-dark border border-gray-700 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition @error('email') border-red-500 @enderror"
+                               placeholder="your@email.com">
+                    </div>
+                    @error('email')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-300 mb-2">
+                        Password
+                    </label>
+                    <div class="relative" x-data="{ show: false }">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input :type="show ? 'text' : 'password'" id="password" name="password" required
+                               class="w-full bg-codeflix-dark border border-gray-700 rounded-xl pl-12 pr-12 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition @error('password') border-red-500 @enderror"
+                               placeholder="••••••••">
+                        <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white">
+                            <i class="fa-solid" :class="show ? 'fa-eye-slash' : 'fa-eye'"></i>
+                        </button>
+                    </div>
+                    @error('password')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Remember & Forgot -->
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="remember" class="rounded border-gray-700 bg-codeflix-dark text-codeflix-primary focus:ring-codeflix-primary">
+                        <span class="text-sm text-gray-400">Remember me</span>
+                    </label>
+                    <a href="{{ route('password.request') }}" class="text-sm text-codeflix-primary hover:underline">
+                        Forgot password?
+                    </a>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" 
+                        class="w-full bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-semibold py-3.5 rounded-xl transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="flex items-center gap-4 my-6">
+                <div class="flex-1 h-px bg-gray-700"></div>
+                <span class="text-gray-500 text-sm">or continue with</span>
+                <div class="flex-1 h-px bg-gray-700"></div>
+            </div>
+
+            <!-- Social Login (optional) -->
+            <div class="flex gap-4">
+                <button class="flex-1 flex items-center justify-center gap-2 bg-codeflix-dark hover:bg-gray-800 border border-gray-700 rounded-xl py-3 text-white transition">
+                    <i class="fa-brands fa-google text-lg"></i>
+                    Google
+                </button>
+                <button class="flex-1 flex items-center justify-center gap-2 bg-codeflix-dark hover:bg-gray-800 border border-gray-700 rounded-xl py-3 text-white transition">
+                    <i class="fa-brands fa-github text-lg"></i>
+                    GitHub
+                </button>
+            </div>
+
+            <!-- Register Link -->
+            <p class="text-center text-gray-400 mt-8">
+                Don't have an account?
+                <a href="{{ route('register') }}" class="text-codeflix-primary hover:underline font-medium">
+                    Sign up free
+                </a>
+            </p>
+        </div>
+
+        <!-- Back to home -->
+        <div class="text-center mt-6">
+            <a href="{{ route('home') }}" class="text-gray-500 hover:text-white text-sm transition">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Back to home
             </a>
         </div>
-
-        <!-- Sign in button -->
-        <button type="submit" class="btn btn-primary btn-sign-in">Sign In</button>
-
-        <!-- Register link -->
-        <div class="mt-3 text-center">
-            <span class="register">Don't have an account? <a href="{{ route('register') }}">Register</a></span>
-        </div>
-    </form>
-@endsection
-
-@section('scripts')
-    <script>
-        /**
-         * Toggle password visibility
-         */
-        const togglePassword = document.getElementById('togglePassword');
-        const password = document.getElementById('InputPassword');
-        togglePassword.addEventListener('click', function() {
-            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-            password.setAttribute('type', type);
-            this.classList.toggle('fa-eye');
-            this.classList.toggle('fa-eye-slash');
-        });
-    </script>
+    </div>
+</div>
 @endsection

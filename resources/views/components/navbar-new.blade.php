@@ -1,5 +1,5 @@
 <!-- New Navbar with Tailwind -->
-<nav class="fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/90 to-transparent backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <!-- Logo -->
@@ -15,7 +15,7 @@
                 <a href="{{ route('movies.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('movies.*') ? 'text-codeflix-primary' : '' }}">
                     Movies
                 </a>
-                <a href="#" class="font-medium text-gray-300 hover:text-codeflix-primary">
+                <a href="{{ route('series.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('series.*') ? 'text-codeflix-primary' : '' }}">
                     Series
                 </a>
                 <a href="{{ route('watchlist.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('watchlist.*') ? 'text-codeflix-primary' : '' }}">
@@ -68,13 +68,27 @@
                                 <h4 class="font-outfit font-semibold text-white mb-3">Notifications</h4>
                                 <div class="space-y-3 max-h-64 overflow-y-auto">
                                     <div class="flex items-start gap-3 p-2 rounded-lg hover:bg-gray-800">
-                                        <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded">
+                                        <div class="w-10 h-10 rounded bg-gradient-to-br from-codeflix-primary to-emerald-600 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-film text-white text-sm"></i>
+                                        </div>
                                         <div>
-                                            <p class="text-sm text-white">New movie added: <span class="text-codeflix-primary">The Matrix</span></p>
-                                            <p class="text-xs text-gray-500">2 hours ago</p>
+                                            <p class="text-sm text-white">Welcome to <span class="text-codeflix-primary">Codeflix</span>! Start exploring movies now.</p>
+                                            <p class="text-xs text-gray-500">Just now</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start gap-3 p-2 rounded-lg hover:bg-gray-800">
+                                        <div class="w-10 h-10 rounded bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-crown text-yellow-500 text-sm"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm text-white">Upgrade to <span class="text-yellow-400">Premium</span> for 4K streaming!</p>
+                                            <p class="text-xs text-gray-500">1 hour ago</p>
                                         </div>
                                     </div>
                                 </div>
+                                <a href="{{ route('history.index') }}" class="block text-center text-sm text-codeflix-primary hover:underline mt-3 pt-3 border-t border-gray-800">
+                                    View All Activity
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -101,13 +115,21 @@
                                     </a>
                                 @endif
                                 
-                                <a href="#" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
-                                    <i class="fa-solid fa-user w-5"></i>
+                                <a href="{{ route('profiles.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
+                                    <i class="fa-solid fa-users w-5"></i>
                                     Manage Profiles
                                 </a>
-                                <a href="#" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
+                                <a href="{{ route('settings.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-cog w-5"></i>
-                                    Settings
+                                    Account Settings
+                                </a>
+                                <a href="{{ route('history.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
+                                    <i class="fa-solid fa-clock-rotate-left w-5"></i>
+                                    Watch History
+                                </a>
+                                <a href="{{ route('referral.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
+                                    <i class="fa-solid fa-gift w-5"></i>
+                                    Invite Friends
                                 </a>
                                 <a href="{{ route('subscribe.plans') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-crown w-5"></i>
@@ -146,7 +168,7 @@
         <div class="px-4 py-4 space-y-3">
             <a href="{{ route('home') }}" class="block py-2 text-white">Home</a>
             <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300">Movies</a>
-            <a href="#" class="block py-2 text-gray-300">Series</a>
+            <a href="{{ route('series.index') }}" class="block py-2 text-gray-300">Series</a>
             <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300">My List</a>
             
             <!-- Mobile Search -->

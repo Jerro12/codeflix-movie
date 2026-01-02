@@ -248,17 +248,34 @@
             <i class="fa-solid fa-times"></i>
         </button>
         <div class="aspect-video bg-black rounded-xl overflow-hidden">
-            <iframe id="trailer-iframe" class="w-full h-full" allowfullscreen></iframe>
+            <iframe id="trailer-iframe" class="w-full h-full" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
         </div>
+        <p class="text-center text-gray-400 mt-4">
+            Can't see the video? 
+            <a href="{{ $movie->trailer_url }}" target="_blank" class="text-codeflix-primary hover:underline">
+                Open on YouTube <i class="fa-solid fa-external-link ml-1"></i>
+            </a>
+        </p>
     </div>
 </div>
 
 <script>
+function getYoutubeEmbedUrl(url) {
+    // Convert youtube.com/watch?v=xxx to youtube.com/embed/xxx
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) 
+        ? 'https://www.youtube.com/embed/' + match[2] + '?autoplay=1'
+        : url;
+}
+
 function openTrailer() {
+    const url = '{{ $movie->trailer_url }}';
     document.getElementById('trailer-modal').classList.remove('hidden');
     document.getElementById('trailer-modal').classList.add('flex');
-    document.getElementById('trailer-iframe').src = '{{ $movie->trailer_url }}';
+    document.getElementById('trailer-iframe').src = getYoutubeEmbedUrl(url);
 }
+
 function closeTrailer() {
     document.getElementById('trailer-modal').classList.add('hidden');
     document.getElementById('trailer-modal').classList.remove('flex');

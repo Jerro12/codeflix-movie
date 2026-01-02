@@ -156,7 +156,7 @@
     @include('components.navbar-new')
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="flex-grow pt-16">
         @yield('content')
     </main>
 
@@ -177,26 +177,29 @@
                     <h4 class="font-outfit font-semibold text-white mb-4">Browse</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
                         <li><a href="{{ route('movies.index') }}" class="hover:text-codeflix-primary">Movies</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Series</a></li>
+                        <li><a href="{{ route('series.index') }}" class="hover:text-codeflix-primary">Series</a></li>
                         <li><a href="{{ route('watchlist.index') }}" class="hover:text-codeflix-primary">My List</a></li>
+                        <li><a href="{{ route('movies.search') }}" class="hover:text-codeflix-primary">Search</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="font-outfit font-semibold text-white mb-4">Account</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="#" class="hover:text-codeflix-primary">Profile</a></li>
+                        <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profiles</a></li>
                         <li><a href="{{ route('subscribe.plans') }}" class="hover:text-codeflix-primary">Subscription</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Settings</a></li>
+                        <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Settings</a></li>
+                        <li><a href="{{ route('history.index') }}" class="hover:text-codeflix-primary">Watch History</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-outfit font-semibold text-white mb-4">Support</h4>
+                    <h4 class="font-outfit font-semibold text-white mb-4">More</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="#" class="hover:text-codeflix-primary">Help Center</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Privacy Policy</a></li>
+                        <li><a href="{{ route('referral.index') }}" class="hover:text-codeflix-primary">Invite Friends</a></li>
+                        <li><a href="mailto:support@codeflix.com" class="hover:text-codeflix-primary">Contact Us</a></li>
+                        <li><a href="{{ route('privacy') }}" class="hover:text-codeflix-primary">Privacy Policy</a></li>
+                        <li><a href="{{ route('terms') }}" class="hover:text-codeflix-primary">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -206,6 +209,8 @@
             </div>
         </div>
     </footer>
+
+    @include('components.mobile-nav')
 
     <!-- Livewire Scripts -->
     @livewireScripts

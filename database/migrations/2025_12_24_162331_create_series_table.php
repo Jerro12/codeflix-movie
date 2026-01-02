@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('poster');
             $table->string('banner')->nullable();
             $table->string('director')->nullable();
-            $table->string('cast')->nullable();
+            $table->text('cast')->nullable();
             $table->year('release_year');
-            $table->enum('status', ['ongoing', 'completed', 'cancelled'])->default('ongoing');
-            $table->enum('age_rating', ['G', 'PG', 'PG-13', 'R', 'NC-17'])->default('PG-13');
+            $table->string('status')->default('Ongoing');
+            $table->string('age_rating')->default('TV-14');
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

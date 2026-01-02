@@ -1,135 +1,151 @@
-# Codeflix - Netflix-like Video Streaming System
+# Codeflix - Advanced Video Streaming Platform
 
-Codeflix is a web application project built to simulate a video streaming platform like Netflix. Developed using **Laravel 12**, this project demonstrates the implementation of core features found in modern video-on-demand services, including user management, subscription systems, a movie catalog, and payment integration.
+![Codeflix Landing](screenshots/1-landing.png)
 
-## Key Features
+**Codeflix** is a feature-rich, scalable video streaming application built with **Laravel 12**. Designed to emulate the core functionalities of Netflix, it offers a robust architecture featuring multi-profile user accounts, subscription-based access, comprehensive admin management, and a high-performance infrastructure using Redis, MinIO, and Meilisearch.
 
-Here are some of the key features implemented in Codeflix:
+## 🚀 Key Features
 
-* **User Authentication:**
-    * New user registration.
-    * Login for registered users.
-    * Forgot Password and Password Reset functionality (using Laravel Fortify).
-* **Subscription Management:**
-    * Subscription plan selection during registration or after login.
-    * Checkout page for subscription payments.
-    * User redirection based on subscription status after login/registration.
-* **Movie Catalog:**
-    * Display list of movies based on categories.
-    * Showcase Latest Movies and Trending Movies.
-    * Detailed view page for each movie.
-    * Movie search functionality by title.
-    * "All Movies" page with a *load more* feature.
-* **Payment Gateway Integration:**
-    * Implemented payments using **Midtrans Snap** for a seamless checkout process.
-    * Webhook/Callback listener to handle payment status notifications from Midtrans.
-* **Membership Status Checks:**
-    * Automated scheduler (using Laravel Scheduler & Jobs) to periodically check user subscription validity.
-    * Custom command to run checks manually if needed.
-    * Automatic email notifications (using Laravel Mail & Notifications) to users whose subscriptions are expiring or have expired.
-* **Database Structure:**
-    * Relational database design to manage users, plans, subscriptions, movies, categories, and ratings.
-    * Uses Laravel Migrations to create the table structure.
-    * Uses Laravel Seeders to populate initial/dummy data.
+### 👤 User Experience
 
-## Technology Stack
+-   **Multi-Profile System:** Users can create up to 5 profiles per account (including Kids mode) with independent watch history and lists.
+-   **Smart Subscription:** Tiered subscription plans (Basic, Premium) with seamless Midtrans payment integration.
+-   **Interactive Player:** Custom video player with resume capability, "Continue Watching", and progress tracking.
+-   **Watchlist:** Personal "My List" for saving movies and series.
+-   **Responsive Design:** Fully responsive UI built with Tailwind CSS and Alpine.js for a fluid mobile and desktop experience.
 
-* **Backend:** PHP 8.2+, Laravel 12
-* **Database:** MySQL / PostgreSQL (adjust according to your setup)
-* **Authentication:** Laravel Fortify
-* **Payment Gateway:** Midtrans (Snap API)
-* **Dependency Manager:** Composer
-* **Task Scheduling:** Laravel Scheduler
-* **Queue & Jobs:** Laravel Queues (for background tasks like notifications)
-* **Email:** Laravel Mail & Notifications
+### 🛠️ Technical Implementation
 
-## Installation & Setup
+-   **Authentication & Security:** Robust auth system using Laravel Fortify.
+-   **Payment Gateway:** Integration with **Midtrans (Snap API)** supporting both Sandbox and Production environments.
+-   **High Performance:**
+    -   **Redis:** Used for Session management, Caching, and Queues.
+    -   **Meilisearch:** Blazing fast full-text search engine for movies and series.
+-   **Storage:** S3-compatible object storage via **MinIO** for media assets.
+-   **Email System:** Transactional emails (Welcome, Subscription, Expiry) tested with **Mailpit**.
 
-To run this project in your local environment, follow these steps:
+### 👑 Administration
 
-1.  **Clone the Repository:**
+-   **Comprehensive Dashboard:** Real-time stats on users, subscriptions, and revenue.
+-   **Content Management:** Full CRUD for Movies, Series, Episodes, Cast, and Categories.
+-   **User Management:** detailed user insights and role management.
+
+---
+
+## 🏗️ Technology Stack
+
+| Component         | Technology                     | Description                             |
+| :---------------- | :----------------------------- | :-------------------------------------- |
+| **Framework**     | Laravel 12                     | The PHP Framework for Web Artisans      |
+| **Frontend**      | Blade, Tailwind CSS, Alpine.js | Modern, reactive, and utility-first UI  |
+| **Database**      | MySQL 8.x                      | Relational data storage                 |
+| **Cache/Session** | Redis                          | High-performance in-memory data store   |
+| **Queue**         | Redis                          | Background job processing               |
+| **Search**        | Meilisearch                    | Instant search experience               |
+| **Storage**       | MinIO (S3 Compatible)          | Local S3-compatible object storage      |
+| **Email**         | Mailpit                        | SMTP testing tool for local development |
+| **Payments**      | Midtrans                       | Payment Gateway integration             |
+
+---
+
+## 📸 Screenshots
+
+### Public & Authentication
+
+|             Landing Page              |            Login Page             |
+| :-----------------------------------: | :-------------------------------: |
+| ![Landing](screenshots/1-landing.png) | ![Login](screenshots/2-login.png) |
+
+### User Dashboard
+
+|         Home Dashboard          |        Subscription Plans         |
+| :-----------------------------: | :-------------------------------: |
+| ![Home](screenshots/3-home.png) | ![Plans](screenshots/4-plans.png) |
+
+### Payment Flow
+
+|        Checkout (Midtrans Snap)         |
+| :-------------------------------------: |
+| ![Checkout](screenshots/5-checkout.png) |
+
+### Administration
+
+|               Admin Dashboard               |
+| :-----------------------------------------: |
+| ![Admin](screenshots/6-admin-dashboard.png) |
+
+---
+
+## ⚡ Installation & Setup
+
+### Prerequisites
+
+-   PHP 8.2+
+-   Composer
+-   Node.js & NPM
+-   **FlyEnv** (Recommended) or Local Server with Redis, MinIO, and Mailpit running.
+
+### Step-by-Step Guide
+
+1.  **Clone the Repository**
+
     ```bash
     git clone https://github.com/rendrazuriansyah/codeflix.git
     cd codeflix
     ```
 
-2.  **Install Dependencies:**
+2.  **Install Dependencies**
+
     ```bash
     composer install
-    npm install # or yarn install (if using asset bundling)
-    npm run dev # or yarn dev (if using asset bundling)
+    npm install && npm run build
     ```
 
-3.  **Configure Environment:**
-    * Copy the `.env.example` file to `.env`:
-        ```bash
-        cp .env.example .env
-        ```
-    * Open the `.env` file and adjust the following configurations:
-        * `DB_CONNECTION`, `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` (match your local database setup).
-        * `MIDTRANS_CLIENT_KEY`, `MIDTRANS_SERVER_KEY`, `MIDTRANS_MERCHANT_ID` (obtain from your Midtrans Sandbox/Production account).
-        * `MAIL_MAILER`, `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`, `MAIL_FROM_NAME` (configure for sending email notifications).
+3.  **Environment Configuration**
+    Copy the example layout which is already pre-configured for the FlyEnv stack:
 
-4.  **Generate Application Key:**
+    ```bash
+    cp .env.example .env
+    ```
+
+    Then update the specific keys in `.env`:
+
+    -   `DB_PASSWORD` (if applicable)
+    -   `MIDTRANS_SERVER_KEY` & `MIDTRANS_CLIENT_KEY` (Get from Midtrans Dashboard)
+
+4.  **Generate App Key**
+
     ```bash
     php artisan key:generate
     ```
 
-5.  **Run Migrations & Seeders:**
-    * Create the database table structure:
-        ```bash
-        php artisan migrate
-        ```
-    * (Optional) Populate the database with initial/dummy data:
-        ```bash
-        php artisan db:seed
-        ```
+5.  **Database & Seeding**
+    Run migrations and seed the database with demo content (including Admin user):
 
-6.  **Setup Scheduler:**
-    * To enable automatic membership checks, ensure you run the Laravel Scheduler. This typically involves adding a single cron entry to your server:
-        ```cron
-        * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
-        ```
-    * For local development, you might run a queue worker (if jobs are dispatched to the queue) or manually run the scheduler command as needed.
+    ```bash
+    php artisan migrate --seed
+    ```
 
-7.  **Run the Application:**
+    > **Default Admin:** `admin@codeflix.com` / `admin123`
+
+6.  **Run Application**
     ```bash
     php artisan serve
     ```
-    The application will typically be available at `http://localhost:8000`.
-
-## Usage
-
-1.  Open the application in your browser (`http://localhost:8000`).
-2.  **Register** a new account or **Login** if you already have one.
-3.  Select a **subscription plan** when prompted.
-4.  Complete the **checkout** process (you will be redirected to Midtrans Snap).
-5.  Once subscribed, browse the available **movie catalog**.
-6.  Use the **search feature** to find specific movies.
-
-## Screenshots
-
-* *Login Page*
-    ![Login Page](screenshots/login-page.png)
-* *Registration Page*
-    ![Registration Page](screenshots/registration-page.png)
-* *Homepage*
-    ![Homepage](screenshots/homepage.png)
-* *Movie Detail Page*
-    ![Movie Detail Page](screenshots/movie-detail-page.png)
-* *Search Results Page*
-    ![Search Results Page](screenshots/search-results-page.png)
-* *Subscription Plans Page*
-    ![Subscription Plans Page](screenshots/subscription-plans-page.png)
-* *Payment Checkout Page*
-    ![Payment Checkout Page](screenshots/payment-checkout-page.png)
-* *Email Notification (Subscription Expired)*
-    ![Email Notification Subscription Expired](screenshots/email-expired-subscription.png)
-
-## License
-
-This project is licensed under the MIT License. See the [`LICENSE`](LICENSE) file for details.
+    Access the app at `http://localhost:8000`.
 
 ---
 
-_Built by Rendra ([https://github.com/rendrazuriansyah](https://github.com/rendrazuriansyah))_
+## 🧪 Testing Infrastructure
+
+The project includes built-in configuration for local infrastructure testing:
+
+-   **Mailpit:** Access email inbox at `http://127.0.0.1:8025`
+-   **MinIO:** Access object storage console at `http://127.0.0.1:9001`
+
+---
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](LICENSE).
+Built with ❤️ by **Rendra Zuriansyah**.

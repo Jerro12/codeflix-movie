@@ -15,9 +15,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MovieController::class, 'index']);
 
 Route::get('/home', [MovieController::class, 'index'])->name('home');
+
+// Static Pages
+Route::get('/privacy', fn() => view('pages.privacy'))->name('privacy');
+Route::get('/terms', fn() => view('pages.terms'))->name('terms');
 Route::get('/movies', [MovieController::class, 'all'])->name('movies.index');
 Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
 Route::get('/movies/{movie:slug}', [MovieController::class, 'show'])->name('movies.show');
+
+// Series Routes
+Route::get('/series', [\App\Http\Controllers\SeriesController::class, 'index'])->name('series.index');
+Route::get('/series/{series:slug}', [\App\Http\Controllers\SeriesController::class, 'show'])->name('series.show');
 
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
@@ -51,6 +59,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/movies/{movie}/reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
     Route::delete('/reviews/{review}', [\App\Http\Controllers\ReviewController::class, 'destroy'])->name('reviews.destroy');
     Route::post('/reviews/{review}/helpful', [\App\Http\Controllers\ReviewController::class, 'helpful'])->name('reviews.helpful');
+
+    // Settings
+    Route::get('/settings', [\App\Http\Controllers\SettingsController::class, 'index'])->name('settings.index');
+    Route::get('/settings/security', [\App\Http\Controllers\SettingsController::class, 'security'])->name('settings.security');
+    Route::put('/settings', [\App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
+    Route::get('/settings/stats', [\App\Http\Controllers\SettingsController::class, 'stats'])->name('settings.stats');
+
+    // Watch History
+    Route::get('/history', [WatchHistoryController::class, 'index'])->name('history.index');
+    Route::delete('/history/{history}', [WatchHistoryController::class, 'destroy'])->name('history.destroy');
+
+    // Referral
+    Route::get('/referral', [\App\Http\Controllers\ReferralController::class, 'index'])->name('referral.index');
 });
 
 // Admin Routes
@@ -61,6 +82,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
     Route::post('/users/{user}/toggle-admin', [AdminUserController::class, 'toggleAdmin'])->name('users.toggle-admin');
 });
+
+
+
+
 
 Route::get('/test-expired', function () {
     $membership = \App\Models\Membership::find(1);

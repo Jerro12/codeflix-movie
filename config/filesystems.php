@@ -55,9 +55,21 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', true),
             'throw' => false,
             'report' => false,
+        ],
+
+        // Minio specific disk (alias for s3 with explicit config)
+        'minio' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID', 'minioadmin'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY', 'minioadmin'),
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'bucket' => env('AWS_BUCKET', 'codeflix'),
+            'endpoint' => env('AWS_ENDPOINT', 'http://127.0.0.1:9000'),
+            'use_path_style_endpoint' => true,
+            'throw' => false,
         ],
 
     ],

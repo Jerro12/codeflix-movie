@@ -156,7 +156,7 @@
     @include('components.navbar-new')
 
     <!-- Main Content -->
-    <main class="flex-grow">
+    <main class="flex-grow pt-16">
         @yield('content')
     </main>
 
@@ -177,26 +177,29 @@
                     <h4 class="font-outfit font-semibold text-white mb-4">Browse</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
                         <li><a href="{{ route('movies.index') }}" class="hover:text-codeflix-primary">Movies</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Series</a></li>
+                        <li><a href="{{ route('series.index') }}" class="hover:text-codeflix-primary">Series</a></li>
                         <li><a href="{{ route('watchlist.index') }}" class="hover:text-codeflix-primary">My List</a></li>
+                        <li><a href="{{ route('movies.search') }}" class="hover:text-codeflix-primary">Search</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="font-outfit font-semibold text-white mb-4">Account</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="#" class="hover:text-codeflix-primary">Profile</a></li>
+                        <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profiles</a></li>
                         <li><a href="{{ route('subscribe.plans') }}" class="hover:text-codeflix-primary">Subscription</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Settings</a></li>
+                        <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Settings</a></li>
+                        <li><a href="{{ route('history.index') }}" class="hover:text-codeflix-primary">Watch History</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-outfit font-semibold text-white mb-4">Support</h4>
+                    <h4 class="font-outfit font-semibold text-white mb-4">More</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="#" class="hover:text-codeflix-primary">Help Center</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Contact Us</a></li>
-                        <li><a href="#" class="hover:text-codeflix-primary">Privacy Policy</a></li>
+                        <li><a href="{{ route('referral.index') }}" class="hover:text-codeflix-primary">Invite Friends</a></li>
+                        <li><a href="mailto:support@codeflix.com" class="hover:text-codeflix-primary">Contact Us</a></li>
+                        <li><a href="{{ route('privacy') }}" class="hover:text-codeflix-primary">Privacy Policy</a></li>
+                        <li><a href="{{ route('terms') }}" class="hover:text-codeflix-primary">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -251,6 +254,40 @@
                 toast.classList.add('toast-exit');
                 setTimeout(() => toast.remove(), 300);
             }, 5000);
+        };
+
+        // Toggle Watchlist function
+        window.toggleWatchlist = function(movieId, btn) {
+            fetch(`/watchlist/${movieId}/toggle`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const icon = btn.querySelector('i');
+                    if (data.in_watchlist) {
+                        btn.classList.add('bg-codeflix-primary', 'opacity-100');
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-check');
+                        showToast('Added to My List', 'success');
+                    } else {
+                        btn.classList.remove('bg-codeflix-primary', 'opacity-100');
+                        icon.classList.remove('fa-check');
+                        icon.classList.add('fa-plus');
+                        showToast('Removed from My List', 'info');
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Please login to add to watchlist', 'warning');
+            });
         };
     </script>
 

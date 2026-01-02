@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('duration'); // in minutes
             $table->string('thumbnail')->nullable();
+            $table->string('video_url')->nullable();
             $table->string('url_720')->nullable();
             $table->string('url_1080')->nullable();
             $table->string('url_4k')->nullable();

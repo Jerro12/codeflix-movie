@@ -16,15 +16,19 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
-            $table->string('director');
-            $table->string('writers');
-            $table->string('stars');
+            $table->string('director')->nullable();
+            $table->string('writers')->nullable();
+            $table->string('stars')->nullable();
+            $table->text('cast')->nullable();
             $table->string('poster');
-            $table->date('release_date');
-            $table->integer('duration');
-            $table->string('url_720');
-            $table->string('url_1080');
-            $table->string('url_4k');
+            $table->date('release_date')->nullable();
+            $table->integer('duration')->default(120);
+            $table->decimal('rating', 3, 1)->default(0);
+            $table->string('url_720')->nullable();
+            $table->string('url_1080')->nullable();
+            $table->string('url_4k')->nullable();
+            $table->string('video_url')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

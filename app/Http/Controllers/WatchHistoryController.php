@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Auth;
 class WatchHistoryController extends Controller
 {
     /**
+     * Display watch history page
+     */
+    public function index()
+    {
+        $history = Auth::user()
+            ->watchHistory()
+            ->with('movie')
+            ->orderBy('last_watched_at', 'desc')
+            ->paginate(20);
+
+        return view('history.index', compact('history'));
+    }
+
+    /**
      * Update watch progress for a movie.
      */
     public function updateProgress(Request $request)
@@ -57,5 +71,19 @@ class WatchHistoryController extends Controller
         return response()->json([
             'items' => $continueWatching,
         ]);
+    }
+
+    /**
+     * Remove item from history
+     */
+    public function destroy(WatchHistory $history)
+    {
+        if ($history->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $history->delete();
+
+        return response()->json(['success' => true]);
     }
 }

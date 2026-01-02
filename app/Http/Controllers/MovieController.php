@@ -19,11 +19,11 @@ class MovieController extends Controller implements HasMiddleware
 
     public function index() 
     {
-        $newAddedMovies = Movie::latest()->limit(8)->get();
+        $newAddedMovies = Movie::latest()->limit(12)->get();
         $topRatedMovies = Movie::with('ratings')
             ->get()
             ->sortByDesc('average_rating')
-            ->take(8);
+            ->take(12);
     
         return view('movies.index',[
             'newAddedMovies' => $newAddedMovies,
@@ -33,7 +33,7 @@ class MovieController extends Controller implements HasMiddleware
 
     public function all(Request $request)
     {
-        $movies = Movie::orderBy('release_date', 'desc')->paginate(8);
+        $movies = Movie::orderBy('release_date', 'desc')->paginate(18);
 
         // Handle pagination for AJAX requests
         if ($request->ajax()) {
@@ -70,7 +70,45 @@ class MovieController extends Controller implements HasMiddleware
     public function search(Request $request) 
     {
         $search = $request->input('q');
-        $movies = Movie::where('title', 'like', "%$search%")->get();
+        
+        $query = Movie::query();
+        
+        // Search by title
+        if ($search) {
+            $query->where('title', 'like', "%{$search}%");
+        }
+        
+        // Filter by genre/category
+        if ($request->genre) {
+            $query->whereHas('category', fn($q) => $q->where('slug', $request->genre));
+        }
+        
+        // Filter by year
+        if ($request->year) {
+            $query->whereYear('release_date', $request->year);
+        }
+        
+        // Filter by rating
+        if ($request->rating) {
+            $query->where('average_rating', '>=', $request->rating);
+        }
+        
+        // Apply sorting
+        switch ($request->sort) {
+            case 'oldest':
+                $query->oldest('release_date');
+                break;
+            case 'rating':
+                $query->orderByDesc('average_rating');
+                break;
+            case 'title':
+                $query->orderBy('title');
+                break;
+            default:
+                $query->latest('release_date');
+        }
+
+        $movies = $query->paginate(18);
 
         return view('movies.search', [
             'keyword' => $search,

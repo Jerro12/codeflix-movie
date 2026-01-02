@@ -13,15 +13,19 @@ class Movie extends Model
         'director',
         'writers',
         'stars',
+        'cast',
         'poster',
         'trailer_url',
         'banner',
         'release_date',
         'duration',
+        'rating',
         'age_rating',
+        'video_url',
         'url_720',
         'url_1080',
         'url_4k',
+        'category_id',
     ];
 
     protected $appends = [
@@ -49,13 +53,22 @@ class Movie extends Model
 
     /**
      * Accessor untuk atribut 'average_rating'.
-     * Menghitung rata-rata rating dari semua rating yang terkait dengan movie ini.
+     * Returns user ratings average, or falls back to seeded rating.
      *
      * @return float
      */
     public function getAverageRatingAttribute()
     {
-        return $this->ratings()->avg('rating');
+        $userRating = $this->ratings()->avg('rating');
+        return $userRating ?? $this->rating ?? 0;
+    }
+
+    /**
+     * Get the category this movie belongs to.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     /**

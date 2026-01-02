@@ -18,7 +18,7 @@ class CategoryController extends Controller implements HasMiddleware
 
     public function show(Category $category)
     {
-        $movies = $category->movies()->latest()->get();
+        $movies = $category->movies()->latest()->paginate(18);
 
         return view('categories.show', [
             'category' => $category,

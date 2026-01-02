@@ -1,76 +1,137 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>Admin - Codeflix</title>
+    <title>Admin - @yield('title', 'Dashboard') | Codeflix</title>
 
-    <!-- Load Bootstrap CSS -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        codeflix: {
+                            primary: '#1ABC9C',
+                            secondary: '#E50914',
+                            dark: '#0A0A0A',
+                            darker: '#141414',
+                            card: '#1A1A1A',
+                            muted: '#8899A6',
+                        }
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'outfit': ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    <!-- Load custom CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Load Font Awesome CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/fontawesome-free-6.6.0-web/css/all.css') }}">
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
 
-<body>
-    <!-- Admin Sidebar -->
-    <aside class="admin-sidebar">
-        <ul class="admin-sidebar-nav">
-            <li>
-                <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                    <i class="fa-solid fa-gauge-high"></i>
+<body class="bg-codeflix-dark text-white min-h-screen">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-codeflix-darker border-r border-gray-800 fixed h-full">
+            <div class="p-6">
+                <a href="{{ route('home') }}" class="block">
+                    <img src="{{ asset('assets/img/codeflix_logo.png') }}" alt="Codeflix" class="h-8 mb-2">
+                    <span class="text-xs bg-codeflix-primary/20 text-codeflix-primary px-2 py-0.5 rounded inline-block">Admin Panel</span>
+                </a>
+            </div>
+
+            <nav class="px-4 space-y-1">
+                <a href="{{ route('admin.dashboard') }}" 
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.dashboard') ? 'bg-codeflix-primary text-white' : 'text-gray-400 hover:bg-codeflix-card hover:text-white' }}">
+                    <i class="fa-solid fa-gauge-high w-5"></i>
                     <span>Dashboard</span>
                 </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.movies.index') }}" class="{{ request()->routeIs('admin.movies.*') ? 'active' : '' }}">
-                    <i class="fa-solid fa-film"></i>
+                <a href="{{ route('admin.movies.index') }}" 
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.movies.*') ? 'bg-codeflix-primary text-white' : 'text-gray-400 hover:bg-codeflix-card hover:text-white' }}">
+                    <i class="fa-solid fa-film w-5"></i>
                     <span>Movies</span>
                 </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                    <i class="fa-solid fa-users"></i>
+                <a href="{{ route('admin.users.index') }}" 
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.users.*') ? 'bg-codeflix-primary text-white' : 'text-gray-400 hover:bg-codeflix-card hover:text-white' }}">
+                    <i class="fa-solid fa-users w-5"></i>
                     <span>Users</span>
                 </a>
-            </li>
-            <li>
-                <a href="{{ route('home') }}">
-                    <i class="fa-solid fa-arrow-left"></i>
+                
+                <div class="border-t border-gray-800 my-4"></div>
+                
+                <a href="{{ route('home') }}" 
+                   class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-codeflix-card hover:text-white transition">
+                    <i class="fa-solid fa-arrow-left w-5"></i>
                     <span>Back to Site</span>
                 </a>
-            </li>
-        </ul>
-    </aside>
+            </nav>
 
-    <!-- Main Content -->
-    <main class="admin-content">
-        <!-- Flash Messages -->
-        @if(session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <!-- User Info -->
+            <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-codeflix-primary rounded-full flex items-center justify-center">
+                        <span class="font-semibold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">{{ Auth::user()->name }}</p>
+                        <p class="text-xs text-gray-500">Administrator</p>
+                    </div>
+                </div>
             </div>
-        @endif
+        </aside>
 
-        @if(session('error'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <!-- Main Content -->
+        <main class="flex-1 ml-64">
+            <!-- Top Bar -->
+            <header class="bg-codeflix-darker border-b border-gray-800 px-8 py-4 sticky top-0 z-10">
+                <div class="flex items-center justify-between">
+                    <h1 class="font-outfit text-xl font-semibold">@yield('title', 'Dashboard')</h1>
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm text-gray-400">{{ now()->format('l, F j, Y') }}</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="p-8">
+                <!-- Flash Messages -->
+                @if(session('success'))
+                <div class="mb-6 bg-green-500/10 border border-green-500/50 text-green-400 px-4 py-3 rounded-lg flex items-center gap-3">
+                    <i class="fa-solid fa-check-circle"></i>
+                    <span>{{ session('success') }}</span>
+                </div>
+                @endif
+
+                @if(session('error'))
+                <div class="mb-6 bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg flex items-center gap-3">
+                    <i class="fa-solid fa-exclamation-circle"></i>
+                    <span>{{ session('error') }}</span>
+                </div>
+                @endif
+
+                @yield('content')
             </div>
-        @endif
+        </main>
+    </div>
 
-        @yield('content')
-    </main>
-
-    <!-- Load Bootstrap JS -->
-    <script src="{{ asset('assets/js/bootstrap.bundle.js') }}"></script>
     @stack('scripts')
 </body>
 

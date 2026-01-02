@@ -14,19 +14,20 @@ class WatchlistController extends Controller
      */
     public function index()
     {
-        $watchlistItems = Auth::user()
+        $watchlist = Auth::user()
             ->watchlist()
             ->with('movie')
             ->latest()
             ->get();
 
         return view('watchlist.index', [
-            'watchlistItems' => $watchlistItems,
+            'watchlist' => $watchlist,
         ]);
     }
 
     /**
      * Toggle a movie in the user's watchlist.
+     * Always returns JSON for API/AJAX calls.
      */
     public function toggle(Movie $movie)
     {
@@ -48,15 +49,12 @@ class WatchlistController extends Controller
             $message = 'Added to My List';
         }
 
-        if (request()->ajax()) {
-            return response()->json([
-                'success' => true,
-                'in_watchlist' => $inWatchlist,
-                'message' => $message,
-            ]);
-        }
-
-        return back()->with('success', $message);
+        // Always return JSON for this endpoint
+        return response()->json([
+            'success' => true,
+            'in_watchlist' => $inWatchlist,
+            'message' => $message,
+        ]);
     }
 
     /**

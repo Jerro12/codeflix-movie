@@ -1,128 +1,103 @@
 @extends('admin.layouts.admin')
 
+@section('title', 'Dashboard')
+
 @section('content')
-<div class="mb-4">
-    <h1 class="text-white" style="font-family: 'Kanit', sans-serif; font-size: 32px;">Dashboard</h1>
-    <p class="text-muted">Welcome to Codeflix Admin Panel</p>
-</div>
-
 <!-- Stats Cards -->
-<div class="row g-4 mb-5">
-    <div class="col-md-3">
-        <div class="admin-stat-card">
-            <div class="admin-stat-icon">
-                <i class="fa-solid fa-users"></i>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="bg-codeflix-card rounded-xl p-6 border border-gray-800">
+        <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-users text-blue-500 text-xl"></i>
             </div>
-            <div class="admin-stat-info">
-                <h3>{{ number_format($stats['total_users']) }}</h3>
-                <p>Total Users</p>
-            </div>
+            <span class="text-green-400 text-sm flex items-center gap-1">
+                <i class="fa-solid fa-arrow-up text-xs"></i> 12%
+            </span>
         </div>
+        <h3 class="text-3xl font-bold text-white mb-1">{{ $stats['users'] ?? 0 }}</h3>
+        <p class="text-gray-400 text-sm">Total Users</p>
     </div>
-    <div class="col-md-3">
-        <div class="admin-stat-card">
-            <div class="admin-stat-icon">
-                <i class="fa-solid fa-film"></i>
-            </div>
-            <div class="admin-stat-info">
-                <h3>{{ number_format($stats['total_movies']) }}</h3>
-                <p>Total Movies</p>
+
+    <div class="bg-codeflix-card rounded-xl p-6 border border-gray-800">
+        <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-film text-purple-500 text-xl"></i>
             </div>
         </div>
+        <h3 class="text-3xl font-bold text-white mb-1">{{ $stats['movies'] ?? 0 }}</h3>
+        <p class="text-gray-400 text-sm">Total Movies</p>
     </div>
-    <div class="col-md-3">
-        <div class="admin-stat-card">
-            <div class="admin-stat-icon">
-                <i class="fa-solid fa-crown"></i>
-            </div>
-            <div class="admin-stat-info">
-                <h3>{{ number_format($stats['active_subscriptions']) }}</h3>
-                <p>Active Subscriptions</p>
+
+    <div class="bg-codeflix-card rounded-xl p-6 border border-gray-800">
+        <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-codeflix-primary/20 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-credit-card text-codeflix-primary text-xl"></i>
             </div>
         </div>
+        <h3 class="text-3xl font-bold text-white mb-1">{{ $stats['subscriptions'] ?? 0 }}</h3>
+        <p class="text-gray-400 text-sm">Active Subscriptions</p>
     </div>
-    <div class="col-md-3">
-        <div class="admin-stat-card">
-            <div class="admin-stat-icon">
-                <i class="fa-solid fa-rupiah-sign"></i>
-            </div>
-            <div class="admin-stat-info">
-                <h3>{{ number_format($stats['total_revenue'], 0, ',', '.') }}</h3>
-                <p>Total Revenue (IDR)</p>
+
+    <div class="bg-codeflix-card rounded-xl p-6 border border-gray-800">
+        <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center">
+                <i class="fa-solid fa-dollar-sign text-yellow-500 text-xl"></i>
             </div>
         </div>
+        <h3 class="text-3xl font-bold text-white mb-1">Rp {{ number_format($stats['revenue'] ?? 0) }}</h3>
+        <p class="text-gray-400 text-sm">Total Revenue</p>
     </div>
 </div>
 
-<div class="row g-4">
-    <!-- Recent Transactions -->
-    <div class="col-md-7">
-        <div class="card" style="background: var(--codeflix-bg-card); border: none; border-radius: 12px;">
-            <div class="card-header" style="background: transparent; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                <h5 class="text-white mb-0">Recent Transactions</h5>
+<!-- Recent Activity -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Recent Users -->
+    <div class="bg-codeflix-card rounded-xl border border-gray-800">
+        <div class="p-6 border-b border-gray-800">
+            <h2 class="font-outfit text-lg font-semibold">Recent Users</h2>
+        </div>
+        <div class="p-6">
+            @forelse($recentUsers ?? [] as $user)
+            <div class="flex items-center justify-between py-3 {{ !$loop->last ? 'border-b border-gray-800' : '' }}">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-codeflix-primary/20 rounded-full flex items-center justify-center">
+                        <span class="text-codeflix-primary font-semibold">{{ substr($user->name, 0, 1) }}</span>
+                    </div>
+                    <div>
+                        <p class="font-medium">{{ $user->name }}</p>
+                        <p class="text-sm text-gray-400">{{ $user->email }}</p>
+                    </div>
+                </div>
+                <span class="text-xs text-gray-500">{{ $user->created_at->diffForHumans() }}</span>
             </div>
-            <div class="card-body p-0">
-                <table class="admin-table mb-0">
-                    <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Plan</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($recentTransactions as $transaction)
-                        <tr>
-                            <td>{{ $transaction->user->name ?? 'N/A' }}</td>
-                            <td>{{ $transaction->plan->title ?? 'N/A' }}</td>
-                            <td>Rp {{ number_format($transaction->total_amount, 0, ',', '.') }}</td>
-                            <td>{{ $transaction->created_at->format('d M Y') }}</td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="4" class="text-center text-muted">No transactions yet</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+            @empty
+            <p class="text-gray-400 text-center py-4">No recent users</p>
+            @endforelse
         </div>
     </div>
 
-    <!-- Recent Users -->
-    <div class="col-md-5">
-        <div class="card" style="background: var(--codeflix-bg-card); border: none; border-radius: 12px;">
-            <div class="card-header" style="background: transparent; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                <h5 class="text-white mb-0">Recent Users</h5>
+    <!-- Recent Transactions -->
+    <div class="bg-codeflix-card rounded-xl border border-gray-800">
+        <div class="p-6 border-b border-gray-800">
+            <h2 class="font-outfit text-lg font-semibold">Recent Transactions</h2>
+        </div>
+        <div class="p-6">
+            @forelse($recentTransactions ?? [] as $transaction)
+            <div class="flex items-center justify-between py-3 {{ !$loop->last ? 'border-b border-gray-800' : '' }}">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-check text-green-500"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">{{ $transaction->user->name ?? 'Unknown' }}</p>
+                        <p class="text-sm text-gray-400">{{ $transaction->plan->name ?? 'Unknown Plan' }}</p>
+                    </div>
+                </div>
+                <span class="text-codeflix-primary font-semibold">Rp {{ number_format($transaction->amount ?? 0) }}</span>
             </div>
-            <div class="card-body p-0">
-                <table class="admin-table mb-0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Joined</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($recentUsers as $user)
-                        <tr>
-                            <td>
-                                {{ $user->name }}
-                                @if($user->is_admin)
-                                    <span class="badge-admin badge-admin-primary">Admin</span>
-                                @endif
-                            </td>
-                            <td>{{ $user->created_at->format('d M Y') }}</td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="2" class="text-center text-muted">No users yet</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+            @empty
+            <p class="text-gray-400 text-center py-4">No recent transactions</p>
+            @endforelse
         </div>
     </div>
 </div>

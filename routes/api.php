@@ -13,26 +13,34 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 |
 | Mobile app and third-party API endpoints for Codeflix.
+| Rate limits:
+| - api: 60 requests/minute (general endpoints)
+| - auth: 10 requests/minute (login/register)
+| - payment: 30 requests/minute (payment callbacks)
 |
 */
 
-// Payment callback (public)
-Route::post('/payment/callback', [TransactionController::class, 'callback'])->name('payment.callback');
+// Payment callback (public, rate limited)
+Route::post('/payment/callback', [TransactionController::class, 'callback'])
+    ->middleware('throttle:payment')
+    ->name('payment.callback');
 
-// Authentication (public)
-Route::prefix('auth')->group(function () {
+// Authentication (public, stricter rate limit)
+Route::prefix('auth')->middleware('throttle:auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
 });
 
-// Public movie endpoints
-Route::get('/movies', [MovieController::class, 'index']);
-Route::get('/movies/{movie}', [MovieController::class, 'show']);
-Route::get('/movies/search', [MovieController::class, 'search']);
-Route::get('/categories', [MovieController::class, 'categories']);
+// Public movie endpoints (rate limited)
+Route::middleware('throttle:api')->group(function () {
+    Route::get('/movies', [MovieController::class, 'index']);
+    Route::get('/movies/search', [MovieController::class, 'search']);
+    Route::get('/movies/{movie}', [MovieController::class, 'show']);
+    Route::get('/categories', [MovieController::class, 'categories']);
+});
 
-// Protected routes (require authentication)
-Route::middleware('auth:sanctum')->group(function () {
+// Protected routes (require authentication, rate limited)
+Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
     // Auth
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);

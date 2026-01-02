@@ -35,9 +35,11 @@
                class="flex-1 bg-white hover:bg-gray-200 text-black font-semibold py-2 rounded-lg text-center text-sm flex items-center justify-center gap-1 transition">
                 <i class="fa-solid fa-play text-xs"></i> Play
             </a>
-            <button class="w-9 h-9 bg-gray-700/80 hover:bg-gray-600 rounded-lg flex items-center justify-center transition">
+            <a href="{{ route('movies.show', $movie->slug) }}" 
+               class="w-9 h-9 bg-gray-700/80 hover:bg-gray-600 rounded-lg flex items-center justify-center transition"
+               title="More Info">
                 <i class="fa-solid fa-chevron-down text-white text-sm"></i>
-            </button>
+            </a>
         </div>
     </div>
 </div>

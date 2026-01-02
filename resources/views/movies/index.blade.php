@@ -44,13 +44,13 @@
     </div>
 </section>
 @else
-<div class="h-24"></div>
+<div class="h-8"></div>
 @endif
 
 <!-- Continue Watching Section -->
 @auth
 @if(isset($continueWatching) && $continueWatching->isNotEmpty())
-<section class="max-w-7xl mx-auto px-4 -mt-32 relative z-20 mb-12">
+<section class="max-w-7xl mx-auto px-4 mb-12">
     <h2 class="font-outfit text-2xl font-semibold text-white mb-4 flex items-center gap-3">
         <i class="fa-solid fa-play text-codeflix-primary"></i>
         Continue Watching
@@ -87,7 +87,7 @@
 @endauth
 
 <!-- New Added Section -->
-<section class="max-w-7xl mx-auto px-4 mb-12 {{ isset($continueWatching) && $continueWatching->isNotEmpty() ? '' : '-mt-32 relative z-20' }}">
+<section class="max-w-7xl mx-auto px-4 mb-12">
     <div class="flex items-center justify-between mb-4">
         <h2 class="font-outfit text-2xl font-semibold text-white flex items-center gap-3">
             <i class="fa-solid fa-sparkles text-codeflix-primary"></i>
@@ -164,21 +164,5 @@
 @endsection
 
 @push('scripts')
-<script>
-function toggleWatchlist(movieId) {
-    fetch(`/watchlist/${movieId}/toggle`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            showToast(data.message, 'success');
-        }
-    });
-}
-</script>
+
 @endpush

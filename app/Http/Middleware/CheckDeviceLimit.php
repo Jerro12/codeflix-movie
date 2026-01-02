@@ -58,6 +58,14 @@ class CheckDeviceLimit
             return $next($request);
         }
 
+        // Skip device limit for admins
+        if ($user->is_admin) {
+            \Illuminate\Support\Facades\Log::info('DeviceLimit: Bypassing for Admin User ' . $user->id);
+            return $next($request);
+        }
+        
+        \Illuminate\Support\Facades\Log::info('DeviceLimit: Checking for User ' . $user->id);
+
         // Get the device ID from the session
         $sessionDeviceId = session('device_id');
 
