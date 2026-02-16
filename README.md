@@ -8,27 +8,27 @@
 
 ### 👤 User Experience
 
--   **Multi-Profile System:** Users can create up to 5 profiles per account (including Kids mode) with independent watch history and lists.
--   **Smart Subscription:** Tiered subscription plans (Basic, Premium) with seamless Midtrans payment integration.
--   **Interactive Player:** Custom video player with resume capability, "Continue Watching", and progress tracking.
--   **Watchlist:** Personal "My List" for saving movies and series.
--   **Responsive Design:** Fully responsive UI built with Tailwind CSS and Alpine.js for a fluid mobile and desktop experience.
+- **Multi-Profile System:** Users can create up to 5 profiles per account (including Kids mode) with independent watch history and lists.
+- **Smart Subscription:** Tiered subscription plans (Basic, Premium) with seamless Midtrans payment integration.
+- **Interactive Player:** Custom video player with resume capability, "Continue Watching", and progress tracking.
+- **Watchlist:** Personal "My List" for saving movies and series.
+- **Responsive Design:** Fully responsive UI built with Tailwind CSS and Alpine.js for a fluid mobile and desktop experience.
 
 ### 🛠️ Technical Implementation
 
--   **Authentication & Security:** Robust auth system using Laravel Fortify.
--   **Payment Gateway:** Integration with **Midtrans (Snap API)** supporting both Sandbox and Production environments.
--   **High Performance:**
-    -   **Redis:** Used for Session management, Caching, and Queues.
-    -   **Meilisearch:** Blazing fast full-text search engine for movies and series.
--   **Storage:** S3-compatible object storage via **MinIO** for media assets.
--   **Email System:** Transactional emails (Welcome, Subscription, Expiry) tested with **Mailpit**.
+- **Authentication & Security:** Robust auth system using Laravel Fortify.
+- **Payment Gateway:** Integration with **Midtrans (Snap API)** supporting both Sandbox and Production environments.
+- **High Performance:**
+    - **Redis:** Used for Session management, Caching, and Queues.
+    - **Meilisearch:** Blazing fast full-text search engine for movies and series.
+- **Storage:** S3-compatible object storage via **MinIO** for media assets.
+- **Email System:** Transactional emails (Welcome, Subscription, Expiry) tested with **Mailpit**.
 
 ### 👑 Administration
 
--   **Comprehensive Dashboard:** Real-time stats on users, subscriptions, and revenue.
--   **Content Management:** Full CRUD for Movies, Series, Episodes, Cast, and Categories.
--   **User Management:** detailed user insights and role management.
+- **Comprehensive Dashboard:** Real-time stats on users, subscriptions, and revenue.
+- **Content Management:** Full CRUD for Movies, Series, Episodes, Cast, and Categories.
+- **User Management:** detailed user insights and role management.
 
 ---
 
@@ -80,10 +80,10 @@
 
 ### Prerequisites
 
--   PHP 8.2+
--   Composer
--   Node.js & NPM
--   **FlyEnv** (Recommended) or Local Server with Redis, MinIO, and Mailpit running.
+- PHP 8.2+
+- Composer
+- Node.js & NPM
+- **FlyEnv** (Recommended) or Local Server with Redis, MinIO, and Mailpit running.
 
 ### Step-by-Step Guide
 
@@ -109,9 +109,8 @@
     ```
 
     Then update the specific keys in `.env`:
-
-    -   `DB_PASSWORD` (if applicable)
-    -   `MIDTRANS_SERVER_KEY` & `MIDTRANS_CLIENT_KEY` (Get from Midtrans Dashboard)
+    - `DB_PASSWORD` (if applicable)
+    - `MIDTRANS_SERVER_KEY` & `MIDTRANS_CLIENT_KEY` (Get from Midtrans Dashboard)
 
 4.  **Generate App Key**
 
@@ -140,12 +139,14 @@
 
 The project includes built-in configuration for local infrastructure testing:
 
--   **Mailpit:** Access email inbox at `http://127.0.0.1:8025`
--   **MinIO:** Access object storage console at `http://127.0.0.1:9001`
+- **Mailpit:** Access email inbox at `http://127.0.0.1:8025`
+- **MinIO:** Access object storage console at `http://127.0.0.1:9001`
 
 ---
 
-## 📄 License
+## © Copyright
 
-This project is open-sourced software licensed under the [MIT license](LICENSE).
-Built with ❤️ by **Rendra Zuriansyah**.
+**Copyright © 2026 Rendra Zuriansyah. All Rights Reserved.**
+
+This project is a personal portfolio and is **not open-source**.
+The code is provided for demonstration purposes only. You may view the code to evaluate my skills, but you may not use, reproduce, distribute, or modify any part of this codebase for commercial or non-commercial purposes without my explicit written permission.
