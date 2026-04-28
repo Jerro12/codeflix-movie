@@ -9,7 +9,7 @@
 ### 👤 User Experience
 
 - **Multi-Profile System:** Users can create up to 5 profiles per account (including Kids mode) with independent watch history and lists.
-- **Smart Subscription:** Tiered subscription plans (Basic, Premium) with seamless Midtrans payment integration.
+- **Smart Recommendations:** Integrated with TMDB API to fetch similar movies and personalized content suggestions.
 - **Interactive Player:** Custom video player with resume capability, "Continue Watching", and progress tracking.
 - **Watchlist:** Personal "My List" for saving movies and series.
 - **Responsive Design:** Fully responsive UI built with Tailwind CSS and Alpine.js for a fluid mobile and desktop experience.
@@ -17,12 +17,12 @@
 ### 🛠️ Technical Implementation
 
 - **Authentication & Security:** Robust auth system using Laravel Fortify.
-- **Payment Gateway:** Integration with **Midtrans (Snap API)** supporting both Sandbox and Production environments.
+- **External API:** Seamless integration with **TMDB API** for movie recommendations and metadata.
 - **High Performance:**
     - **Redis:** Used for Session management, Caching, and Queues.
     - **Meilisearch:** Blazing fast full-text search engine for movies and series.
 - **Storage:** S3-compatible object storage via **MinIO** for media assets.
-- **Email System:** Transactional emails (Welcome, Subscription, Expiry) tested with **Mailpit**.
+- **Email System:** Transactional emails tested with **Mailpit**.
 
 ### 👑 Administration
 
@@ -44,7 +44,7 @@
 | **Search**        | Meilisearch                    | Instant search experience               |
 | **Storage**       | MinIO (S3 Compatible)          | Local S3-compatible object storage      |
 | **Email**         | Mailpit                        | SMTP testing tool for local development |
-| **Payments**      | Midtrans                       | Payment Gateway integration             |
+| **External API**  | TMDB API                       | Movie recommendations and metadata      |
 
 ---
 
@@ -58,15 +58,9 @@
 
 ### User Dashboard
 
-|         Home Dashboard          |        Subscription Plans         |
-| :-----------------------------: | :-------------------------------: |
-| ![Home](screenshots/3-home.png) | ![Plans](screenshots/4-plans.png) |
-
-### Payment Flow
-
-|        Checkout (Midtrans Snap)         |
-| :-------------------------------------: |
-| ![Checkout](screenshots/5-checkout.png) |
+|         Home Dashboard          |
+| :-----------------------------: |
+| ![Home](screenshots/3-home.png) |
 
 ### Administration
 
@@ -90,7 +84,7 @@
 1.  **Clone the Repository**
 
     ```bash
-    git clone https://github.com/rendrazuriansyah/codeflix.git
+    git clone https://github.com/Jerro12/codeflix-movie.git
     cd codeflix
     ```
 
@@ -110,7 +104,7 @@
 
     Then update the specific keys in `.env`:
     - `DB_PASSWORD` (if applicable)
-    - `MIDTRANS_SERVER_KEY` & `MIDTRANS_CLIENT_KEY` (Get from Midtrans Dashboard)
+    - `TMDB_API_KEY` (Get from TMDB Developer Dashboard)
 
 4.  **Generate App Key**
 
@@ -146,7 +140,7 @@ The project includes built-in configuration for local infrastructure testing:
 
 ## © Copyright
 
-**Copyright © 2026 Rendra Zuriansyah. All Rights Reserved.**
+**Copyright © 2026 Jerro12. All Rights Reserved.**
 
 This project is a personal portfolio and is **not open-source**.
 The code is provided for demonstration purposes only. You may view the code to evaluate my skills, but you may not use, reproduce, distribute, or modify any part of this codebase for commercial or non-commercial purposes without my explicit written permission.
