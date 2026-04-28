@@ -28,11 +28,11 @@ class FortifyServiceProvider extends ServiceProvider
         // The method returns a redirect to the subscribe.plans route.
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
             /**
-             * Redirect the user to the subscribe.plans route after registration.
+             * Redirect the user to the home route after registration.
              */
             public function toResponse($request): \Illuminate\Http\RedirectResponse
             {
-                return redirect()->route('subscribe.plans');
+                return redirect()->intended(config('fortify.home'));
             }
         });
 
@@ -42,19 +42,11 @@ class FortifyServiceProvider extends ServiceProvider
         // membership plan, otherwise it redirects to the subscribe.plans route.
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             /**
-             * Redirect the user to the home or subscribe.plans route after login.
+             * Redirect the user to the home route after login.
              */
             public function toResponse($request): \Illuminate\Http\RedirectResponse
             {
-                // Redirect the user to the home route if they have an active membership plan.
-                // Otherwise redirect to the subscribe.plans route.
-                if (Auth::user()->hasMembershipPlan()) {
-                    return redirect()->intended(config('fortify.home'));
-                }
-
-                // Redirect the user to the subscribe.plans route if they don't have an active
-                // membership plan.
-                return redirect()->route('subscribe.plans');
+                return redirect()->intended(config('fortify.home'));
             }
         });
     }

@@ -119,25 +119,16 @@ class User extends Authenticatable
      */
     public function hasMembershipPlan()
     {
-        return $this->memberships()
-            ->where('active', '=', true)
-            ->where('end_date', '>', now())
-            ->exists();
+        return true; // Everyone has access now
     }
 
     public function getCurrentPlan()
     {
-        $activeMembership = $this->memberships()
-            ->where('active', '=', true)
-            ->where('start_date', '<=', now())
-            ->where('end_date', '>=', now())
-            ->latest()
-            ->first();
-
-        if (!$activeMembership) {
-            return null;
-        }
-
-        return Plan::find($activeMembership->plan_id);
+        // Return a dummy plan object with high resolution
+        return (object) [
+            'name' => 'Premium',
+            'resolution' => '4K',
+            'devices_limit' => 4,
+        ];
     }
 }

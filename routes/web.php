@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WatchlistController;
 use App\Http\Controllers\WatchHistoryController;
@@ -32,11 +31,6 @@ Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->
 Route::post('/logout', function (Request $request) {
     return app(\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class)->destroy($request);
 })->name('logout')->middleware(['auth', 'logoutDevice']);
-
-Route::get('/subscribe/plans', [SubscribeController::class, 'showPlans'])->name('subscribe.plans');
-Route::get('/subscribe/plan/{plan}', [SubscribeController::class, 'checkoutPlan'])->name('subscribe.checkout');
-Route::post('/subscribe/checkout', [SubscribeController::class, 'processCheckout'])->name('subscribe.process');
-Route::get('/subscribe/success', [SubscribeController::class, 'showSuccess'])->name('subscribe.success');
 
 Route::post('/checkout', [TransactionController::class, 'checkout'])->name('checkout');
 
@@ -72,6 +66,9 @@ Route::middleware('auth')->group(function () {
 
     // Referral
     Route::get('/referral', [\App\Http\Controllers\ReferralController::class, 'index'])->name('referral.index');
+
+    // Recommendation Debug
+    Route::get('/recommendation-debug', [MovieController::class, 'debugRecommendations'])->name('movies.debug');
 });
 
 // Admin Routes
@@ -82,14 +79,3 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
     Route::post('/users/{user}/toggle-admin', [AdminUserController::class, 'toggleAdmin'])->name('users.toggle-admin');
 });
-
-
-
-
-
-Route::get('/test-expired', function () {
-    $membership = \App\Models\Membership::find(1);
-    event(new \App\Events\MembershipHasExpired($membership));
-
-    return 'Event fired';
-})->name('test-expired');

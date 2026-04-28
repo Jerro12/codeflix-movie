@@ -19,11 +19,8 @@ class DashboardController extends Controller
         $stats = [
             'total_users' => User::count(),
             'total_movies' => Movie::count(),
-            'active_subscriptions' => Membership::where('active', true)
-                ->where('end_date', '>', now())
-                ->count(),
-            'total_revenue' => Transaction::where('payment_status', 'success')
-                ->sum('total_amount'),
+            'total_categories' => \App\Models\Category::count(),
+            'total_reviews' => \App\Models\Review::count(),
         ];
 
         $recentTransactions = Transaction::with('user', 'plan')

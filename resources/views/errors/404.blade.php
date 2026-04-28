@@ -53,8 +53,8 @@
                 <a href="{{ route('movies.index') }}" class="px-4 py-2 bg-codeflix-card rounded-full text-sm text-gray-300 hover:bg-codeflix-primary hover:text-white transition">
                     Browse Movies
                 </a>
-                <a href="{{ route('subscribe.plans') }}" class="px-4 py-2 bg-codeflix-card rounded-full text-sm text-gray-300 hover:bg-codeflix-primary hover:text-white transition">
-                    View Plans
+                <a href="{{ route('series.index') }}" class="px-4 py-2 bg-codeflix-card rounded-full text-sm text-gray-300 hover:bg-codeflix-primary hover:text-white transition">
+                    Browse Series
                 </a>
                 <a href="{{ route('watchlist.index') }}" class="px-4 py-2 bg-codeflix-card rounded-full text-sm text-gray-300 hover:bg-codeflix-primary hover:text-white transition">
                     My List

@@ -43,16 +43,12 @@
                         @endforeach
                     </div>
                     
-                    <div class="flex items-center gap-3">
-                        @if($streamingUrl)
+                        {{-- Hidden Play Button for Thesis Focus --}}
+                        {{-- 
                         <a href="#player" class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-semibold px-8 py-3 rounded-lg transition">
                             <i class="fa-solid fa-play"></i> Play
-                        </a>
-                        @else
-                        <a href="{{ route('subscribe.plans') }}" class="inline-flex items-center gap-2 bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-semibold px-8 py-3 rounded-lg transition">
-                            <i class="fa-solid fa-crown"></i> Subscribe to Watch
-                        </a>
-                        @endif
+                        </a> 
+                        --}}
                         
                         @auth
                             @livewire('watchlist-button', ['movieId' => $movie->id])
@@ -96,12 +92,14 @@
         </div>
     </section>
 
-    <!-- Video Player -->
+    {{-- Hidden Video Player for Thesis Focus --}}
+    {{-- 
     @if($streamingUrl)
     <section id="player" class="max-w-7xl mx-auto px-4 py-8 md:pl-60">
         @livewire('video-player', ['movie' => $movie, 'resolution' => $resolution ?? '1080'])
     </section>
-    @endif
+    @endif 
+    --}}
 
     <!-- Content -->
     <div class="max-w-7xl mx-auto px-4 py-8 md:pl-60">
@@ -170,7 +168,7 @@
                                        class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white">
                             </div>
                             <div class="mb-4">
-                                <textarea name="content" rows="4" placeholder="Write your review..." required
+                                <textarea name="content" rows="4" placeholder="Write your review (optional)..." 
                                           class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white"></textarea>
                             </div>
                             <div class="flex items-center gap-4">
@@ -224,17 +222,47 @@
 
             <!-- Sidebar -->
             <div class="space-y-6">
-                <!-- Similar Movies -->
+                <!-- Similar Movies (Category Based) -->
                 <div>
-                    <h3 class="font-outfit text-xl font-semibold text-white mb-4">You May Also Like</h3>
+                    <h3 class="font-outfit text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-codeflix-primary text-sm"></i>
+                        You May Also Like
+                    </h3>
                     <div class="grid grid-cols-2 gap-3">
                         @foreach(\App\Models\Movie::whereHas('categories', fn($q) => $q->whereIn('categories.id', $movie->categories->pluck('id')))->where('id', '!=', $movie->id)->limit(4)->get() as $similar)
-                        <a href="{{ route('movies.show', $similar->slug) }}" class="movie-card rounded-lg overflow-hidden">
-                            <img src="{{ $similar->poster }}" alt="{{ $similar->title }}" class="w-full aspect-[2/3] object-cover">
+                        <a href="{{ route('movies.show', $similar->slug) }}" class="movie-card rounded-lg overflow-hidden group relative">
+                            <img src="{{ $similar->poster }}" alt="{{ $similar->title }}" class="w-full aspect-[2/3] object-cover group-hover:scale-110 transition duration-300">
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <i class="fa-solid fa-circle-info text-white text-xl"></i>
+                            </div>
                         </a>
                         @endforeach
                     </div>
                 </div>
+
+                <!-- KNN Recommendations -->
+                @auth
+                @if(!empty($recommendations) && count($recommendations) > 0)
+                <div class="pt-6 border-t border-gray-800">
+                    <h3 class="font-outfit text-xl font-semibold text-white mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-yellow-500 text-sm"></i>
+                        Personalized for You
+                    </h3>
+                    <p class="text-[10px] text-gray-500 mb-4 uppercase tracking-wider">Based on KNN Algorithm</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        @foreach($recommendations as $rec)
+                        <a href="{{ route('movies.show', $rec->slug) }}" class="movie-card rounded-lg overflow-hidden group relative">
+                            <img src="{{ $rec->poster }}" alt="{{ $rec->title }}" class="w-full aspect-[2/3] object-cover group-hover:scale-110 transition duration-300">
+                            <div class="absolute inset-0 bg-yellow-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <i class="fa-solid fa-star text-white text-xl"></i>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+                @endauth
+            </div>
             </div>
         </div>
     </div>

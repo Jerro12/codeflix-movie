@@ -1,123 +1,126 @@
 @extends('admin.layouts.admin')
 
-@section('content')
-<div class="mb-4">
-    <h1 class="text-white" style="font-family: 'Kanit', sans-serif; font-size: 32px;">Edit Movie</h1>
-    <p class="text-muted">Update {{ $movie->title }}</p>
-</div>
+@section('title', 'Edit Movie')
 
-<div class="card" style="background: var(--codeflix-bg-card); border: none; border-radius: 12px;">
-    <div class="card-body p-4">
-        <form action="{{ route('admin.movies.update', $movie) }}" method="POST">
+@section('content')
+<div class="max-w-4xl">
+    <div class="bg-codeflix-card rounded-2xl border border-gray-800 overflow-hidden">
+        <div class="p-6 border-b border-gray-800">
+            <h3 class="text-xl font-semibold text-white">Update Movie Details</h3>
+            <p class="text-sm text-gray-400 mt-1">Editing: {{ $movie->title }}</p>
+        </div>
+
+        <form action="{{ route('admin.movies.update', $movie) }}" method="POST" class="p-8 space-y-6">
             @csrf
             @method('PUT')
             
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group-admin">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" id="title" class="form-control-admin" 
-                               value="{{ old('title', $movie->title) }}" required>
-                    </div>
-
-                    <div class="form-group-admin">
-                        <label for="description">Description</label>
-                        <textarea name="description" id="description" class="form-control-admin" 
-                                  rows="4" required>{{ old('description', $movie->description) }}</textarea>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group-admin">
-                                <label for="director">Director</label>
-                                <input type="text" name="director" id="director" class="form-control-admin" 
-                                       value="{{ old('director', $movie->director) }}" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group-admin">
-                                <label for="duration">Duration (minutes)</label>
-                                <input type="number" name="duration" id="duration" class="form-control-admin" 
-                                       value="{{ old('duration', $movie->duration) }}" required min="1">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group-admin">
-                                <label for="release_date">Release Date</label>
-                                <input type="date" name="release_date" id="release_date" class="form-control-admin" 
-                                       value="{{ old('release_date', $movie->release_date->format('Y-m-d')) }}" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group-admin">
-                        <label for="writers">Writers</label>
-                        <input type="text" name="writers" id="writers" class="form-control-admin" 
-                               value="{{ old('writers', $movie->writers) }}">
-                    </div>
-
-                    <div class="form-group-admin">
-                        <label for="stars">Stars</label>
-                        <input type="text" name="stars" id="stars" class="form-control-admin" 
-                               value="{{ old('stars', $movie->stars) }}">
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Title -->
+                <div class="md:col-span-2">
+                    <label for="title" class="block text-sm font-medium text-gray-300 mb-2">Movie Title</label>
+                    <input type="text" name="title" id="title" 
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('title', $movie->title) }}" required>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group-admin">
-                        <label for="poster">Poster URL</label>
-                        <input type="url" name="poster" id="poster" class="form-control-admin" 
+                <!-- Description -->
+                <div class="md:col-span-2">
+                    <label for="description" class="block text-sm font-medium text-gray-300 mb-2">Description / Synopsis</label>
+                    <textarea name="description" id="description" rows="4"
+                              class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                              required>{{ old('description', $movie->description) }}</textarea>
+                </div>
+
+                <!-- Director -->
+                <div>
+                    <label for="director" class="block text-sm font-medium text-gray-300 mb-2">Director</label>
+                    <input type="text" name="director" id="director" 
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('director', $movie->director) }}" required>
+                </div>
+
+                <!-- Duration -->
+                <div>
+                    <label for="duration" class="block text-sm font-medium text-gray-300 mb-2">Duration (minutes)</label>
+                    <input type="number" name="duration" id="duration" 
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('duration', $movie->duration) }}" required min="1">
+                </div>
+
+                <!-- Release Date -->
+                <div>
+                    <label for="release_date" class="block text-sm font-medium text-gray-300 mb-2">Release Date</label>
+                    <input type="date" name="release_date" id="release_date" 
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('release_date', $movie->release_date->format('Y-m-d')) }}" required>
+                </div>
+
+                <!-- Poster URL -->
+                <div class="flex gap-4 items-start">
+                    <div class="flex-1">
+                        <label for="poster" class="block text-sm font-medium text-gray-300 mb-2">Poster Image URL (Vertical)</label>
+                        <input type="url" name="poster" id="poster" 
+                               class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
                                value="{{ old('poster', $movie->poster) }}" required>
                     </div>
-
                     @if($movie->poster)
-                    <div class="mb-3">
-                        <img src="{{ $movie->poster }}" alt="Current poster" 
-                             style="width: 100%; max-width: 200px; border-radius: 8px;">
-                    </div>
+                        <img src="{{ $movie->poster }}" alt="Current poster" class="w-16 h-24 object-cover rounded-lg border border-gray-700 mt-7">
                     @endif
+                </div>
 
-                    <div class="form-group-admin">
-                        <label>Categories</label>
-                        <div class="d-flex flex-wrap gap-2">
-                            @foreach($categories as $category)
-                                <label class="d-flex align-items-center gap-1" style="color: var(--codeflix-text);">
-                                    <input type="checkbox" name="categories[]" value="{{ $category->id }}"
-                                           {{ in_array($category->id, old('categories', $movie->categories->pluck('id')->toArray())) ? 'checked' : '' }}>
-                                    {{ $category->name }}
-                                </label>
-                            @endforeach
-                        </div>
+                <!-- Banner URL -->
+                <div class="flex gap-4 items-start">
+                    <div class="flex-1">
+                        <label for="banner" class="block text-sm font-medium text-gray-300 mb-2">Banner Image URL (Horizontal)</label>
+                        <input type="url" name="banner" id="banner" 
+                               class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                               value="{{ old('banner', $movie->banner) }}">
                     </div>
+                    @if($movie->banner)
+                        <img src="{{ $movie->banner }}" alt="Current banner" class="w-32 h-20 object-cover rounded-lg border border-gray-700 mt-7">
+                    @endif
+                </div>
 
-                    <hr style="border-color: rgba(255,255,255,0.1);">
-                    <h6 class="text-white mb-3">Streaming URLs</h6>
+                <!-- Writers -->
+                <div class="md:col-span-2">
+                    <label for="writers" class="block text-sm font-medium text-gray-300 mb-2">Writers</label>
+                    <input type="text" name="writers" id="writers" 
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('writers', $movie->writers) }}">
+                </div>
 
-                    <div class="form-group-admin">
-                        <label for="url_720">720p URL</label>
-                        <input type="url" name="url_720" id="url_720" class="form-control-admin" 
-                               value="{{ old('url_720', $movie->url_720) }}">
-                    </div>
+                <!-- Stars -->
+                <div class="md:col-span-2">
+                    <label for="stars" class="block text-sm font-medium text-gray-300 mb-2">Stars / Cast</label>
+                    <input type="text" name="stars" id="stars" 
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('stars', $movie->stars) }}">
+                </div>
 
-                    <div class="form-group-admin">
-                        <label for="url_1080">1080p URL</label>
-                        <input type="url" name="url_1080" id="url_1080" class="form-control-admin" 
-                               value="{{ old('url_1080', $movie->url_1080) }}">
-                    </div>
-
-                    <div class="form-group-admin">
-                        <label for="url_4k">4K URL</label>
-                        <input type="url" name="url_4k" id="url_4k" class="form-control-admin" 
-                               value="{{ old('url_4k', $movie->url_4k) }}">
+                <!-- Categories -->
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-300 mb-3">Categories</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 bg-gray-900/50 p-4 rounded-xl border border-gray-800">
+                        @foreach($categories as $category)
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                                       class="rounded border-gray-700 text-codeflix-primary focus:ring-codeflix-primary bg-gray-800"
+                                       {{ in_array($category->id, old('categories', $movie->categories->pluck('id')->toArray())) ? 'checked' : '' }}>
+                                <span class="text-sm text-gray-400 group-hover:text-white transition">{{ $category->name }}</span>
+                            </label>
+                        @endforeach
                     </div>
                 </div>
             </div>
 
-            <div class="d-flex gap-3 mt-4">
-                <button type="submit" class="btn-admin-primary">
-                    <i class="fa-solid fa-save me-2"></i>Update Movie
+            <!-- Action Buttons -->
+            <div class="pt-6 border-t border-gray-800 flex items-center gap-4">
+                <button type="submit" class="bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-semibold px-8 py-3 rounded-xl transition flex items-center gap-2">
+                    <i class="fa-solid fa-save"></i> Update Movie
                 </button>
-                <a href="{{ route('admin.movies.index') }}" class="btn btn-secondary">Cancel</a>
+                <a href="{{ route('admin.movies.index') }}" class="text-gray-400 hover:text-white font-medium transition">
+                    Cancel
+                </a>
             </div>
         </form>
     </div>

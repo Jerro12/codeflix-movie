@@ -27,10 +27,13 @@
                 {{ $featuredMovie->description }}
             </p>
             <div class="flex items-center gap-4">
+                {{-- Hidden Play Button for Thesis Focus --}}
+                {{-- 
                 <a href="{{ route('movies.show', $featuredMovie->slug) }}" 
                    class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-semibold px-8 py-3 rounded-lg transition">
                     <i class="fa-solid fa-play"></i> Play
-                </a>
+                </a> 
+                --}}
                 <button onclick="toggleWatchlist({{ $featuredMovie->id }})" 
                         class="inline-flex items-center gap-2 bg-gray-600/80 hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg transition">
                     <i class="fa-solid fa-plus"></i> My List
@@ -103,6 +106,28 @@
         @endforeach
     </div>
 </section>
+
+<!-- Recommended Section (KNN Implementation) -->
+@auth
+@if(!empty($recommendations) && count($recommendations) > 0)
+<section class="max-w-7xl mx-auto px-4 mb-12">
+    <div class="flex items-center justify-between mb-4">
+        <div class="flex flex-col">
+            <h2 class="font-outfit text-2xl font-semibold text-white flex items-center gap-3">
+                <i class="fa-solid fa-wand-magic-sparkles text-yellow-500"></i>
+                Recommended for You
+            </h2>
+            <p class="text-xs text-gray-500 mt-1">Based on your interests (KNN Algorithm, K={{ request('k', 5) }})</p>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        @foreach($recommendations as $movie)
+        @include('components.movie-card-new', ['movie' => $movie])
+        @endforeach
+    </div>
+</section>
+@endif
+@endauth
 
 <!-- Top Rated Section -->
 <section class="max-w-7xl mx-auto px-4 mb-12">

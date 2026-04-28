@@ -36,7 +36,7 @@
             <div class="flex items-center gap-2">
                 <a href="{{ route('movies.show', $movie->slug) }}" 
                    class="flex-1 bg-white hover:bg-gray-200 text-black font-semibold py-2 rounded-lg text-center text-sm flex items-center justify-center gap-1 transition">
-                    <i class="fa-solid fa-play text-xs"></i> Play
+                    <i class="fa-solid fa-circle-info text-xs"></i> Details
                 </a>
                 
                 <!-- Dropdown Menu -->

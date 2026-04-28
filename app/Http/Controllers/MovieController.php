@@ -6,6 +6,7 @@ use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use App\Services\RecommendationService;
 
 class MovieController extends Controller implements HasMiddleware
 {
@@ -17,17 +18,25 @@ class MovieController extends Controller implements HasMiddleware
         ];
     }
 
-    public function index() 
+    public function index(RecommendationService $recService) 
     {
         $newAddedMovies = Movie::latest()->limit(12)->get();
         $topRatedMovies = Movie::with('ratings')
             ->get()
             ->sortByDesc('average_rating')
             ->take(12);
+
+        $recommendations = [];
+        if (Auth::check()) {
+            // Get K from request or default to 5 for research purposes
+            $k = request('k', 5);
+            $recommendations = $recService->setK($k)->getRecommendations(Auth::user(), 12);
+        }
     
         return view('movies.index',[
             'newAddedMovies' => $newAddedMovies,
             'topRatedMovies' => $topRatedMovies,
+            'recommendations' => $recommendations,
         ]);
     }
 
@@ -49,21 +58,19 @@ class MovieController extends Controller implements HasMiddleware
         return view('movies.all', compact('movies'));
     }
 
-    public function show(Movie $movie) 
+    public function show(Movie $movie, RecommendationService $recService) 
     {
-        $userPlan = Auth::user()->getCurrentPlan();
-        
-        // Redirect to subscribe page if user has no active plan
-        if (!$userPlan) {
-            return redirect()->route('subscribe.plans')
-                ->with('warning', 'You need an active subscription to watch movies.');
-        }
+        $streamingUrl = $movie->getStreamingUrl('1080p'); 
 
-        $streamingUrl = $movie->getStreamingUrl($userPlan->resolution ?? null);
+        $recommendations = [];
+        if (Auth::check()) {
+            $recommendations = $recService->setK(request('k', 5))->getRecommendations(Auth::user(), 4);
+        }
 
         return view('movies.show', [
             'movie' => $movie,
             'streamingUrl' => $streamingUrl,
+            'recommendations' => $recommendations,
         ]);
     }
 
@@ -113,6 +120,21 @@ class MovieController extends Controller implements HasMiddleware
         return view('movies.search', [
             'keyword' => $search,
             'movies' => $movies,
+        ]);
+    }
+
+    public function debugRecommendations(RecommendationService $recService)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $k = request('k', 5);
+        $debugData = $recService->setK($k)->getDebugInfo(Auth::user());
+
+        return view('movies.debug', [
+            'debugData' => $debugData,
+            'k' => $k
         ]);
     }
 }

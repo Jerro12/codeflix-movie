@@ -42,6 +42,35 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Research Mode Dropdown -->
+                <div class="relative group">
+                    <button class="font-medium text-yellow-500 hover:text-yellow-400 flex items-center gap-1">
+                        <i class="fa-solid fa-flask text-xs"></i>
+                        Research Mode (K={{ request('k', 5) }})
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <div class="bg-codeflix-card rounded-xl shadow-2xl border border-gray-800 p-4 min-w-[200px] flex flex-col gap-1">
+                            <p class="text-[10px] text-gray-500 uppercase font-bold px-3 mb-1">Set Parameter K</p>
+                            @foreach([3, 5, 10, 20] as $kVal)
+                                <a href="{{ request()->fullUrlWithQuery(['k' => $kVal]) }}" 
+                                   class="px-3 py-2 rounded-lg text-sm {{ request('k', 5) == $kVal ? 'bg-yellow-500/20 text-yellow-500' : 'text-gray-300' }} hover:bg-yellow-500/10 transition">
+                                    K = {{ $kVal }} {{ $kVal == 5 ? '(Default)' : '' }}
+                                </a>
+                            @endforeach
+                            <div class="border-t border-gray-800 mt-2 pt-2">
+                                <a href="{{ route('movies.debug') }}" class="flex items-center gap-2 px-3 py-2 rounded-lg text-xs text-yellow-500 hover:bg-yellow-500/10 transition font-bold">
+                                    <i class="fa-solid fa-calculator"></i>
+                                    Lihat Proses Hitung (Debug)
+                                </a>
+                                <p class="text-[9px] text-gray-500 leading-tight px-3 mt-1 italic">
+                                    Ubah K untuk menguji akurasi algoritma KNN (Bab 4 Skripsi).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Right Side -->
@@ -77,12 +106,12 @@
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3 p-2 rounded-lg hover:bg-gray-800">
-                                        <div class="w-10 h-10 rounded bg-yellow-500/20 flex items-center justify-center flex-shrink-0">
-                                            <i class="fa-solid fa-crown text-yellow-500 text-sm"></i>
+                                        <div class="w-10 h-10 rounded bg-gradient-to-br from-codeflix-primary to-emerald-600 flex items-center justify-center flex-shrink-0">
+                                            <i class="fa-solid fa-film text-white text-sm"></i>
                                         </div>
                                         <div>
-                                            <p class="text-sm text-white">Upgrade to <span class="text-yellow-400">Premium</span> for 4K streaming!</p>
-                                            <p class="text-xs text-gray-500">1 hour ago</p>
+                                            <p class="text-sm text-white">New movie added: <span class="text-codeflix-primary">The Matrix Resurrections</span></p>
+                                            <p class="text-xs text-gray-500">2 hours ago</p>
                                         </div>
                                     </div>
                                 </div>
@@ -130,10 +159,6 @@
                                 <a href="{{ route('referral.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-gift w-5"></i>
                                     Invite Friends
-                                </a>
-                                <a href="{{ route('subscribe.plans') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
-                                    <i class="fa-solid fa-crown w-5"></i>
-                                    Subscription
                                 </a>
                                 
                                 <div class="border-t border-gray-800 mt-2 pt-2">

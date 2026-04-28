@@ -44,15 +44,9 @@
                     </div>
                     
                     <div class="flex items-center gap-3">
-                        @if($streamingUrl)
                         <a href="#player" class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-semibold px-8 py-3 rounded-lg transition">
                             <i class="fa-solid fa-play"></i> Play
                         </a>
-                        @else
-                        <a href="{{ route('subscribe.plans') }}" class="inline-flex items-center gap-2 bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-semibold px-8 py-3 rounded-lg transition">
-                            <i class="fa-solid fa-crown"></i> Subscribe to Watch
-                        </a>
-                        @endif
                         
                         @auth
                             @livewire('watchlist-button', ['movieId' => $movie->id])

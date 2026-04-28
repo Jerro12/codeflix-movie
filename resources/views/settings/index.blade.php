@@ -20,9 +20,6 @@
                     <a href="{{ route('profiles.index') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
                         <i class="fa-solid fa-users w-5"></i> Profiles
                     </a>
-                    <a href="{{ route('subscribe.plans') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
-                        <i class="fa-solid fa-crown w-5"></i> Subscription
-                    </a>
                     <a href="{{ route('referral.index') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
                         <i class="fa-solid fa-gift w-5"></i> Referrals
                     </a>

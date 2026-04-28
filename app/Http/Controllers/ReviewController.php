@@ -17,7 +17,7 @@ class ReviewController extends Controller
         $validated = $request->validate([
             'rating' => 'required|integer|min:1|max:10',
             'title' => 'nullable|string|max:255',
-            'content' => 'required|string|max:5000',
+            'content' => 'nullable|string|max:5000',
             'spoiler_warning' => 'boolean',
         ]);
 
@@ -32,10 +32,24 @@ class ReviewController extends Controller
 
         if ($existing) {
             $existing->update($validated);
+            
+            // Sync with ratings table
+            \App\Models\Rating::updateOrCreate(
+                ['user_id' => Auth::id(), 'movie_id' => $movie->id],
+                ['rating' => $validated['rating']]
+            );
+
             return back()->with('success', 'Review updated successfully!');
         }
 
         Review::create($validated);
+
+        // Sync with ratings table
+        \App\Models\Rating::create([
+            'user_id' => Auth::id(),
+            'movie_id' => $movie->id,
+            'rating' => $validated['rating']
+        ]);
 
         return back()->with('success', 'Review submitted successfully!');
     }

@@ -10,9 +10,9 @@
             <div class="w-20 h-20 bg-gradient-to-br from-codeflix-primary to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i class="fa-solid fa-gift text-3xl text-white"></i>
             </div>
-            <h1 class="font-outfit text-4xl font-bold text-white mb-4">Invite Friends, Get Rewards</h1>
+            <h1 class="font-outfit text-4xl font-bold text-white mb-4">Invite Friends to Join</h1>
             <p class="text-gray-400 text-lg max-w-2xl mx-auto">
-                Share Codeflix with your friends and both of you will get <span class="text-codeflix-primary font-semibold">{{ config('app.referral_bonus_days', 7) }} free days</span> added to your subscription!
+                Share Codeflix with your friends and enjoy watching your favorite movies and series together!
             </p>
         </div>
 
@@ -67,8 +67,8 @@
                 <p class="text-gray-400">Friends Invited</p>
             </div>
             <div class="bg-codeflix-card rounded-2xl p-6 text-center">
-                <p class="text-4xl font-bold text-codeflix-primary mb-2">{{ ($completedReferrals ?? 0) * config('app.referral_bonus_days', 7) }}</p>
-                <p class="text-gray-400">Days Earned</p>
+                <p class="text-4xl font-bold text-codeflix-primary mb-2">{{ $completedReferrals ?? 0 }}</p>
+                <p class="text-gray-400">Successful Joins</p>
             </div>
             <div class="bg-codeflix-card rounded-2xl p-6 text-center">
                 <p class="text-4xl font-bold text-yellow-400 mb-2">{{ $pendingReferrals ?? 0 }}</p>
@@ -118,13 +118,13 @@
                 </div>
                 <div class="text-center">
                     <div class="w-12 h-12 bg-codeflix-primary/20 rounded-full flex items-center justify-center mx-auto mb-3 text-codeflix-primary font-bold">2</div>
-                    <h4 class="text-white font-medium mb-2">Friends Subscribe</h4>
-                    <p class="text-sm text-gray-400">They sign up and subscribe to any plan</p>
+                    <h4 class="text-white font-medium mb-2">Friends Join</h4>
+                    <p class="text-sm text-gray-400">They sign up using your referral link</p>
                 </div>
                 <div class="text-center">
                     <div class="w-12 h-12 bg-codeflix-primary/20 rounded-full flex items-center justify-center mx-auto mb-3 text-codeflix-primary font-bold">3</div>
-                    <h4 class="text-white font-medium mb-2">Both Get Rewarded</h4>
-                    <p class="text-sm text-gray-400">You both get {{ config('app.referral_bonus_days', 7) }} free days!</p>
+                    <h4 class="text-white font-medium mb-2">Watch Together</h4>
+                    <p class="text-sm text-gray-400">Enjoy unlimited streaming together!</p>
                 </div>
             </div>
         </div>

@@ -105,13 +105,9 @@
                                     <i class="fa-solid fa-user w-5"></i>
                                     Manage Profiles
                                 </a>
-                                <a href="#" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
+                                <a href="{{ route('settings.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-cog w-5"></i>
                                     Settings
-                                </a>
-                                <a href="{{ route('subscribe.plans') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
-                                    <i class="fa-solid fa-crown w-5"></i>
-                                    Subscription
                                 </a>
                                 
                                 <div class="border-t border-gray-800 mt-2 pt-2">

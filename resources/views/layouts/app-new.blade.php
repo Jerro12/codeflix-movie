@@ -187,7 +187,6 @@
                     <h4 class="font-outfit font-semibold text-white mb-4">Account</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
                         <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profiles</a></li>
-                        <li><a href="{{ route('subscribe.plans') }}" class="hover:text-codeflix-primary">Subscription</a></li>
                         <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Settings</a></li>
                         <li><a href="{{ route('history.index') }}" class="hover:text-codeflix-primary">Watch History</a></li>
                     </ul>
