@@ -2,7 +2,7 @@
 
 ![Codeflix Landing](screenshots/1-landing.png)
 
-**Codeflix** is a feature-rich, scalable video streaming application built with **Laravel 12**. Designed to emulate the core functionalities of Netflix, it offers a robust architecture featuring multi-profile user accounts, subscription-based access, comprehensive admin management, and a high-performance infrastructure using Redis, MinIO, and Meilisearch.
+**Codeflix** is a feature-rich, scalable video streaming application built with **Laravel 12**. Designed to emulate the core functionalities of Netflix, it offers a robust architecture featuring multi-profile user accounts, smart recommendations, comprehensive admin management, and a high-performance infrastructure using Redis, MinIO, and Meilisearch.
 
 ## 🚀 Key Features
 
@@ -26,7 +26,7 @@
 
 ### 👑 Administration
 
-- **Comprehensive Dashboard:** Real-time stats on users, subscriptions, and revenue.
+- **Comprehensive Dashboard:** Real-time stats on users, content, and engagement.
 - **Content Management:** Full CRUD for Movies, Series, Episodes, Cast, and Categories.
 - **User Management:** detailed user insights and role management.
 
