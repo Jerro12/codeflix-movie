@@ -83,4 +83,17 @@ class ReviewController extends Controller
 
         return back();
     }
+
+    /**
+     * Display the user's review history.
+     */
+    public function history()
+    {
+        $reviews = Review::with('movie')
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->paginate(12);
+
+        return view('reviews.history', compact('reviews'));
+    }
 }

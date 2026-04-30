@@ -1,13 +1,13 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Users')
+@section('title', 'Pengguna')
 
 @section('content')
 <!-- Header -->
 <div class="flex items-center justify-between mb-6">
-    <p class="text-gray-400">Manage all registered users</p>
+    <p class="text-gray-400">Kelola semua pengguna terdaftar</p>
     <div class="flex items-center gap-3">
-        <span class="text-sm text-gray-400">{{ $users->total() }} total users</span>
+        <span class="text-sm text-gray-400">{{ $users->total() }} total pengguna</span>
     </div>
 </div>
 
@@ -17,11 +17,11 @@
         <table class="w-full">
             <thead class="bg-codeflix-darker">
                 <tr>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">User</th>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Role</th>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Subscription</th>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Joined</th>
-                    <th class="px-6 py-4 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Actions</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Pengguna</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Peran</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Langganan</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Bergabung</th>
+                    <th class="px-6 py-4 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-800">
@@ -48,10 +48,10 @@
                     <td class="px-6 py-4">
                         @if($user->activeMembership)
                             <span class="px-2 py-1 bg-codeflix-primary/20 text-codeflix-primary text-xs rounded">
-                                {{ $user->activeMembership->plan->name ?? 'Active' }}
+                                {{ $user->activeMembership->plan->name ?? 'Aktif' }}
                             </span>
                         @else
-                            <span class="text-gray-500 text-sm">No subscription</span>
+                            <span class="text-gray-500 text-sm">Tidak ada langganan</span>
                         @endif
                     </td>
                     <td class="px-6 py-4 text-gray-400 text-sm">{{ $user->created_at->format('M d, Y') }}</td>
@@ -61,7 +61,7 @@
                                 @csrf
                                 <button type="submit" 
                                         class="p-2 text-gray-400 hover:text-yellow-500 hover:bg-yellow-500/10 rounded-lg transition"
-                                        title="{{ $user->is_admin ? 'Remove Admin' : 'Make Admin' }}">
+                                        title="{{ $user->is_admin ? 'Hapus Admin' : 'Jadikan Admin' }}">
                                     <i class="fa-solid {{ $user->is_admin ? 'fa-user-minus' : 'fa-user-plus' }}"></i>
                                 </button>
                             </form>
@@ -76,7 +76,7 @@
                 <tr>
                     <td colspan="5" class="px-6 py-12 text-center text-gray-400">
                         <i class="fa-solid fa-users text-4xl mb-4 text-gray-600"></i>
-                        <p>No users found.</p>
+                        <p>Tidak ada pengguna ditemukan.</p>
                     </td>
                 </tr>
                 @endforelse

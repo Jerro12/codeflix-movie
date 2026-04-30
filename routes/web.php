@@ -60,9 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/settings', [\App\Http\Controllers\SettingsController::class, 'update'])->name('settings.update');
     Route::get('/settings/stats', [\App\Http\Controllers\SettingsController::class, 'stats'])->name('settings.stats');
 
-    // Watch History
-    Route::get('/history', [WatchHistoryController::class, 'index'])->name('history.index');
-    Route::delete('/history/{history}', [WatchHistoryController::class, 'destroy'])->name('history.destroy');
+    // Reviews Story
+    Route::get('/reviews-history', [\App\Http\Controllers\ReviewController::class, 'history'])->name('reviews.history.index');
 
     // Referral
     Route::get('/referral', [\App\Http\Controllers\ReferralController::class, 'index'])->name('referral.index');

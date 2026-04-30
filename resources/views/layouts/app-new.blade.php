@@ -168,43 +168,43 @@
                 <div class="col-span-2 md:col-span-1">
                     <img src="{{ asset('assets/img/codeflix_logo.png') }}" alt="Codeflix" class="h-8 mb-4">
                     <p class="text-codeflix-muted text-sm">
-                        Stream unlimited movies and TV shows on any device.
+                        Tonton film dan acara TV tanpa batas di perangkat apa pun.
                     </p>
                 </div>
                 
                 <!-- Links -->
                 <div>
-                    <h4 class="font-outfit font-semibold text-white mb-4">Browse</h4>
+                    <h4 class="font-outfit font-semibold text-white mb-4">Jelajahi</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="{{ route('movies.index') }}" class="hover:text-codeflix-primary">Movies</a></li>
-                        <li><a href="{{ route('series.index') }}" class="hover:text-codeflix-primary">Series</a></li>
-                        <li><a href="{{ route('watchlist.index') }}" class="hover:text-codeflix-primary">My List</a></li>
-                        <li><a href="{{ route('movies.search') }}" class="hover:text-codeflix-primary">Search</a></li>
+                        <li><a href="{{ route('movies.index') }}" class="hover:text-codeflix-primary">Film</a></li>
+                        <li><a href="{{ route('series.index') }}" class="hover:text-codeflix-primary">Serial</a></li>
+                        <li><a href="{{ route('watchlist.index') }}" class="hover:text-codeflix-primary">Daftar Saya</a></li>
+                        <li><a href="{{ route('movies.search') }}" class="hover:text-codeflix-primary">Cari</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-outfit font-semibold text-white mb-4">Account</h4>
+                    <h4 class="font-outfit font-semibold text-white mb-4">Akun</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profiles</a></li>
-                        <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Settings</a></li>
-                        <li><a href="{{ route('history.index') }}" class="hover:text-codeflix-primary">Watch History</a></li>
+                        <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profil</a></li>
+                        <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Pengaturan</a></li>
+                        <li><a href="{{ route('reviews.history.index') }}" class="hover:text-codeflix-primary">Cerita Ulasan</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-outfit font-semibold text-white mb-4">More</h4>
+                    <h4 class="font-outfit font-semibold text-white mb-4">Lainnya</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="{{ route('referral.index') }}" class="hover:text-codeflix-primary">Invite Friends</a></li>
-                        <li><a href="mailto:support@codeflix.com" class="hover:text-codeflix-primary">Contact Us</a></li>
-                        <li><a href="{{ route('privacy') }}" class="hover:text-codeflix-primary">Privacy Policy</a></li>
-                        <li><a href="{{ route('terms') }}" class="hover:text-codeflix-primary">Terms of Service</a></li>
+                        <li><a href="{{ route('referral.index') }}" class="hover:text-codeflix-primary">Undang Teman</a></li>
+                        <li><a href="mailto:support@codeflix.com" class="hover:text-codeflix-primary">Hubungi Kami</a></li>
+                        <li><a href="{{ route('privacy') }}" class="hover:text-codeflix-primary">Kebijakan Privasi</a></li>
+                        <li><a href="{{ route('terms') }}" class="hover:text-codeflix-primary">Syarat & Ketentuan</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="border-t border-gray-800 mt-8 pt-8 text-center text-codeflix-muted text-sm">
-                <p>&copy; {{ date('Y') }} Codeflix by RENDRADEV. All rights reserved.</p>
+                <p>&copy; {{ date('Y') }} Codeflix by RENDRADEV. Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>

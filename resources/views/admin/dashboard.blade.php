@@ -1,6 +1,6 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'Dasbor')
 
 @section('content')
 <!-- Stats Cards -->
@@ -12,7 +12,7 @@
             </div>
         </div>
         <h3 class="text-3xl font-bold text-white mb-1">{{ $stats['total_users'] ?? 0 }}</h3>
-        <p class="text-gray-400 text-sm">Total Users</p>
+        <p class="text-gray-400 text-sm">Total Pengguna</p>
     </div>
 
     <div class="bg-codeflix-card rounded-xl p-6 border border-gray-800">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <h3 class="text-3xl font-bold text-white mb-1">{{ $stats['total_movies'] ?? 0 }}</h3>
-        <p class="text-gray-400 text-sm">Total Movies</p>
+        <p class="text-gray-400 text-sm">Total Film</p>
     </div>
 
     <div class="bg-codeflix-card rounded-xl p-6 border border-gray-800">
@@ -32,7 +32,7 @@
             </div>
         </div>
         <h3 class="text-3xl font-bold text-white mb-1">{{ $stats['total_categories'] ?? 0 }}</h3>
-        <p class="text-gray-400 text-sm">Total Categories</p>
+        <p class="text-gray-400 text-sm">Total Kategori</p>
     </div>
 
     <div class="bg-codeflix-card rounded-xl p-6 border border-gray-800">
@@ -42,16 +42,16 @@
             </div>
         </div>
         <h3 class="text-3xl font-bold text-white mb-1">{{ $stats['total_reviews'] ?? 0 }}</h3>
-        <p class="text-gray-400 text-sm">Total Reviews</p>
+        <p class="text-gray-400 text-sm">Total Ulasan</p>
     </div>
 </div>
 
 <!-- Recent Activity -->
-<div class="grid grid-cols-1 gap-6">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Recent Users -->
     <div class="bg-codeflix-card rounded-xl border border-gray-800">
         <div class="p-6 border-b border-gray-800">
-            <h2 class="font-outfit text-lg font-semibold">Recent Users</h2>
+            <h2 class="font-outfit text-lg font-semibold">Pengguna Terbaru</h2>
         </div>
         <div class="p-6">
             @forelse($recentUsers ?? [] as $user)
@@ -68,7 +68,38 @@
                 <span class="text-xs text-gray-500">{{ $user->created_at->diffForHumans() }}</span>
             </div>
             @empty
-            <p class="text-gray-400 text-center py-4">No recent users</p>
+            <p class="text-gray-400 text-center py-4">Tidak ada pengguna terbaru</p>
+            @endforelse
+        </div>
+    </div>
+
+    <!-- Recent Ratings -->
+    <div class="bg-codeflix-card rounded-xl border border-gray-800">
+        <div class="p-6 border-b border-gray-800">
+            <h2 class="font-outfit text-lg font-semibold">Rating Terbaru</h2>
+        </div>
+        <div class="p-6">
+            @forelse($recentReviews ?? [] as $review)
+            <div class="flex items-center justify-between py-3 {{ !$loop->last ? 'border-b border-gray-800' : '' }}">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-yellow-500/20 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-star text-yellow-500 text-sm"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium text-sm">
+                            <span class="text-white">{{ $review->user->name }}</span>
+                            <span class="text-gray-400 mx-1">memberi rating</span>
+                            <span class="text-white font-bold">{{ $review->rating }}/5 <i class="fa-solid fa-star text-yellow-500 text-[10px]"></i></span>
+                        </p>
+                        <p class="text-xs text-gray-400 truncate max-w-[180px] md:max-w-[250px]">
+                            pada <span class="text-white">{{ optional($review->movie)->title ?? 'Film Tidak Diketahui' }}</span>
+                        </p>
+                    </div>
+                </div>
+                <span class="text-xs text-gray-500 whitespace-nowrap ml-2">{{ $review->created_at->diffForHumans() }}</span>
+            </div>
+            @empty
+            <p class="text-gray-400 text-center py-4">Tidak ada rating terbaru</p>
             @endforelse
         </div>
     </div>

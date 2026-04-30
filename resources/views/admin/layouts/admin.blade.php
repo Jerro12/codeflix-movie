@@ -62,17 +62,17 @@
                 <a href="{{ route('admin.dashboard') }}" 
                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.dashboard') ? 'bg-codeflix-primary text-white' : 'text-gray-400 hover:bg-codeflix-card hover:text-white' }}">
                     <i class="fa-solid fa-gauge-high w-5"></i>
-                    <span>Dashboard</span>
+                    <span>Dasbor</span>
                 </a>
                 <a href="{{ route('admin.movies.index') }}" 
                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.movies.*') ? 'bg-codeflix-primary text-white' : 'text-gray-400 hover:bg-codeflix-card hover:text-white' }}">
                     <i class="fa-solid fa-film w-5"></i>
-                    <span>Movies</span>
+                    <span>Film</span>
                 </a>
                 <a href="{{ route('admin.users.index') }}" 
                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition {{ request()->routeIs('admin.users.*') ? 'bg-codeflix-primary text-white' : 'text-gray-400 hover:bg-codeflix-card hover:text-white' }}">
                     <i class="fa-solid fa-users w-5"></i>
-                    <span>Users</span>
+                    <span>Pengguna</span>
                 </a>
                 
                 <div class="border-t border-gray-800 my-4"></div>
@@ -80,7 +80,7 @@
                 <a href="{{ route('home') }}" 
                    class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-codeflix-card hover:text-white transition">
                     <i class="fa-solid fa-arrow-left w-5"></i>
-                    <span>Back to Site</span>
+                    <span>Kembali ke Situs</span>
                 </a>
             </nav>
 
@@ -103,7 +103,7 @@
             <!-- Top Bar -->
             <header class="bg-codeflix-darker border-b border-gray-800 px-8 py-4 sticky top-0 z-10">
                 <div class="flex items-center justify-between">
-                    <h1 class="font-outfit text-xl font-semibold">@yield('title', 'Dashboard')</h1>
+                    <h1 class="font-outfit text-xl font-semibold">@yield('title', 'Dasbor')</h1>
                     <div class="flex items-center gap-4">
                         <span class="text-sm text-gray-400">{{ now()->format('l, F j, Y') }}</span>
                     </div>

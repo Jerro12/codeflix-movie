@@ -1,15 +1,15 @@
 @extends('admin.layouts.admin')
 
-@section('title', 'Movies')
+@section('title', 'Film')
 
 @section('content')
 <!-- Header Actions -->
 <div class="flex items-center justify-between mb-6">
-    <p class="text-gray-400">Manage all movies in the system</p>
+    <p class="text-gray-400">Kelola semua film dalam sistem</p>
     <a href="{{ route('admin.movies.create') }}" 
        class="inline-flex items-center gap-2 bg-codeflix-primary hover:bg-codeflix-primary/80 text-white px-4 py-2 rounded-lg transition">
         <i class="fa-solid fa-plus"></i>
-        Add Movie
+        Tambah Film
     </a>
 </div>
 
@@ -19,12 +19,12 @@
         <table class="w-full">
             <thead class="bg-codeflix-darker">
                 <tr>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Movie</th>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Category</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Film</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Kategori</th>
                     <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Rating</th>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Duration</th>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Added</th>
-                    <th class="px-6 py-4 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Actions</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Durasi</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Ditambahkan</th>
+                    <th class="px-6 py-4 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-800">
@@ -41,7 +41,7 @@
                     </td>
                     <td class="px-6 py-4">
                         <span class="px-2 py-1 bg-codeflix-primary/20 text-codeflix-primary text-xs rounded">
-                            {{ $movie->category?->name ?? 'Uncategorized' }}
+                            {{ $movie->category?->name ?? 'Tanpa Kategori' }}
                         </span>
                     </td>
                     <td class="px-6 py-4">
@@ -59,7 +59,7 @@
                                 <i class="fa-solid fa-edit"></i>
                             </a>
                             <form action="{{ route('admin.movies.destroy', $movie) }}" method="POST" 
-                                  onsubmit="return confirm('Are you sure you want to delete this movie?')">
+                                  onsubmit="return confirm('Apakah Anda yakin ingin menghapus film ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" 
@@ -74,7 +74,7 @@
                 <tr>
                     <td colspan="6" class="px-6 py-12 text-center text-gray-400">
                         <i class="fa-solid fa-film text-4xl mb-4 text-gray-600"></i>
-                        <p>No movies found. Add your first movie!</p>
+                        <p>Tidak ada film ditemukan. Tambahkan film pertama Anda!</p>
                     </td>
                 </tr>
                 @endforelse

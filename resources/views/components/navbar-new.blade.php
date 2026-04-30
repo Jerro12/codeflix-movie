@@ -10,22 +10,22 @@
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-8">
                 <a href="{{ route('home') }}" class="font-medium text-white hover:text-codeflix-primary {{ request()->routeIs('home') ? 'text-codeflix-primary' : '' }}">
-                    Home
+                    Beranda
                 </a>
                 <a href="{{ route('movies.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('movies.*') ? 'text-codeflix-primary' : '' }}">
-                    Movies
+                    Film
                 </a>
                 <a href="{{ route('series.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('series.*') ? 'text-codeflix-primary' : '' }}">
-                    Series
+                    Serial
                 </a>
                 <a href="{{ route('watchlist.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('watchlist.*') ? 'text-codeflix-primary' : '' }}">
-                    My List
+                    Daftar Saya
                 </a>
 
                 <!-- Categories Dropdown -->
                 <div class="relative group">
                     <button class="font-medium text-gray-300 hover:text-codeflix-primary flex items-center gap-1">
-                        Categories
+                        Kategori
                         <i class="fa-solid fa-chevron-down text-xs"></i>
                     </button>
                     <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -47,12 +47,12 @@
                 <div class="relative group">
                     <button class="font-medium text-yellow-500 hover:text-yellow-400 flex items-center gap-1">
                         <i class="fa-solid fa-flask text-xs"></i>
-                        Research Mode (K={{ request('k', 5) }})
+                        Mode Riset (K={{ request('k', 5) }})
                         <i class="fa-solid fa-chevron-down text-xs"></i>
                     </button>
                     <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                         <div class="bg-codeflix-card rounded-xl shadow-2xl border border-gray-800 p-4 min-w-[200px] flex flex-col gap-1">
-                            <p class="text-[10px] text-gray-500 uppercase font-bold px-3 mb-1">Set Parameter K</p>
+                            <p class="text-[10px] text-gray-500 uppercase font-bold px-3 mb-1">Atur Parameter K</p>
                             @foreach([3, 5, 10, 20] as $kVal)
                                 <a href="{{ request()->fullUrlWithQuery(['k' => $kVal]) }}" 
                                    class="px-3 py-2 rounded-lg text-sm {{ request('k', 5) == $kVal ? 'bg-yellow-500/20 text-yellow-500' : 'text-gray-300' }} hover:bg-yellow-500/10 transition">
@@ -78,7 +78,7 @@
                 <!-- Search -->
                 <form action="{{ route('movies.search') }}" method="GET" class="hidden md:block relative">
                     <input type="text" name="q" value="{{ request('q') }}" 
-                           placeholder="Search movies..."
+                           placeholder="Cari film..."
                            class="w-64 bg-gray-900/50 border border-gray-700 rounded-full px-4 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary">
                     <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-codeflix-primary">
                         <i class="fa-solid fa-search"></i>
@@ -94,15 +94,15 @@
                         </button>
                         <div class="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                             <div class="bg-codeflix-card rounded-xl shadow-2xl border border-gray-800 p-4 w-80">
-                                <h4 class="font-outfit font-semibold text-white mb-3">Notifications</h4>
+                                <h4 class="font-outfit font-semibold text-white mb-3">Notifikasi</h4>
                                 <div class="space-y-3 max-h-64 overflow-y-auto">
                                     <div class="flex items-start gap-3 p-2 rounded-lg hover:bg-gray-800">
                                         <div class="w-10 h-10 rounded bg-gradient-to-br from-codeflix-primary to-emerald-600 flex items-center justify-center flex-shrink-0">
                                             <i class="fa-solid fa-film text-white text-sm"></i>
                                         </div>
                                         <div>
-                                            <p class="text-sm text-white">Welcome to <span class="text-codeflix-primary">Codeflix</span>! Start exploring movies now.</p>
-                                            <p class="text-xs text-gray-500">Just now</p>
+                                            <p class="text-sm text-white">Selamat datang di <span class="text-codeflix-primary">Codeflix</span>! Mulai jelajahi film sekarang.</p>
+                                            <p class="text-xs text-gray-500">Baru saja</p>
                                         </div>
                                     </div>
                                     <div class="flex items-start gap-3 p-2 rounded-lg hover:bg-gray-800">
@@ -110,13 +110,13 @@
                                             <i class="fa-solid fa-film text-white text-sm"></i>
                                         </div>
                                         <div>
-                                            <p class="text-sm text-white">New movie added: <span class="text-codeflix-primary">The Matrix Resurrections</span></p>
-                                            <p class="text-xs text-gray-500">2 hours ago</p>
+                                            <p class="text-sm text-white">Film baru ditambahkan: <span class="text-codeflix-primary">The Matrix Resurrections</span></p>
+                                            <p class="text-xs text-gray-500">2 jam yang lalu</p>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{ route('history.index') }}" class="block text-center text-sm text-codeflix-primary hover:underline mt-3 pt-3 border-t border-gray-800">
-                                    View All Activity
+                                <a href="{{ route('reviews.history.index') }}" class="block text-center text-sm text-codeflix-primary hover:underline mt-3 pt-3 border-t border-gray-800">
+                                    Lihat Cerita Ulasan
                                 </a>
                             </div>
                         </div>
@@ -140,25 +140,25 @@
                                 @if(Auth::user()->isAdmin())
                                     <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                         <i class="fa-solid fa-gauge-high w-5"></i>
-                                        Admin Dashboard
+                                        Dasbor Admin
                                     </a>
                                 @endif
                                 
                                 <a href="{{ route('profiles.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-users w-5"></i>
-                                    Manage Profiles
+                                    Kelola Profil
                                 </a>
                                 <a href="{{ route('settings.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-cog w-5"></i>
-                                    Account Settings
+                                    Pengaturan Akun
                                 </a>
-                                <a href="{{ route('history.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
-                                    <i class="fa-solid fa-clock-rotate-left w-5"></i>
-                                    Watch History
+                                <a href="{{ route('reviews.history.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
+                                    <i class="fa-solid fa-star-half-stroke w-5"></i>
+                                    Cerita Ulasan
                                 </a>
                                 <a href="{{ route('referral.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-gift w-5"></i>
-                                    Invite Friends
+                                    Undang Teman
                                 </a>
                                 
                                 <div class="border-t border-gray-800 mt-2 pt-2">
@@ -166,7 +166,7 @@
                                         @csrf
                                         <button type="submit" class="w-full flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-red-500">
                                             <i class="fa-solid fa-sign-out-alt w-5"></i>
-                                            Sign Out
+                                            Keluar
                                         </button>
                                     </form>
                                 </div>
@@ -174,9 +174,9 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="font-medium text-gray-300 hover:text-white">Sign In</a>
+                    <a href="{{ route('login') }}" class="font-medium text-gray-300 hover:text-white">Masuk</a>
                     <a href="{{ route('register') }}" class="bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-medium px-4 py-2 rounded-lg">
-                        Get Started
+                        Mulai
                     </a>
                 @endauth
 
@@ -191,14 +191,14 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-codeflix-darker border-t border-gray-800">
         <div class="px-4 py-4 space-y-3">
-            <a href="{{ route('home') }}" class="block py-2 text-white">Home</a>
-            <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300">Movies</a>
-            <a href="{{ route('series.index') }}" class="block py-2 text-gray-300">Series</a>
-            <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300">My List</a>
+            <a href="{{ route('home') }}" class="block py-2 text-white">Beranda</a>
+            <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300">Film</a>
+            <a href="{{ route('series.index') }}" class="block py-2 text-gray-300">Serial</a>
+            <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300">Daftar Saya</a>
             
             <!-- Mobile Search -->
             <form action="{{ route('movies.search') }}" method="GET" class="pt-2">
-                <input type="text" name="q" placeholder="Search..." 
+                <input type="text" name="q" placeholder="Cari..." 
                        class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white">
             </form>
         </div>

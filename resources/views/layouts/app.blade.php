@@ -188,7 +188,7 @@
                     <ul class="space-y-2 text-sm text-codeflix-muted">
                         <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profiles</a></li>
                         <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Settings</a></li>
-                        <li><a href="{{ route('history.index') }}" class="hover:text-codeflix-primary">Watch History</a></li>
+                        <li><a href="{{ route('reviews.history.index') }}" class="hover:text-codeflix-primary">Reviews Story</a></li>
                     </ul>
                 </div>
                 

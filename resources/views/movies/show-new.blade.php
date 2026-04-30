@@ -104,27 +104,27 @@
             <div class="lg:col-span-2 space-y-8">
                 <!-- Description -->
                 <div>
-                    <h2 class="font-outfit text-2xl font-semibold text-white mb-4">Synopsis</h2>
+                    <h2 class="font-outfit text-2xl font-semibold text-white mb-4">Sinopsis</h2>
                     <p class="text-gray-300 leading-relaxed">{{ $movie->description }}</p>
                 </div>
 
                 <!-- Cast & Crew -->
                 <div>
-                    <h2 class="font-outfit text-2xl font-semibold text-white mb-4">Cast & Crew</h2>
+                    <h2 class="font-outfit text-2xl font-semibold text-white mb-4">Pemeran & Kru</h2>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <p class="text-gray-500 text-sm">Director</p>
+                            <p class="text-gray-500 text-sm">Sutradara</p>
                             <p class="text-white">{{ $movie->director }}</p>
                         </div>
                         @if($movie->writers)
                         <div>
-                            <p class="text-gray-500 text-sm">Writers</p>
+                            <p class="text-gray-500 text-sm">Penulis</p>
                             <p class="text-white">{{ $movie->writers }}</p>
                         </div>
                         @endif
                         @if($movie->stars)
                         <div class="col-span-2">
-                            <p class="text-gray-500 text-sm">Stars</p>
+                            <p class="text-gray-500 text-sm">Bintang</p>
                             <p class="text-white">{{ $movie->stars }}</p>
                         </div>
                         @endif
@@ -134,11 +134,11 @@
                 <!-- Reviews Section -->
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="font-outfit text-2xl font-semibold text-white">Reviews</h2>
+                        <h2 class="font-outfit text-2xl font-semibold text-white">Ulasan</h2>
                         @auth
                         <button onclick="document.getElementById('review-form').classList.toggle('hidden')"
                                 class="text-codeflix-primary hover:text-codeflix-primary/80 font-medium">
-                            <i class="fa-solid fa-plus mr-1"></i> Write Review
+                            <i class="fa-solid fa-plus mr-1"></i> Tulis Ulasan
                         </button>
                         @endauth
                     </div>
@@ -149,9 +149,9 @@
                         <form action="{{ route('reviews.store', $movie) }}" method="POST">
                             @csrf
                             <div class="mb-4">
-                                <label class="block text-gray-400 text-sm mb-2">Your Rating</label>
+                                <label class="block text-gray-400 text-sm mb-2">Rating Anda</label>
                                 <div class="flex gap-2">
-                                    @for($i = 1; $i <= 10; $i++)
+                                    @for($i = 1; $i <= 5; $i++)
                                     <label class="cursor-pointer">
                                         <input type="radio" name="rating" value="{{ $i }}" class="hidden peer">
                                         <span class="w-8 h-8 flex items-center justify-center rounded border border-gray-700 peer-checked:bg-codeflix-primary peer-checked:border-codeflix-primary text-white">{{ $i }}</span>
@@ -160,20 +160,20 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <input type="text" name="title" placeholder="Review title (optional)" 
+                                <input type="text" name="title" placeholder="Judul ulasan (opsional)" 
                                        class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white">
                             </div>
                             <div class="mb-4">
-                                <textarea name="content" rows="4" placeholder="Write your review..." required
+                                <textarea name="content" rows="4" placeholder="Tulis ulasan Anda..." required
                                           class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white"></textarea>
                             </div>
                             <div class="flex items-center gap-4">
                                 <label class="flex items-center gap-2 text-gray-400">
                                     <input type="checkbox" name="spoiler_warning" class="rounded border-gray-700">
-                                    Contains spoilers
+                                    Mengandung bocoran
                                 </label>
                                 <button type="submit" class="bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-medium px-6 py-2 rounded-lg">
-                                    Submit Review
+                                    Kirim Ulasan
                                 </button>
                             </div>
                         </form>
@@ -192,10 +192,10 @@
                                     <div class="flex items-center gap-2 mb-1">
                                         <span class="font-medium text-white">{{ $review->user->name }}</span>
                                         <span class="px-2 py-0.5 bg-codeflix-primary/20 text-codeflix-primary text-sm rounded">
-                                            {{ $review->rating }}/10
+                                            {{ $review->rating }}/5
                                         </span>
                                         @if($review->spoiler_warning)
-                                        <span class="px-2 py-0.5 bg-red-500/20 text-red-500 text-sm rounded">Spoilers</span>
+                                        <span class="px-2 py-0.5 bg-red-500/20 text-red-500 text-sm rounded">Bocoran</span>
                                         @endif
                                     </div>
                                     @if($review->title)
@@ -209,7 +209,7 @@
                         @empty
                         <div class="text-center py-8 text-gray-500">
                             <i class="fa-regular fa-comment-dots text-4xl mb-2"></i>
-                            <p>No reviews yet. Be the first to review!</p>
+                            <p>Belum ada ulasan. Jadilah yang pertama mengulas!</p>
                         </div>
                         @endforelse
                     </div>
@@ -220,7 +220,7 @@
             <div class="space-y-6">
                 <!-- Similar Movies -->
                 <div>
-                    <h3 class="font-outfit text-xl font-semibold text-white mb-4">You May Also Like</h3>
+                    <h3 class="font-outfit text-xl font-semibold text-white mb-4">Anda Mungkin Juga Suka</h3>
                     <div class="grid grid-cols-2 gap-3">
                         @foreach(\App\Models\Movie::whereHas('categories', fn($q) => $q->whereIn('categories.id', $movie->categories->pluck('id')))->where('id', '!=', $movie->id)->limit(4)->get() as $similar)
                         <a href="{{ route('movies.show', $similar->slug) }}" class="movie-card rounded-lg overflow-hidden">

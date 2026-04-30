@@ -33,10 +33,16 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
+        $recentReviews = \App\Models\Review::with(['user', 'movie'])
+            ->latest()
+            ->limit(5)
+            ->get();
+
         return view('admin.dashboard', [
             'stats' => $stats,
             'recentTransactions' => $recentTransactions,
             'recentUsers' => $recentUsers,
+            'recentReviews' => $recentReviews,
         ]);
     }
 }
