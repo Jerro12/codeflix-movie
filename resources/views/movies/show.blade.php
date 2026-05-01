@@ -62,7 +62,7 @@
                         @endif
                         
                         <!-- Share Button -->
-                        <div class="relative" x-data="{ open: false }">
+                        <!-- <div class="relative" x-data="{ open: false }">
                             <button @click="open = !open" class="inline-flex items-center justify-center w-12 h-12 bg-gray-700/80 hover:bg-gray-600 rounded-lg transition">
                                 <i class="fa-solid fa-share-nodes text-xl text-white"></i>
                             </button>
@@ -85,7 +85,7 @@
                                     <i class="fa-solid fa-link text-white"></i>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

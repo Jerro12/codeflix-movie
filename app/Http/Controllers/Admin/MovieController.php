@@ -42,7 +42,7 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:movies,title',
             'description' => 'required|string',
             'director' => 'required|string|max:255',
             'writers' => 'nullable|string',
@@ -51,6 +51,8 @@ class MovieController extends Controller
             'banner' => 'nullable|url',
             'release_date' => 'required|date',
             'duration' => 'required|integer|min:1',
+            'rating' => 'nullable|numeric|min:0|max:10',
+            'age_rating' => 'nullable|in:G,PG,PG-13,R,NC-17',
             'url_720' => 'nullable|url',
             'url_1080' => 'nullable|url',
             'url_4k' => 'nullable|url',
@@ -90,7 +92,7 @@ class MovieController extends Controller
     public function update(Request $request, Movie $movie)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:movies,title,' . $movie->id,
             'description' => 'required|string',
             'director' => 'required|string|max:255',
             'writers' => 'nullable|string',
@@ -99,6 +101,8 @@ class MovieController extends Controller
             'banner' => 'nullable|url',
             'release_date' => 'required|date',
             'duration' => 'required|integer|min:1',
+            'rating' => 'nullable|numeric|min:0|max:10',
+            'age_rating' => 'nullable|in:G,PG,PG-13,R,NC-17',
             'url_720' => 'nullable|url',
             'url_1080' => 'nullable|url',
             'url_4k' => 'nullable|url',

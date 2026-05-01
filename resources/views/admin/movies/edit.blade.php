@@ -21,6 +21,9 @@
                     <input type="text" name="title" id="title" 
                            class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
                            value="{{ old('title', $movie->title) }}" required>
+                    @error('title')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Description -->
@@ -45,6 +48,26 @@
                     <input type="number" name="duration" id="duration" 
                            class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
                            value="{{ old('duration', $movie->duration) }}" required min="1">
+                </div>
+
+                <!-- Rating -->
+                <div>
+                    <label for="rating" class="block text-sm font-medium text-gray-300 mb-2">Rating (0-10)</label>
+                    <input type="number" name="rating" id="rating" step="0.1" min="0" max="10"
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('rating', $movie->rating) }}" placeholder="e.g. 8.5">
+                </div>
+
+                <!-- Age Rating -->
+                <div>
+                    <label for="age_rating" class="block text-sm font-medium text-gray-300 mb-2">Age Rating</label>
+                    <select name="age_rating" id="age_rating" 
+                            class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition">
+                        <option value="">Select Rating</option>
+                        @foreach(['G', 'PG', 'PG-13', 'R', 'NC-17'] as $rating)
+                            <option value="{{ $rating }}" {{ old('age_rating', $movie->age_rating) == $rating ? 'selected' : '' }}>{{ $rating }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <!-- Release Date -->

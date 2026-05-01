@@ -52,6 +52,26 @@
                            value="{{ old('duration') }}" required min="1">
                 </div>
 
+                <!-- Rating -->
+                <div>
+                    <label for="rating" class="block text-sm font-medium text-gray-300 mb-2">Rating (0-10)</label>
+                    <input type="number" name="rating" id="rating" step="0.1" min="0" max="10"
+                           class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
+                           value="{{ old('rating') }}" placeholder="Contoh: 8.5">
+                </div>
+
+                <!-- Age Rating -->
+                <div>
+                    <label for="age_rating" class="block text-sm font-medium text-gray-300 mb-2">Age Rating</label>
+                    <select name="age_rating" id="age_rating" 
+                            class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition">
+                        <option value="">Pilih Rating</option>
+                        @foreach(['G', 'PG', 'PG-13', 'R', 'NC-17'] as $rating)
+                            <option value="{{ $rating }}" {{ old('age_rating') == $rating ? 'selected' : '' }}>{{ $rating }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <!-- Release Date -->
                 <div>
                     <label for="release_date" class="block text-sm font-medium text-gray-300 mb-2">Tanggal Rilis</label>
