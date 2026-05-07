@@ -30,7 +30,7 @@
                             <i class="fa-solid fa-envelope"></i>
                         </span>
                         <input type="email" id="email" name="email" value="{{ old('email') }}" required autofocus
-                               class="w-full bg-codeflix-dark border border-gray-700 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition @error('email') border-red-500 @enderror"
+                               class="w-full bg-codeflix-dark border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition {{ $errors->has('email') ? 'border-red-500' : 'border-gray-700' }}"
                                placeholder="your@email.com">
                     </div>
                     @error('email')
@@ -48,7 +48,7 @@
                             <i class="fa-solid fa-lock"></i>
                         </span>
                         <input :type="show ? 'text' : 'password'" id="password" name="password" required
-                               class="w-full bg-codeflix-dark border border-gray-700 rounded-xl pl-12 pr-12 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition @error('password') border-red-500 @enderror"
+                               class="w-full bg-codeflix-dark border rounded-xl pl-12 pr-12 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition {{ $errors->has('password') ? 'border-red-500' : 'border-gray-700' }}"
                                placeholder="••••••••">
                         <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white">
                             <i class="fa-solid" :class="show ? 'fa-eye-slash' : 'fa-eye'"></i>

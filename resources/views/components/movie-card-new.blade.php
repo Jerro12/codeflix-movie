@@ -73,7 +73,7 @@
                         @endauth
                         
                         <a href="{{ route('movies.show', $movie->slug) }}" 
-                           class="block px-4 py-2 text-sm text-white hover:bg-codeflix-primary/20 flex items-center gap-2 transition-colors">
+                           class="px-4 py-2 text-sm text-white hover:bg-codeflix-primary/20 flex items-center gap-2 transition-colors">
                             <i class="fa-solid fa-circle-info w-4 text-center"></i>
                             More Info
                         </a>
