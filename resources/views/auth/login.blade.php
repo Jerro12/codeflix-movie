@@ -78,24 +78,7 @@
                 </button>
             </form>
 
-            <!-- Divider -->
-            <div class="flex items-center gap-4 my-6">
-                <div class="flex-1 h-px bg-gray-700"></div>
-                <span class="text-gray-500 text-sm">or continue with</span>
-                <div class="flex-1 h-px bg-gray-700"></div>
-            </div>
 
-            <!-- Social Login (optional) -->
-            <div class="flex gap-4">
-                <button class="flex-1 flex items-center justify-center gap-2 bg-codeflix-dark hover:bg-gray-800 border border-gray-700 rounded-xl py-3 text-white transition">
-                    <i class="fa-brands fa-google text-lg"></i>
-                    Google
-                </button>
-                <button class="flex-1 flex items-center justify-center gap-2 bg-codeflix-dark hover:bg-gray-800 border border-gray-700 rounded-xl py-3 text-white transition">
-                    <i class="fa-brands fa-github text-lg"></i>
-                    GitHub
-                </button>
-            </div>
 
             <!-- Register Link -->
             <p class="text-center text-gray-400 mt-8">

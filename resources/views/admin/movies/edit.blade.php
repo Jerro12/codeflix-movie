@@ -61,11 +61,24 @@
                 <!-- Age Rating -->
                 <div>
                     <label for="age_rating" class="block text-sm font-medium text-gray-300 mb-2">Age Rating</label>
+                    @php
+                        $ratingLabels = [
+                            'G' => 'G (SU) - Semua Umur',
+                            'PG' => 'PG (BO) - Bimbingan Orang Tua',
+                            'PG-13' => 'PG-13 (13+) - Remaja',
+                            'R' => 'R (17+) - Dewasa',
+                            'NC-17' => 'NC-17 (21+) - Dewasa Terbatas',
+                            'SU' => 'SU - Semua Umur',
+                            '13+' => '13+ - Remaja',
+                            '17+' => '17+ - Dewasa',
+                            '21+' => '21+ - Dewasa Terbatas'
+                        ];
+                    @endphp
                     <select name="age_rating" id="age_rating" 
                             class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition">
                         <option value="">Select Rating</option>
-                        @foreach(['G', 'PG', 'PG-13', 'R', 'NC-17'] as $rating)
-                            <option value="{{ $rating }}" {{ old('age_rating', $movie->age_rating) == $rating ? 'selected' : '' }}>{{ $rating }}</option>
+                        @foreach($ratingLabels as $value => $label)
+                            <option value="{{ $value }}" {{ old('age_rating', $movie->age_rating) == $value ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
                     </select>
                 </div>

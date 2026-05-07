@@ -38,11 +38,17 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
+        $recentMovies = Movie::with('categories')
+            ->latest()
+            ->limit(5)
+            ->get();
+
         return view('admin.dashboard', [
             'stats' => $stats,
             'recentTransactions' => $recentTransactions,
             'recentUsers' => $recentUsers,
             'recentReviews' => $recentReviews,
+            'recentMovies' => $recentMovies,
         ]);
     }
 }

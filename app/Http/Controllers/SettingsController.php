@@ -38,10 +38,12 @@ class SettingsController extends Controller implements HasMiddleware
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . Auth::id(),
+            'nik' => 'nullable|string|size:16|unique:users,nik,' . Auth::id(),
+            'birth_date' => 'nullable|date',
             'phone' => 'nullable|string|max:20',
         ]);
 
-        Auth::user()->update($request->only(['name', 'email', 'phone']));
+        Auth::user()->update($request->only(['name', 'email', 'nik', 'birth_date', 'phone']));
 
         return back()->with('success', 'Profile updated successfully!');
     }

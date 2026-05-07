@@ -20,17 +20,19 @@ class MovieController extends Controller implements HasMiddleware
 
     public function index(RecommendationService $recService) 
     {
-        $newAddedMovies = Movie::latest()->limit(12)->get();
-        $topRatedMovies = Movie::with('ratings')
+        $user = Auth::user();
+        $newAddedMovies = Movie::forUser($user)->latest()->limit(12)->get();
+        $topRatedMovies = Movie::forUser($user)
+            ->with('ratings')
             ->get()
             ->sortByDesc('average_rating')
             ->take(12);
 
         $recommendations = [];
-        if (Auth::check()) {
+        if ($user) {
             // Get K from request or default to 5 for research purposes
             $k = request('k', 5);
-            $recommendations = $recService->setK($k)->getRecommendations(Auth::user(), 12);
+            $recommendations = $recService->setK($k)->getRecommendations($user, 12);
         }
     
         return view('movies.index',[
@@ -42,7 +44,7 @@ class MovieController extends Controller implements HasMiddleware
 
     public function all(Request $request)
     {
-        $movies = Movie::orderBy('release_date', 'desc')->paginate(18);
+        $movies = Movie::forUser(Auth::user())->orderBy('release_date', 'desc')->paginate(18);
 
         // Handle pagination for AJAX requests
         if ($request->ajax()) {
@@ -78,7 +80,7 @@ class MovieController extends Controller implements HasMiddleware
     {
         $search = $request->input('q');
         
-        $query = Movie::query();
+        $query = Movie::forUser(Auth::user());
         
         // Search by title
         if ($search) {

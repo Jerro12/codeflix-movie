@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'check.device.limit' => \App\Http\Middleware\CheckDeviceLimit::class,
             'logoutDevice' => \App\Http\Middleware\LogoutDevice::class,
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'age.check' => \App\Http\Middleware\AgeAccessControl::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

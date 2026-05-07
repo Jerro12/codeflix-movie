@@ -23,6 +23,9 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        'nik',
+        'birth_date',
+        'age_category',
     ];
 
     /**
@@ -46,7 +49,35 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'birth_date' => 'date',
         ];
+    }
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($user) {
+            if ($user->isDirty('birth_date') && $user->birth_date) {
+                $age = $user->birth_date->age;
+                
+                if ($age < 13) {
+                    $user->age_category = 'anak';
+                } elseif ($age >= 13 && $age < 18) {
+                    $user->age_category = 'umum';
+                } else {
+                    $user->age_category = 'dewasa';
+                }
+            }
+        });
+    }
+
+    /**
+     * Get the user's age.
+     */
+    public function getAgeAttribute()
+    {
+        return $this->birth_date ? $this->birth_date->age : null;
     }
 
     /**

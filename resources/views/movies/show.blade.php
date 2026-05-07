@@ -21,8 +21,16 @@
                 <!-- Info -->
                 <div class="flex-1 pb-4">
                     @if($movie->age_rating ?? null)
-                    <span class="inline-flex items-center gap-1 px-2 py-1 bg-red-600/80 text-white text-xs font-bold rounded mb-2">
-                        {{ $movie->age_rating ?? 'PG-13' }}
+                    @php
+                        $ratingColor = match($movie->age_rating) {
+                            'G', 'PG', 'SU', 'Anak' => 'bg-emerald-600',
+                            'PG-13', '13+' => 'bg-yellow-600',
+                            'R', 'NC-17', '17+', '21+' => 'bg-red-600',
+                            default => 'bg-gray-600'
+                        };
+                    @endphp
+                    <span class="inline-flex items-center gap-1 px-3 py-1 {{ $ratingColor }} text-white text-xs font-black rounded-full mb-2 uppercase tracking-widest shadow-lg">
+                        <i class="fa-solid fa-shield-halved text-[10px]"></i> {{ $movie->age_rating }}
                     </span>
                     @endif
                     

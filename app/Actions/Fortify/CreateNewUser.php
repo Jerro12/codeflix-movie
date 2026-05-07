@@ -29,12 +29,16 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
+            'nik' => ['required', 'string', 'size:16', Rule::unique(User::class)],
+            'birth_date' => ['required', 'date'],
         ])->validate();
 
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'nik' => $input['nik'],
+            'birth_date' => $input['birth_date'],
         ]);
     }
 }

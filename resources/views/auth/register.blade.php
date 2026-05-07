@@ -56,6 +56,38 @@
                     @enderror
                 </div>
 
+                <!-- NIK & Birth Date -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="nik" class="block text-sm font-medium text-gray-300 mb-2">
+                            NIK (16 Digits)
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                <i class="fa-solid fa-id-card"></i>
+                            </span>
+                            <input type="text" id="nik" name="nik" value="{{ old('nik') }}" required maxlength="16"
+                                   class="w-full bg-codeflix-dark border border-gray-700 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition @error('nik') border-red-500 @enderror"
+                                   placeholder="NIK">
+                        </div>
+                        @error('nik')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="birth_date" class="block text-sm font-medium text-gray-300 mb-2">
+                            Birth Date
+                        </label>
+                        <div class="relative">
+                            <input type="date" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" required
+                                   class="w-full bg-codeflix-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition @error('birth_date') border-red-500 @enderror">
+                        </div>
+                        @error('birth_date')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+
                 <!-- Password -->
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-300 mb-2">
@@ -111,24 +143,7 @@
                 </button>
             </form>
 
-            <!-- Divider -->
-            <div class="flex items-center gap-4 my-6">
-                <div class="flex-1 h-px bg-gray-700"></div>
-                <span class="text-gray-500 text-sm">or sign up with</span>
-                <div class="flex-1 h-px bg-gray-700"></div>
-            </div>
 
-            <!-- Social Register -->
-            <div class="flex gap-4">
-                <button class="flex-1 flex items-center justify-center gap-2 bg-codeflix-dark hover:bg-gray-800 border border-gray-700 rounded-xl py-3 text-white transition">
-                    <i class="fa-brands fa-google text-lg"></i>
-                    Google
-                </button>
-                <button class="flex-1 flex items-center justify-center gap-2 bg-codeflix-dark hover:bg-gray-800 border border-gray-700 rounded-xl py-3 text-white transition">
-                    <i class="fa-brands fa-github text-lg"></i>
-                    GitHub
-                </button>
-            </div>
 
             <!-- Login Link -->
             <p class="text-center text-gray-400 mt-8">

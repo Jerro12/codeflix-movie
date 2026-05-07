@@ -20,7 +20,7 @@ Route::get('/privacy', fn() => view('pages.privacy'))->name('privacy');
 Route::get('/terms', fn() => view('pages.terms'))->name('terms');
 Route::get('/movies', [MovieController::class, 'all'])->name('movies.index');
 Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
-Route::get('/movies/{movie:slug}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('/movies/{movie:slug}', [MovieController::class, 'show'])->name('movies.show')->middleware('age.check');
 
 // Series Routes
 Route::get('/series', [\App\Http\Controllers\SeriesController::class, 'index'])->name('series.index');

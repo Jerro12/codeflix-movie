@@ -106,27 +106,34 @@ class Movie extends Model
      */
     public function getFormattedDurationAttribute()
     {
-        // Hitung berapa jam yang diperlukan untuk menonton film
         $hours = floor($this->duration / 60);
-
-        // Hitung berapa menit yang diperlukan untuk menonton film
         $minutes = $this->duration % 60;
-
-        // Inisialisasi string yang akan diisi dengan durasi yang diformat
         $formatted = '';
-
-        // Jika durasi lebih dari 0 jam, maka tambahkan informasinya ke string
         if ($hours > 0) {
             $formatted .= "{$hours}h ";
         }
-
-        // Jika durasi lebih dari 0 menit atau durasi sama dengan 0 jam, maka
-        // tambahkan informasinya ke string
         if ($minutes > 0 || $hours == 0) {
             $formatted .= "{$minutes}m";
         }
-
-        // Kembalikan string (tanpa awal&akhir spasi kosong) yang telah diisi dengan durasi yang diformat
         return trim($formatted);
+    }
+
+    /**
+     * Scope a query to only include movies allowed for a specific user.
+     */
+    public function scopeForUser($query, $user)
+    {
+        if (!$user) return $query;
+
+        $category = $user->age_category ?? 'anak';
+        
+        $allowedRatings = match ($category) {
+            'anak' => ['G', 'PG', 'SU', 'Anak'],
+            'umum' => ['G', 'PG', 'PG-13', 'SU', '13+'],
+            'dewasa' => ['G', 'PG', 'PG-13', 'R', 'NC-17', 'SU', '13+', '17+', '21+'],
+            default => ['G', 'PG', 'SU'],
+        };
+
+        return $query->whereIn('age_rating', $allowedRatings);
     }
 }

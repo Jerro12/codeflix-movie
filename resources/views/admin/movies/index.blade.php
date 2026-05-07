@@ -57,8 +57,18 @@
                                 <span class="text-white font-medium">{{ number_format($movie->rating ?? 0, 1) }}</span>
                             </div>
                             @if($movie->age_rating)
-                                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded border border-gray-700 text-gray-400 w-fit">
-                                    {{ $movie->age_rating }}
+                                @php
+                                    $desc = match($movie->age_rating) {
+                                        'G', 'SU' => 'Semua Umur',
+                                        'PG' => 'Bimbingan Orang Tua',
+                                        'PG-13', '13+' => 'Remaja 13+',
+                                        'R', '17+' => 'Dewasa 17+',
+                                        'NC-17', '21+' => 'Dewasa 21+',
+                                        default => ''
+                                    };
+                                @endphp
+                                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded border border-gray-700 text-gray-400 w-fit" title="{{ $desc }}">
+                                    {{ $movie->age_rating }} {{ $desc ? "($desc)" : '' }}
                                 </span>
                             @endif
                         </div>

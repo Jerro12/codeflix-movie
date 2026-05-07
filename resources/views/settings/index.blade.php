@@ -69,6 +69,30 @@
                             </div>
                         </div>
 
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">NIK (Nomor Induk Kependudukan)</label>
+                                <input type="text" name="nik" value="{{ auth()->user()->nik }}" maxlength="16"
+                                       class="w-full bg-codeflix-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary"
+                                       placeholder="16 digit angka NIK">
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Tanggal Lahir</label>
+                                <input type="date" name="birth_date" value="{{ auth()->user()->birth_date ? auth()->user()->birth_date->format('Y-m-d') : '' }}"
+                                       class="w-full bg-codeflix-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary">
+                            </div>
+                        </div>
+
+                        @if(auth()->user()->age_category)
+                        <div class="bg-codeflix-primary/10 border border-codeflix-primary/30 rounded-xl p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3 text-gray-300">
+                                <i class="fa-solid fa-cake-candles text-codeflix-primary"></i>
+                                <span>Kategori Usia Anda: <strong class="text-white uppercase">{{ auth()->user()->age_category }}</strong></span>
+                            </div>
+                            <span class="text-sm text-gray-500">{{ auth()->user()->age }} Tahun</span>
+                        </div>
+                        @endif
+
                         <div>
                             <label class="block text-sm text-gray-400 mb-2">Nomor Telepon</label>
                             <input type="tel" name="phone" value="{{ auth()->user()->phone ?? '' }}"

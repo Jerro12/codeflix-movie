@@ -5,10 +5,17 @@
              class="w-full aspect-[2/3] object-cover rounded-xl">
     </a>
     
-    <!-- Rating Badge -->
-    <div class="absolute top-2 left-2 z-20 bg-black/70 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
-        <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
-        <span class="text-white text-sm font-medium">{{ number_format($movie->average_rating ?? 0, 1) }}</span>
+    <!-- Rating & Age Badge -->
+    <div class="absolute top-2 left-2 z-20 flex flex-col gap-1">
+        <div class="bg-black/70 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
+            <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
+            <span class="text-white text-sm font-medium">{{ number_format($movie->average_rating ?? 0, 1) }}</span>
+        </div>
+        @if($movie->age_rating)
+        <div class="bg-codeflix-primary/80 backdrop-blur-sm px-2 py-0.5 rounded-lg text-center">
+            <span class="text-white text-[10px] font-bold uppercase">{{ $movie->age_rating }}</span>
+        </div>
+        @endif
     </div>
 
     <!-- Watchlist Button -->

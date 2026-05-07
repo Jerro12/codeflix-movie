@@ -35,7 +35,12 @@ class RecommendationService
 
         if (empty($userRatings)) {
             // Fallback to top rated if no ratings found (Cold Start)
-            return Movie::orderByDesc('rating')->limit($limit)->get();
+            // Filter by age category
+            $allowedRatings = $this->getAllowedAgeRatings($user);
+            return Movie::whereIn('age_rating', $allowedRatings)
+                ->orderByDesc('rating')
+                ->limit($limit)
+                ->get();
         }
 
         // 2. Find all other users who have rated at least one movie in common
@@ -64,8 +69,11 @@ class RecommendationService
             return Movie::whereNotIn('id', array_keys($userRatings))->orderByDesc('rating')->limit($limit)->get();
         }
 
-        // 5. Predict ratings for movies the user hasn't seen
-        $unseenMovies = Movie::whereNotIn('id', array_keys($userRatings))->pluck('id');
+        // 5. Predict ratings for movies the user hasn't seen and are allowed for their age
+        $allowedRatings = $this->getAllowedAgeRatings($user);
+        $unseenMovies = Movie::whereNotIn('id', array_keys($userRatings))
+            ->whereIn('age_rating', $allowedRatings)
+            ->pluck('id');
         $predictions = [];
 
         foreach ($unseenMovies as $movieId) {
@@ -204,5 +212,20 @@ class RecommendationService
         if ($totalSimilarity == 0) return 0;
 
         return $weightedSum / $totalSimilarity;
+    }
+
+    /**
+     * Get allowed age ratings based on user category.
+     */
+    protected function getAllowedAgeRatings(User $user)
+    {
+        $category = $user->age_category ?? 'anak'; // Default to strictest if not set
+        
+        return match ($category) {
+            'anak' => ['G', 'PG', 'SU', 'Anak'],
+            'umum' => ['G', 'PG', 'PG-13', 'SU', '13+'],
+            'dewasa' => ['G', 'PG', 'PG-13', 'R', 'NC-17', 'SU', '13+', '17+', '21+'],
+            default => ['G', 'PG', 'SU'],
+        };
     }
 }

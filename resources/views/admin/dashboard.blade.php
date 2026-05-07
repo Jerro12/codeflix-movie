@@ -46,6 +46,44 @@
     </div>
 </div>
 
+<!-- Recent Movies Section -->
+<div class="bg-codeflix-card rounded-xl border border-gray-800 mb-8 overflow-hidden">
+    <div class="p-6 border-b border-gray-800 flex items-center justify-between">
+        <h2 class="font-outfit text-lg font-semibold">Film Baru Ditambahkan</h2>
+        <a href="{{ route('admin.movies.index') }}" class="text-sm text-codeflix-primary hover:underline">Lihat Semua</a>
+    </div>
+    <div class="p-6">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            @forelse($recentMovies ?? [] as $movie)
+            <div class="space-y-3 group">
+                <div class="relative aspect-[2/3] rounded-lg overflow-hidden border border-gray-800">
+                    <img src="{{ $movie->poster }}" alt="{{ $movie->title }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    <div class="absolute top-2 right-2 flex flex-col gap-1 items-end">
+                        <div class="bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold text-white flex items-center gap-1 border border-white/10">
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            {{ number_format($movie->rating ?? 0, 1) }}
+                        </div>
+                        @if($movie->age_rating)
+                        <div class="bg-codeflix-primary/80 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold text-white border border-white/10">
+                            {{ $movie->age_rating }}
+                        </div>
+                        @endif
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-medium text-sm text-white truncate">{{ $movie->title }}</h4>
+                    <p class="text-xs text-gray-500">{{ $movie->release_date?->format('Y') }} • {{ $movie->formatted_duration }}</p>
+                </div>
+            </div>
+            @empty
+            <div class="col-span-full py-8 text-center text-gray-500 italic">
+                Belum ada film yang ditambahkan.
+            </div>
+            @endforelse
+        </div>
+    </div>
+</div>
+
 <!-- Recent Activity -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Recent Users -->
