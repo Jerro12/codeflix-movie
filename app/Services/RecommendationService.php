@@ -222,10 +222,10 @@ class RecommendationService
         $category = $user->age_category ?? 'anak'; // Default to strictest if not set
         
         return match ($category) {
-            'anak' => ['G', 'PG', 'SU', 'Anak'],
-            'umum' => ['G', 'PG', 'PG-13', 'SU', '13+'],
-            'dewasa' => ['G', 'PG', 'PG-13', 'R', 'NC-17', 'SU', '13+', '17+', '21+'],
-            default => ['G', 'PG', 'SU'],
+            'anak' => ['SU', 'Anak', 'G', 'PG'],
+            'umum' => ['SU', 'Anak', '13+', 'G', 'PG', 'PG-13'],
+            'dewasa' => ['SU', 'Anak', '13+', '17+', 'G', 'PG', 'PG-13', 'R', 'NC-17', '21+'],
+            default => ['SU', 'Anak'],
         };
     }
 }

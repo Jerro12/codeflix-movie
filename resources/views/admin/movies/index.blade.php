@@ -56,21 +56,18 @@
                                 <i class="fa-solid fa-star text-yellow-500 text-sm"></i>
                                 <span class="text-white font-medium">{{ number_format($movie->rating ?? 0, 1) }}</span>
                             </div>
-                            @if($movie->age_rating)
-                                @php
-                                    $desc = match($movie->age_rating) {
-                                        'G', 'SU' => 'Semua Umur',
-                                        'PG' => 'Bimbingan Orang Tua',
-                                        'PG-13', '13+' => 'Remaja 13+',
-                                        'R', '17+' => 'Dewasa 17+',
-                                        'NC-17', '21+' => 'Dewasa 21+',
-                                        default => ''
-                                    };
-                                @endphp
-                                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded border border-gray-700 text-gray-400 w-fit" title="{{ $desc }}">
-                                    {{ $movie->age_rating }} {{ $desc ? "($desc)" : '' }}
-                                </span>
-                            @endif
+                            @php
+                                $desc = match($movie->age_rating) {
+                                    'SU' => 'Semua Umur',
+                                    'Anak' => 'Anak-anak',
+                                    '13+' => 'Remaja 13+',
+                                    '17+', '21+' => 'Dewasa',
+                                    default => $movie->age_rating
+                                };
+                            @endphp
+                            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded border border-gray-700 text-gray-400 w-fit" title="{{ $desc }}">
+                                {{ $movie->age_rating }}
+                            </span>
                         </div>
                     </td>
                     <td class="px-6 py-4 text-gray-400">{{ $movie->formatted_duration }}</td>

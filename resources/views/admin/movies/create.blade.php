@@ -62,17 +62,13 @@
 
                 <!-- Age Rating -->
                 <div>
+                    <label for="age_rating" class="block text-sm font-medium text-gray-300 mb-2">Age Rating</label>
                     @php
                         $ratingLabels = [
-                            'G' => 'G (SU) - Semua Umur',
-                            'PG' => 'PG (BO) - Bimbingan Orang Tua',
-                            'PG-13' => 'PG-13 (13+) - Remaja',
-                            'R' => 'R (17+) - Dewasa',
-                            'NC-17' => 'NC-17 (21+) - Dewasa Terbatas',
                             'SU' => 'SU - Semua Umur',
+                            'Anak' => 'Anak-anak',
                             '13+' => '13+ - Remaja',
                             '17+' => '17+ - Dewasa',
-                            '21+' => '21+ - Dewasa Terbatas'
                         ];
                     @endphp
                     <select name="age_rating" id="age_rating" 

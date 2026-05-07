@@ -28,10 +28,10 @@ class AgeAccessControl
 
         // Simple mapping check
         $isAllowed = match ($userCategory) {
-            'anak' => in_array($movieRating, ['G', 'PG', 'SU', 'Anak']),
-            'umum' => in_array($movieRating, ['G', 'PG', 'PG-13', 'SU', '13+']),
-            'dewasa' => true,
-            default => false,
+            'anak' => in_array($movieRating, ['SU', 'Anak', 'G', 'PG']),
+            'umum' => in_array($movieRating, ['SU', 'Anak', '13+', 'G', 'PG', 'PG-13']),
+            'dewasa' => true, // Dewasa can see everything
+            default => in_array($movieRating, ['SU', 'Anak']),
         };
 
         if (!$isAllowed) {

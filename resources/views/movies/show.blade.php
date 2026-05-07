@@ -23,9 +23,9 @@
                     @if($movie->age_rating ?? null)
                     @php
                         $ratingColor = match($movie->age_rating) {
-                            'G', 'PG', 'SU', 'Anak' => 'bg-emerald-600',
-                            'PG-13', '13+' => 'bg-yellow-600',
-                            'R', 'NC-17', '17+', '21+' => 'bg-red-600',
+                            'SU', 'Anak', 'G', 'PG' => 'bg-emerald-600',
+                            '13+', 'PG-13' => 'bg-yellow-600',
+                            '17+', 'R', 'NC-17', '21+' => 'bg-red-600',
                             default => 'bg-gray-600'
                         };
                     @endphp
