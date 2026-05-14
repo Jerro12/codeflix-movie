@@ -152,6 +152,10 @@
                                 class="text-codeflix-primary hover:text-codeflix-primary/80 font-medium">
                             <i class="fa-solid fa-plus mr-1"></i> Tulis Ulasan
                         </button>
+                        @else
+                        <a href="{{ route('login') }}" class="text-gray-400 hover:text-codeflix-primary text-sm transition flex items-center gap-1">
+                            <i class="fa-solid fa-right-to-bracket text-xs"></i> Login untuk memberi ulasan
+                        </a>
                         @endauth
                     </div>
 

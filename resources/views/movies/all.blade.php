@@ -6,9 +6,9 @@
     <div class="flex items-center justify-between mb-8">
         <h1 class="font-outfit text-3xl font-bold text-white flex items-center gap-3">
             <i class="fa-solid fa-film text-codeflix-primary"></i>
-            All Movies
+            Semua Film
         </h1>
-        <p class="text-codeflix-muted">{{ $movies->total() }} movies available</p>
+        <p class="text-codeflix-muted">{{ $movies->total() }} film tersedia</p>
     </div>
 
     <!-- Movies Grid -->

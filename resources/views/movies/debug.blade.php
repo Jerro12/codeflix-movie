@@ -95,7 +95,7 @@
                                     <tr>
                                         <th class="px-6 py-4">User Lain</th>
                                         <th class="px-6 py-4 text-center">Film Sama</th>
-                                        <th class="px-6 py-4">Skor Similarity</th>
+                                        <th class="px-6 py-4">Skor Similaritas</th>
                                         <th class="px-6 py-4">Status</th>
                                     </tr>
                                 </thead>
@@ -146,8 +146,8 @@
                                 <thead class="bg-black/20 text-xs text-gray-500 uppercase">
                                     <tr>
                                         <th class="px-6 py-4">Judul Film</th>
-                                        <th class="px-6 py-4 text-right">Predicted Score</th>
-                                        <th class="px-6 py-4">Recommendation Rank</th>
+                                        <th class="px-6 py-4 text-right">Skor Prediksi</th>
+                                        <th class="px-6 py-4">Peringkat Rekomendasi</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-800">
@@ -157,8 +157,12 @@
                                                 {{ $pred['movie_title'] }}
                                             </td>
                                             <td class="px-6 py-4 text-right">
-                                                <span class="text-lg font-bold text-green-400">{{ number_format($pred['predicted_rating'], 2) }}</span>
-                                                <span class="text-[10px] text-gray-500 ml-1">/ 10</span>
+                                                @if($pred['predicted_rating'] > 0)
+                                                    <span class="text-lg font-bold text-green-400">{{ number_format($pred['predicted_rating'], 2) }}</span>
+                                                    <span class="text-[10px] text-gray-500 ml-1">/ 5</span>
+                                                @else
+                                                    <span class="text-xs font-medium text-gray-500 italic">Cold Start (Tanpa Rating)</span>
+                                                @endif
                                             </td>
                                             <td class="px-6 py-4">
                                                 <span class="px-3 py-1 bg-gray-800 text-gray-300 text-xs rounded-full">#{{ $index + 1 }}</span>

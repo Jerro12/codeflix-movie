@@ -15,9 +15,9 @@
                 <a href="{{ route('movies.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('movies.*') ? 'text-codeflix-primary' : '' }}">
                     Film
                 </a>
-                <a href="{{ route('series.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('series.*') ? 'text-codeflix-primary' : '' }}">
+                <!-- <a href="{{ route('series.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('series.*') ? 'text-codeflix-primary' : '' }}">
                     Serial
-                </a>
+                </a> -->
                 <a href="{{ route('watchlist.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('watchlist.*') ? 'text-codeflix-primary' : '' }}">
                     Daftar Saya
                 </a>
@@ -44,6 +44,7 @@
                 </div>
 
                 <!-- Research Mode Dropdown -->
+                @auth
                 <div class="relative group">
                     <button class="font-medium text-yellow-500 hover:text-yellow-400 flex items-center gap-1">
                         <i class="fa-solid fa-flask text-xs"></i>
@@ -71,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+                @endauth
             </div>
 
             <!-- Right Side -->
@@ -193,7 +195,7 @@
         <div class="px-4 py-4 space-y-3">
             <a href="{{ route('home') }}" class="block py-2 text-white">Beranda</a>
             <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300">Film</a>
-            <a href="{{ route('series.index') }}" class="block py-2 text-gray-300">Serial</a>
+            <!-- <a href="{{ route('series.index') }}" class="block py-2 text-gray-300">Serial</a> -->
             <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300">Daftar Saya</a>
             
             <!-- Mobile Search -->

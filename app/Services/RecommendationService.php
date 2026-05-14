@@ -134,21 +134,31 @@ class RecommendationService
         $neighborWeights = array_combine($neighborIds, array_column($neighbors, 'similarity'));
 
         // Predict ratings for unseen movies
-        $unseenMovies = Movie::whereNotIn('id', array_keys($userRatings))->limit(20)->get();
+        $allowedRatings = $this->getAllowedAgeRatings($user);
+        $unseenMovies = Movie::whereNotIn('id', array_keys($userRatings))
+            ->whereIn('age_rating', $allowedRatings)
+            ->latest() // Prioritaskan film terbaru agar muncul di debug
+            ->limit(50) // Perbanyak candidate untuk debug
+            ->get();
+            
         $predictions = [];
 
         foreach ($unseenMovies as $movie) {
             $score = $this->predictRating($movie->id, $neighborWeights);
-            if ($score > 0) {
-                $predictions[] = [
-                    'movie_id' => $movie->id,
-                    'movie_title' => $movie->title,
-                    'predicted_rating' => $score
-                ];
-            }
+            // Untuk keperluan riset/debug, kita tampilkan semua meskipun skornya 0
+            // agar user tahu bahwa film tersebut sedang diproses tapi tidak ada rating dari tetangga
+            $predictions[] = [
+                'movie_id' => $movie->id,
+                'movie_title' => $movie->title,
+                'predicted_rating' => $score
+            ];
         }
 
-        usort($predictions, fn($a, $b) => $b['predicted_rating'] <=> $a['predicted_rating']);
+        // Sort predictions: yang punya skor di atas, sisanya tetap urut terbaru
+        usort($predictions, function($a, $b) {
+            if ($a['predicted_rating'] == $b['predicted_rating']) return 0;
+            return ($a['predicted_rating'] > $b['predicted_rating']) ? -1 : 1;
+        });
 
         return [
             'target_user' => [

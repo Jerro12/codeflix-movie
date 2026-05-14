@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My List')
+@section('title', 'Daftar Saya')
 
 @section('content')
 <div class="pt-24 pb-12 px-4">
@@ -8,8 +8,8 @@
         <!-- Header -->
         <div class="flex items-center justify-between mb-8">
             <div>
-                <h1 class="font-outfit text-3xl font-bold text-white mb-2">My List</h1>
-                <p class="text-gray-400">{{ $watchlist->count() }} titles saved</p>
+                <h1 class="font-outfit text-3xl font-bold text-white mb-2">Daftar Saya</h1>
+                <p class="text-gray-400">{{ $watchlist->count() }} judul tersimpan</p>
             </div>
             
             @if($watchlist->isNotEmpty())
@@ -30,13 +30,13 @@
             <div class="w-24 h-24 bg-codeflix-card rounded-full flex items-center justify-center mx-auto mb-6">
                 <i class="fa-solid fa-bookmark text-4xl text-gray-600"></i>
             </div>
-            <h2 class="font-outfit text-2xl font-semibold text-white mb-3">Your list is empty</h2>
+            <h2 class="font-outfit text-2xl font-semibold text-white mb-3">Daftar Anda kosong</h2>
             <p class="text-gray-400 mb-8 max-w-md mx-auto">
-                Start adding movies and TV shows to your list by clicking the + button on any title.
+                Mulai tambahkan film dan acara TV ke daftar Anda dengan mengeklik tombol + pada judul apa pun.
             </p>
             <a href="{{ route('home') }}" class="inline-flex items-center gap-2 bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-semibold px-8 py-3 rounded-xl transition">
                 <i class="fa-solid fa-compass"></i>
-                Browse Content
+                Jelajahi Konten
             </a>
         </div>
         @else
@@ -126,7 +126,7 @@ function toggleView(view) {
 }
 
 function removeFromList(movieId) {
-    if (!confirm('Remove this title from your list?')) return;
+    if (!confirm('Hapus judul ini dari daftar Anda?')) return;
     
     fetch(`/watchlist/${movieId}/toggle`, {
         method: 'POST',
@@ -137,7 +137,7 @@ function removeFromList(movieId) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
-            showToast('Removed from My List', 'success');
+            showToast('Berhasil dihapus dari Daftar Saya', 'success');
             location.reload();
         }
     });

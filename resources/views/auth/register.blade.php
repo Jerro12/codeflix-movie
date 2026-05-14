@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Create Account')
+@section('title', 'Daftar Akun')
 
 @section('content')
 <div class="min-h-screen flex items-center justify-center px-4 py-20">
@@ -12,8 +12,8 @@
                 <a href="{{ route('home') }}">
                     <img src="{{ asset('assets/img/codeflix_logo.png') }}" alt="Codeflix" class="h-10 mx-auto mb-4">
                 </a>
-                <h1 class="font-outfit text-2xl font-bold text-white">Create Account</h1>
-                <p class="text-gray-400 mt-2">Start your streaming journey today</p>
+                <h1 class="font-outfit text-2xl font-bold text-white">Daftar Akun</h1>
+                <p class="text-gray-400 mt-2">Mulai perjalanan streaming Anda hari ini</p>
             </div>
 
             <!-- Form -->
@@ -23,7 +23,7 @@
                 <!-- Name -->
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-300 mb-2">
-                        Full Name
+                        Nama Lengkap
                     </label>
                     <div class="relative">
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -31,7 +31,7 @@
                         </span>
                         <input type="text" id="name" name="name" value="{{ old('name') }}" required autofocus
                                class="w-full bg-codeflix-dark border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition {{ $errors->has('name') ? 'border-red-500' : 'border-gray-700' }}"
-                               placeholder="John Doe">
+                               placeholder="Nama Lengkap">
                     </div>
                     @error('name')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -41,7 +41,7 @@
                 <!-- Email -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
-                        Email Address
+                        Alamat Email
                     </label>
                     <div class="relative">
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -49,7 +49,7 @@
                         </span>
                         <input type="email" id="email" name="email" value="{{ old('email') }}" required
                                class="w-full bg-codeflix-dark border rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition {{ $errors->has('email') ? 'border-red-500' : 'border-gray-700' }}"
-                               placeholder="your@email.com">
+                               placeholder="nama@email.com">
                     </div>
                     @error('email')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -60,7 +60,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label for="nik" class="block text-sm font-medium text-gray-300 mb-2">
-                            NIK (16 Digits)
+                            NIK (16 Digit)
                         </label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -76,7 +76,7 @@
                     </div>
                     <div>
                         <label for="birth_date" class="block text-sm font-medium text-gray-300 mb-2">
-                            Birth Date
+                            Tanggal Lahir
                         </label>
                         <div class="relative">
                             <input type="date" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" required
@@ -91,7 +91,7 @@
                 <!-- Password -->
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-300 mb-2">
-                        Password
+                        Kata Sandi
                     </label>
                     <div class="relative" x-data="{ show: false }">
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -99,7 +99,7 @@
                         </span>
                         <input :type="show ? 'text' : 'password'" id="password" name="password" required
                                class="w-full bg-codeflix-dark border rounded-xl pl-12 pr-12 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition {{ $errors->has('password') ? 'border-red-500' : 'border-gray-700' }}"
-                               placeholder="Min. 8 characters">
+                               placeholder="Min. 8 karakter">
                         <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white">
                             <i class="fa-solid" :class="show ? 'fa-eye-slash' : 'fa-eye'"></i>
                         </button>
@@ -112,7 +112,7 @@
                 <!-- Confirm Password -->
                 <div>
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-300 mb-2">
-                        Confirm Password
+                        Konfirmasi Kata Sandi
                     </label>
                     <div class="relative" x-data="{ show: false }">
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
@@ -120,7 +120,7 @@
                         </span>
                         <input :type="show ? 'text' : 'password'" id="password_confirmation" name="password_confirmation" required
                                class="w-full bg-codeflix-dark border border-gray-700 rounded-xl pl-12 pr-12 py-3 text-white placeholder-gray-500 focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary transition"
-                               placeholder="Repeat password">
+                               placeholder="Ulangi kata sandi">
                         <button type="button" @click="show = !show" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white">
                             <i class="fa-solid" :class="show ? 'fa-eye-slash' : 'fa-eye'"></i>
                         </button>
@@ -131,7 +131,7 @@
                 <div class="flex items-start gap-2">
                     <input type="checkbox" name="terms" required class="mt-1 rounded border-gray-700 bg-codeflix-dark text-codeflix-primary focus:ring-codeflix-primary">
                     <span class="text-sm text-gray-400">
-                        I agree to the <a href="#" class="text-codeflix-primary hover:underline">Terms of Service</a> and <a href="#" class="text-codeflix-primary hover:underline">Privacy Policy</a>
+                        Saya setuju dengan <a href="#" class="text-codeflix-primary hover:underline">Ketentuan Layanan</a> dan <a href="#" class="text-codeflix-primary hover:underline">Kebijakan Privasi</a>
                     </span>
                 </div>
 
@@ -139,7 +139,7 @@
                 <button type="submit" 
                         class="w-full bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-semibold py-3.5 rounded-xl transition flex items-center justify-center gap-2">
                     <i class="fa-solid fa-user-plus"></i>
-                    Create Account
+                    Daftar Akun
                 </button>
             </form>
 
@@ -147,9 +147,9 @@
 
             <!-- Login Link -->
             <p class="text-center text-gray-400 mt-8">
-                Already have an account?
+                Sudah punya akun?
                 <a href="{{ route('login') }}" class="text-codeflix-primary hover:underline font-medium">
-                    Sign in
+                    Masuk
                 </a>
             </p>
         </div>
@@ -157,7 +157,7 @@
         <!-- Back to home -->
         <div class="text-center mt-6">
             <a href="{{ route('home') }}" class="text-gray-500 hover:text-white text-sm transition">
-                <i class="fa-solid fa-arrow-left mr-1"></i> Back to home
+                <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke beranda
             </a>
         </div>
     </div>

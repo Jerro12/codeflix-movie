@@ -13,8 +13,8 @@ class MovieController extends Controller implements HasMiddleware
     public static function middleware()
     {
         return [
-            'auth',
-            'check.device.limit',
+            new \Illuminate\Routing\Controllers\Middleware('auth', except: ['index', 'all', 'show', 'search']),
+            new \Illuminate\Routing\Controllers\Middleware('check.device.limit', except: ['index', 'all', 'show', 'search']),
         ];
     }
 

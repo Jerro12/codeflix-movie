@@ -10,7 +10,7 @@
     <div class="relative z-10 max-w-7xl mx-auto px-4 h-full flex items-center">
         <div class="max-w-xl pt-16">
             <span class="inline-flex items-center gap-2 bg-codeflix-primary/20 text-codeflix-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
-                <i class="fa-solid fa-star"></i> Featured
+                <i class="fa-solid fa-star"></i> Unggulan
             </span>
             <h1 class="font-outfit text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
                 {{ $featuredMovie->title }}
@@ -27,16 +27,9 @@
                 {{ $featuredMovie->description }}
             </p>
             <div class="flex items-center gap-4">
-                {{-- Hidden Play Button for Thesis Focus --}}
-                {{-- 
-                <a href="{{ route('movies.show', $featuredMovie->slug) }}" 
-                   class="inline-flex items-center gap-2 bg-white hover:bg-gray-200 text-black font-semibold px-8 py-3 rounded-lg transition">
-                    <i class="fa-solid fa-play"></i> Play
-                </a> 
-                --}}
                 <button onclick="toggleWatchlist({{ $featuredMovie->id }})" 
                         class="inline-flex items-center gap-2 bg-gray-600/80 hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg transition">
-                    <i class="fa-solid fa-plus"></i> My List
+                    <i class="fa-solid fa-plus"></i> Daftar Saya
                 </button>
                 <a href="{{ route('movies.show', $featuredMovie->slug) }}" 
                    class="inline-flex items-center justify-center w-12 h-12 bg-gray-600/50 hover:bg-gray-600 text-white rounded-full transition">
@@ -56,7 +49,7 @@
 <section class="max-w-7xl mx-auto px-4 mb-12">
     <h2 class="font-outfit text-2xl font-semibold text-white mb-4 flex items-center gap-3">
         <i class="fa-solid fa-play text-codeflix-primary"></i>
-        Continue Watching
+        Lanjutkan Menonton
     </h2>
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
         @foreach($continueWatching as $history)
@@ -72,7 +65,7 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
                     <div class="w-full">
                         <p class="font-semibold text-white truncate">{{ $history->movie->title }}</p>
-                        <p class="text-sm text-gray-400">{{ $history->progress_percentage }}% watched</p>
+                        <p class="text-sm text-gray-400">{{ $history->progress_percentage }}% ditonton</p>
                     </div>
                 </div>
                 <!-- Play Button -->
@@ -94,10 +87,10 @@
     <div class="flex items-center justify-between mb-4">
         <h2 class="font-outfit text-2xl font-semibold text-white flex items-center gap-3">
             <i class="fa-solid fa-sparkles text-codeflix-primary"></i>
-            New Releases
+            Rilis Terbaru
         </h2>
         <a href="{{ route('movies.index') }}" class="text-codeflix-primary hover:text-codeflix-primary/80 font-medium flex items-center gap-1">
-            See All <i class="fa-solid fa-chevron-right text-sm"></i>
+            Lihat Semua <i class="fa-solid fa-chevron-right text-sm"></i>
         </a>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -115,9 +108,9 @@
         <div class="flex flex-col">
             <h2 class="font-outfit text-2xl font-semibold text-white flex items-center gap-3">
                 <i class="fa-solid fa-wand-magic-sparkles text-yellow-500"></i>
-                Recommended for You
+                Rekomendasi untuk Anda
             </h2>
-            <p class="text-xs text-gray-500 mt-1">Based on your interests (KNN Algorithm, K={{ request('k', 5) }})</p>
+            <p class="text-xs text-gray-500 mt-1">Berdasarkan minat Anda (Algoritma KNN, K={{ request('k', 5) }})</p>
         </div>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -134,10 +127,10 @@
     <div class="flex items-center justify-between mb-4">
         <h2 class="font-outfit text-2xl font-semibold text-white flex items-center gap-3">
             <i class="fa-solid fa-fire text-orange-500"></i>
-            Top Rated
+            Rating Tertinggi
         </h2>
         <a href="{{ route('movies.index') }}" class="text-codeflix-primary hover:text-codeflix-primary/80 font-medium flex items-center gap-1">
-            See All <i class="fa-solid fa-chevron-right text-sm"></i>
+            Lihat Semua <i class="fa-solid fa-chevron-right text-sm"></i>
         </a>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -151,7 +144,7 @@
 <section class="max-w-7xl mx-auto px-4 mb-12">
     <h2 class="font-outfit text-2xl font-semibold text-white mb-6 flex items-center gap-3">
         <i class="fa-solid fa-layer-group text-codeflix-primary"></i>
-        Browse by Category
+        Jelajahi berdasarkan Kategori
     </h2>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         @php
@@ -164,28 +157,13 @@
                 <i class="fa-solid fa-film"></i>
             </div>
             <h3 class="font-outfit font-semibold text-white text-lg mb-1">{{ $category->name }}</h3>
-            <p class="text-sm text-gray-400">{{ $category->movies_count }} movies</p>
+            <p class="text-sm text-gray-400">{{ $category->movies_count }} film</p>
         </a>
         @endforeach
     </div>
 </section>
 
-<!-- Subscription CTA -->
-@guest
-<section class="max-w-7xl mx-auto px-4 mb-12">
-    <div class="bg-gradient-to-r from-codeflix-primary/20 via-codeflix-card to-codeflix-primary/20 rounded-2xl p-8 md:p-12 text-center">
-        <h2 class="font-outfit text-3xl md:text-4xl font-bold text-white mb-4">
-            Unlimited Movies & TV Shows
-        </h2>
-        <p class="text-gray-300 text-lg mb-6 max-w-2xl mx-auto">
-            Join Codeflix today and get access to thousands of movies and TV shows. Start your free trial now!
-        </p>
-        <a href="{{ route('register') }}" class="inline-flex items-center gap-2 bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-semibold px-8 py-4 rounded-xl text-lg transition">
-            <i class="fa-solid fa-rocket"></i> Get Started Free
-        </a>
-    </div>
-</section>
-@endguest
+
 @endsection
 
 @push('scripts')

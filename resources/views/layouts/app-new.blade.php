@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
-    <title>@yield('title', 'Codeflix') - Stream Movies & Series</title>
-    <meta name="description" content="@yield('description', 'Watch unlimited movies and TV shows on Codeflix. Start your free trial today.')">
+    <title>@yield('title', 'Codeflix') - Streaming Film & Serial</title>
+    <meta name="description" content="@yield('description', 'Tonton film dan acara TV tanpa batas di Codeflix. Mulai uji coba gratis Anda hari ini.')">
 
     <!-- Open Graph / Social Sharing -->
-    <meta property="og:title" content="@yield('og_title', 'Codeflix - Stream Movies & Series')">
-    <meta property="og:description" content="@yield('og_description', 'Watch unlimited movies and TV shows')">
+    <meta property="og:title" content="@yield('og_title', 'Codeflix - Streaming Film & Serial')">
+    <meta property="og:description" content="@yield('og_description', 'Tonton film dan acara TV tanpa batas')">
     <meta property="og:image" content="@yield('og_image', asset('assets/img/codeflix_logo.png'))">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -274,18 +274,18 @@
                         btn.classList.add('bg-codeflix-primary', 'opacity-100');
                         icon.classList.remove('fa-plus');
                         icon.classList.add('fa-check');
-                        showToast('Added to My List', 'success');
+                        showToast('Berhasil ditambahkan ke Daftar Saya', 'success');
                     } else {
                         btn.classList.remove('bg-codeflix-primary', 'opacity-100');
                         icon.classList.remove('fa-check');
                         icon.classList.add('fa-plus');
-                        showToast('Removed from My List', 'info');
+                        showToast('Berhasil dihapus dari Daftar Saya', 'info');
                     }
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                showToast('Please login to add to watchlist', 'warning');
+                showToast('Silakan login untuk menambah ke daftar saya', 'warning');
             });
         };
     </script>

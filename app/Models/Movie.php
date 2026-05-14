@@ -60,7 +60,11 @@ class Movie extends Model
     public function getAverageRatingAttribute()
     {
         $userRating = $this->ratings()->avg('rating');
-        return $userRating ?? $this->rating ?? 0;
+        if ($userRating) {
+            // Normalisasi: Rating user (1-5) dikali 2 agar setara dengan skala film (1-10)
+            return round($userRating * 2, 1);
+        }
+        return $this->rating ?? 0;
     }
 
     /**

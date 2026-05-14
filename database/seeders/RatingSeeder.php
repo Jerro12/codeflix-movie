@@ -73,22 +73,17 @@ class RatingSeeder extends Seeder
     }
 
     /**
-     * Generate rating with natural distribution (bell curve around 7)
+     * Generate rating with natural distribution (bell curve around 3.5)
      */
     private function generateNaturalRating(): float
     {
-        // Weighted random to create bell curve distribution
+        // Weighted random to create bell curve distribution for 1-5 scale
         $weights = [
-            1 => 2,   // Very rare
-            2 => 3,
-            3 => 5,
-            4 => 8,
-            5 => 12,
-            6 => 18,
-            7 => 22,  // Most common
-            8 => 17,
-            9 => 10,
-            10 => 3,  // Rare perfect scores
+            1 => 5,   // Rare
+            2 => 15,
+            3 => 35,  // Common
+            4 => 30,  // Very Common
+            5 => 15,  // Common
         ];
 
         $totalWeight = array_sum($weights);
@@ -98,11 +93,11 @@ class RatingSeeder extends Seeder
         foreach ($weights as $rating => $weight) {
             $cumulative += $weight;
             if ($random <= $cumulative) {
-                // Add decimal for more variety
-                return $rating + (rand(0, 9) / 10);
+                // Add decimal for more variety (e.g. 3.4, 4.1)
+                return $rating + (rand(-5, 5) / 10);
             }
         }
 
-        return 7.0;
+        return 3.5;
     }
 }

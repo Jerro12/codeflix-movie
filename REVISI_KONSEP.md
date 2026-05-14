@@ -59,3 +59,5 @@ Kategori usia ditentukan berdasarkan selisih tahun antara `birth_date` dan waktu
 
 ---
 **Status:** Menunggu persetujuan untuk eksekusi kode.
+php artisan db:seed --class=RatingSeeder
+
