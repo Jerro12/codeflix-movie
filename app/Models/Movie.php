@@ -26,6 +26,7 @@ class Movie extends Model
         'url_1080',
         'url_4k',
         'category_id',
+        'platforms',
     ];
 
     protected $appends = [
@@ -34,6 +35,7 @@ class Movie extends Model
 
     protected $casts = [
         'release_date' => 'date',
+        'platforms' => 'array',
     ];
 
     public function categories()

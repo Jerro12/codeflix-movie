@@ -143,6 +143,31 @@
                     </div>
                 </div>
 
+                <!-- Platforms Section -->
+                @if(!empty($movie->platforms) && count($movie->platforms) > 0)
+                <div>
+                    <h2 class="font-outfit text-2xl font-semibold text-white mb-4">Tersedia di Platform</h2>
+                    <div class="flex flex-wrap gap-3">
+                        @foreach($movie->platforms as $platform)
+                            @php
+                                $platformColors = match($platform) {
+                                    'Netflix' => 'bg-red-600/20 text-red-500 border-red-500/30',
+                                    'Disney+ Hotstar' => 'bg-blue-600/20 text-blue-400 border-blue-500/30',
+                                    'Prime Video' => 'bg-sky-600/20 text-sky-400 border-sky-500/30',
+                                    'HBO Go' => 'bg-purple-600/20 text-purple-400 border-purple-500/30',
+                                    'Apple TV+' => 'bg-gray-600/20 text-gray-300 border-gray-500/30',
+                                    'Viu' => 'bg-yellow-600/20 text-yellow-500 border-yellow-500/30',
+                                    default => 'bg-gray-800 text-gray-400 border-gray-700'
+                                };
+                            @endphp
+                            <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl border {{ $platformColors }} font-semibold text-sm shadow-md">
+                                <i class="fa-solid fa-circle-play text-xs"></i> {{ $platform }}
+                            </span>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+
                 <!-- Reviews Section -->
                 <div>
                     <div class="flex items-center justify-between mb-4">

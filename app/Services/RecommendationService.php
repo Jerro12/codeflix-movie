@@ -55,15 +55,29 @@ class RecommendationService
         foreach ($commonUserIds as $otherUserId) {
             $otherUserRatings = Rating::where('user_id', $otherUserId)->pluck('rating', 'movie_id')->toArray();
             $similarity = $this->calculateCosineSimilarity($userRatings, $otherUserRatings);
+            $commonMoviesCount = count(array_intersect_key($userRatings, $otherUserRatings));
             
             if ($similarity > 0) {
-                $similarities[$otherUserId] = $similarity;
+                $similarities[$otherUserId] = [
+                    'similarity' => $similarity,
+                    'common_movies_count' => $commonMoviesCount
+                ];
             }
         }
 
-        // 4. Sort and get Top K Neighbors
-        arsort($similarities);
-        $neighbors = array_slice($similarities, 0, $this->k, true);
+        // 4. Sort by common_movies_count descending, then similarity descending, and get Top K Neighbors
+        uasort($similarities, function ($a, $b) {
+            if ($b['common_movies_count'] === $a['common_movies_count']) {
+                return $b['similarity'] <=> $a['similarity'];
+            }
+            return $b['common_movies_count'] <=> $a['common_movies_count'];
+        });
+
+        $neighborsData = array_slice($similarities, 0, $this->k, true);
+        $neighbors = [];
+        foreach ($neighborsData as $neighborId => $data) {
+            $neighbors[$neighborId] = $data['similarity'];
+        }
 
         if (empty($neighbors)) {
             return Movie::whereNotIn('id', array_keys($userRatings))->orderByDesc('rating')->limit($limit)->get();
@@ -125,8 +139,13 @@ class RecommendationService
             ];
         }
 
-        // Sort all similarities
-        usort($allSimilarities, fn($a, $b) => $b['similarity'] <=> $a['similarity']);
+        // Sort all similarities by common_movies_count descending, then similarity descending
+        usort($allSimilarities, function ($a, $b) {
+            if ($b['common_movies_count'] === $a['common_movies_count']) {
+                return $b['similarity'] <=> $a['similarity'];
+            }
+            return $b['common_movies_count'] <=> $a['common_movies_count'];
+        });
 
         // Get Top K Neighbors
         $neighbors = array_slice($allSimilarities, 0, $this->k);

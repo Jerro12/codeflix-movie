@@ -58,6 +58,7 @@ class MovieController extends Controller
             'url_4k' => 'nullable|url',
             'categories' => 'nullable|array',
             'categories.*' => 'exists:categories,id',
+            'platforms' => 'nullable|array',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);
@@ -108,6 +109,7 @@ class MovieController extends Controller
             'url_4k' => 'nullable|url',
             'categories' => 'nullable|array',
             'categories.*' => 'exists:categories,id',
+            'platforms' => 'nullable|array',
         ]);
 
         $validated['slug'] = Str::slug($validated['title']);

@@ -58,7 +58,43 @@ class User extends Authenticatable
         parent::boot();
 
         static::saving(function ($user) {
-            if ($user->isDirty('birth_date') && $user->birth_date) {
+            if ($user->nik && strlen($user->nik) === 16) {
+                $yearPart = substr($user->nik, 10, 2);
+                if (is_numeric($yearPart)) {
+                    $birthYear2Digit = (int) $yearPart;
+                    $currentYear = (int) date('Y');
+                    $currentYY = $currentYear % 100;
+                    
+                    // Determine full birth year (e.g. if birthYear2Digit <= currentYY, it's 2000s, else 1900s)
+                    $fullBirthYear = ($birthYear2Digit <= $currentYY) ? (2000 + $birthYear2Digit) : (1900 + $birthYear2Digit);
+                    
+                    // Compute age based on year difference
+                    $age = $currentYear - $fullBirthYear;
+                    
+                    // Set age category
+                    if ($age < 13) {
+                        $user->age_category = 'anak';
+                    } elseif ($age >= 13 && $age < 18) {
+                        $user->age_category = 'umum';
+                    } else {
+                        $user->age_category = 'dewasa';
+                    }
+                    
+                    // Maintain birth_date field aligned with NIK year if birth_date is dirty or not set yet
+                    if (!$user->birth_date) {
+                        $user->birth_date = $fullBirthYear . '-01-01';
+                    } else {
+                        try {
+                            $dateObj = \Carbon\Carbon::parse($user->birth_date);
+                            if ($dateObj->year !== $fullBirthYear) {
+                                $user->birth_date = \Carbon\Carbon::create($fullBirthYear, $dateObj->month, $dateObj->day)->format('Y-m-d');
+                            }
+                        } catch (\Exception $e) {
+                            $user->birth_date = $fullBirthYear . '-01-01';
+                        }
+                    }
+                }
+            } elseif ($user->isDirty('birth_date') && $user->birth_date) {
                 $age = $user->birth_date->age;
                 
                 if ($age < 13) {
@@ -77,6 +113,16 @@ class User extends Authenticatable
      */
     public function getAgeAttribute()
     {
+        if ($this->nik && strlen($this->nik) === 16) {
+            $yearPart = substr($this->nik, 10, 2);
+            if (is_numeric($yearPart)) {
+                $birthYear2Digit = (int) $yearPart;
+                $currentYear = (int) date('Y');
+                $currentYY = $currentYear % 100;
+                $fullBirthYear = ($birthYear2Digit <= $currentYY) ? (2000 + $birthYear2Digit) : (1900 + $birthYear2Digit);
+                return $currentYear - $fullBirthYear;
+            }
+        }
         return $this->birth_date ? $this->birth_date->age : null;
     }
 

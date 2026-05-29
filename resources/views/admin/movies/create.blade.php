@@ -134,6 +134,24 @@
                         @endforeach
                     </div>
                 </div>
+
+                <!-- Platforms -->
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-300 mb-3">Platform Streaming</label>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 bg-gray-900/50 p-4 rounded-xl border border-gray-800">
+                        @php
+                            $availablePlatforms = ['Netflix', 'Disney+ Hotstar', 'Prime Video', 'HBO Go', 'Apple TV+', 'Viu'];
+                        @endphp
+                        @foreach($availablePlatforms as $platform)
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="checkbox" name="platforms[]" value="{{ $platform }}"
+                                       class="rounded border-gray-700 text-codeflix-primary focus:ring-codeflix-primary bg-gray-800"
+                                       {{ in_array($platform, old('platforms', [])) ? 'checked' : '' }}>
+                                <span class="text-sm text-gray-400 group-hover:text-white transition">{{ $platform }}</span>
+                            </label>
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
             <!-- Action Buttons -->
