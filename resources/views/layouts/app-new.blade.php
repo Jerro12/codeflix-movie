@@ -186,7 +186,6 @@
                 <div>
                     <h4 class="font-outfit font-semibold text-white mb-4">Akun</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profil</a></li>
                         <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Pengaturan</a></li>
                         <li><a href="{{ route('reviews.history.index') }}" class="hover:text-codeflix-primary">Cerita Ulasan</a></li>
                     </ul>
@@ -195,7 +194,6 @@
                 <div>
                     <h4 class="font-outfit font-semibold text-white mb-4">Lainnya</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="{{ route('referral.index') }}" class="hover:text-codeflix-primary">Undang Teman</a></li>
                         <li><a href="mailto:support@codeflix.com" class="hover:text-codeflix-primary">Hubungi Kami</a></li>
                         <li><a href="{{ route('privacy') }}" class="hover:text-codeflix-primary">Kebijakan Privasi</a></li>
                         <li><a href="{{ route('terms') }}" class="hover:text-codeflix-primary">Syarat & Ketentuan</a></li>

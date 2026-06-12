@@ -146,10 +146,6 @@
                                     </a>
                                 @endif
                                 
-                                <a href="{{ route('profiles.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
-                                    <i class="fa-solid fa-users w-5"></i>
-                                    Kelola Profil
-                                </a>
                                 <a href="{{ route('settings.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-cog w-5"></i>
                                     Pengaturan Akun
@@ -157,10 +153,6 @@
                                 <a href="{{ route('reviews.history.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
                                     <i class="fa-solid fa-star-half-stroke w-5"></i>
                                     Cerita Ulasan
-                                </a>
-                                <a href="{{ route('referral.index') }}" class="flex items-center gap-3 px-4 py-2 text-gray-300 hover:bg-gray-800 hover:text-codeflix-primary">
-                                    <i class="fa-solid fa-gift w-5"></i>
-                                    Undang Teman
                                 </a>
                                 
                                 <div class="border-t border-gray-800 mt-2 pt-2">

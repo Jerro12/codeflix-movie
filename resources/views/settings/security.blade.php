@@ -17,12 +17,6 @@
                     <a href="{{ route('settings.security') }}" class="flex items-center gap-3 px-4 py-3 bg-codeflix-primary/20 text-codeflix-primary rounded-xl font-medium">
                         <i class="fa-solid fa-shield w-5"></i> Keamanan
                     </a>
-                    <a href="{{ route('profiles.index') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
-                        <i class="fa-solid fa-users w-5"></i> Profil
-                    </a>
-                    <a href="{{ route('referral.index') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
-                        <i class="fa-solid fa-gift w-5"></i> Undang Teman
-                    </a>
                 </nav>
             </div>
 
@@ -62,97 +56,6 @@
                         </button>
                     </div>
                 </form>
-
-                <!-- Two-Factor Authentication -->
-                <div class="bg-codeflix-card rounded-2xl p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h2 class="font-semibold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-shield-halved text-codeflix-primary"></i> Autentikasi Dua Faktor
-                            </h2>
-                            <p class="text-sm text-gray-400 mt-1">Tambahkan lapisan keamanan ekstra ke akun Anda</p>
-                        </div>
-                        <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-sm font-medium">
-                            Nonaktif
-                        </span>
-                    </div>
-
-                    <button class="bg-codeflix-dark hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-xl border border-gray-700 transition">
-                        Aktifkan 2FA
-                    </button>
-                </div>
-
-                <!-- Connected Devices -->
-                <div class="bg-codeflix-card rounded-2xl p-6">
-                    <h2 class="font-semibold text-white flex items-center gap-2 mb-4">
-                        <i class="fa-solid fa-laptop text-codeflix-primary"></i> Perangkat Terhubung
-                    </h2>
-
-                    <div class="space-y-4">
-                        <!-- Current Device -->
-                        <div class="flex items-center justify-between p-4 bg-codeflix-dark rounded-xl border border-codeflix-primary/30">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-codeflix-primary/20 rounded-lg flex items-center justify-center">
-                                    <i class="fa-solid fa-desktop text-codeflix-primary"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white font-medium">Windows PC - Chrome</p>
-                                    <p class="text-sm text-gray-400">Aktif sekarang · Perangkat ini</p>
-                                </div>
-                            </div>
-                            <span class="text-green-400 text-sm"><i class="fa-solid fa-circle text-xs mr-1"></i> Aktif</span>
-                        </div>
-
-                        <!-- Other Devices -->
-                        <div class="flex items-center justify-between p-4 bg-codeflix-dark rounded-xl">
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center">
-                                    <i class="fa-solid fa-mobile text-gray-400"></i>
-                                </div>
-                                <div>
-                                    <p class="text-white font-medium">iPhone 14 - Safari</p>
-                                    <p class="text-sm text-gray-400">Terakhir aktif 2 jam yang lalu</p>
-                                </div>
-                            </div>
-                            <button class="text-red-400 hover:text-red-300 text-sm">Keluar</button>
-                        </div>
-                    </div>
-
-                    <button class="mt-4 text-red-400 hover:text-red-300 font-medium text-sm">
-                        <i class="fa-solid fa-right-from-bracket mr-1"></i> Keluar dari semua perangkat lain
-                    </button>
-                </div>
-
-                <!-- Login Activity -->
-                <div class="bg-codeflix-card rounded-2xl p-6">
-                    <h2 class="font-semibold text-white flex items-center gap-2 mb-4">
-                        <i class="fa-solid fa-clock-rotate-left text-codeflix-primary"></i> Aktivitas Login Terbaru
-                    </h2>
-
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between py-3 border-b border-gray-800">
-                            <div>
-                                <p class="text-white">Windows PC - Chrome</p>
-                                <p class="text-sm text-gray-400">Jakarta, Indonesia</p>
-                            </div>
-                            <p class="text-sm text-gray-400">Baru saja</p>
-                        </div>
-                        <div class="flex items-center justify-between py-3 border-b border-gray-800">
-                            <div>
-                                <p class="text-white">iPhone - Safari</p>
-                                <p class="text-sm text-gray-400">Jakarta, Indonesia</p>
-                            </div>
-                            <p class="text-sm text-gray-400">2 jam yang lalu</p>
-                        </div>
-                        <div class="flex items-center justify-between py-3">
-                            <div>
-                                <p class="text-white">Android - Chrome</p>
-                                <p class="text-sm text-gray-400">Bandung, Indonesia</p>
-                            </div>
-                            <p class="text-sm text-gray-400">Kemarin</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

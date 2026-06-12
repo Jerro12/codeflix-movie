@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::withCount('memberships')
+        $users = User::withCount('reviews')
             ->latest()
             ->paginate(20);
 
@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $user->load(['memberships.plan', 'watchlist.movie', 'watchHistory.movie']);
+        $user->load(['watchlist.movie', 'reviews.movie']);
 
         return view('admin.users.show', [
             'user' => $user,

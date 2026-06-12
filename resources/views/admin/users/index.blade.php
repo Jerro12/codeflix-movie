@@ -19,7 +19,7 @@
                 <tr>
                     <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Pengguna</th>
                     <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Peran</th>
-                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Langganan</th>
+                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Total Rating</th>
                     <th class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">Bergabung</th>
                     <th class="px-6 py-4 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">Aksi</th>
                 </tr>
@@ -45,14 +45,8 @@
                             <span class="px-2 py-1 bg-gray-500/20 text-gray-400 text-xs rounded">User</span>
                         @endif
                     </td>
-                    <td class="px-6 py-4">
-                        @if($user->activeMembership)
-                            <span class="px-2 py-1 bg-codeflix-primary/20 text-codeflix-primary text-xs rounded">
-                                {{ $user->activeMembership->plan->name ?? 'Aktif' }}
-                            </span>
-                        @else
-                            <span class="text-gray-500 text-sm">Tidak ada langganan</span>
-                        @endif
+                    <td class="px-6 py-4 text-gray-300 font-medium text-sm">
+                        {{ $user->reviews_count }} Rating
                     </td>
                     <td class="px-6 py-4 text-gray-400 text-sm">{{ $user->created_at->format('M d, Y') }}</td>
                     <td class="px-6 py-4">

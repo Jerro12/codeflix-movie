@@ -48,15 +48,6 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
     // Recommendations
     Route::get('/recommendations', [MovieController::class, 'recommendations']);
 
-    // Profiles (Multiple profiles feature)
-    Route::prefix('profiles')->group(function () {
-        Route::get('/', [ProfileController::class, 'index']);
-        Route::post('/', [ProfileController::class, 'store']);
-        Route::post('/{profile}/switch', [ProfileController::class, 'switch']);
-        Route::put('/{profile}', [ProfileController::class, 'update']);
-        Route::delete('/{profile}', [ProfileController::class, 'destroy']);
-    });
-
     // Watchlist
     Route::prefix('watchlist')->group(function () {
         Route::get('/', [WatchlistController::class, 'index']);

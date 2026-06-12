@@ -136,6 +136,14 @@ class User extends Authenticatable
         return $this->hasMany(Membership::class);
     }
 
+    /**
+     * Get the user's active membership.
+     */
+    public function activeMembership()
+    {
+        return $this->hasOne(Membership::class)->where('active', true)->latestOfMany();
+    }
+
     public function devices()
     {
         return $this->hasMany(UserDevice::class);

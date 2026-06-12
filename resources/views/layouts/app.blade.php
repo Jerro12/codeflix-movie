@@ -186,7 +186,6 @@
                 <div>
                     <h4 class="font-outfit font-semibold text-white mb-4">Account</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="{{ route('profiles.index') }}" class="hover:text-codeflix-primary">Profiles</a></li>
                         <li><a href="{{ route('settings.index') }}" class="hover:text-codeflix-primary">Settings</a></li>
                         <li><a href="{{ route('reviews.history.index') }}" class="hover:text-codeflix-primary">Reviews Story</a></li>
                     </ul>
@@ -195,7 +194,6 @@
                 <div>
                     <h4 class="font-outfit font-semibold text-white mb-4">More</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
-                        <li><a href="{{ route('referral.index') }}" class="hover:text-codeflix-primary">Invite Friends</a></li>
                         <li><a href="mailto:support@codeflix.com" class="hover:text-codeflix-primary">Contact Us</a></li>
                         <li><a href="{{ route('privacy') }}" class="hover:text-codeflix-primary">Privacy Policy</a></li>
                         <li><a href="{{ route('terms') }}" class="hover:text-codeflix-primary">Terms of Service</a></li>

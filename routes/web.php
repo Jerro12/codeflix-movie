@@ -42,12 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/watch-progress', [WatchHistoryController::class, 'updateProgress'])->name('watch.progress');
     Route::get('/continue-watching', [WatchHistoryController::class, 'getContinueWatching'])->name('watch.continue');
 
-    // Profiles (Multiple profiles feature)
-    Route::get('/profiles', [\App\Http\Controllers\ProfileController::class, 'index'])->name('profiles.index');
-    Route::get('/profiles/create', [\App\Http\Controllers\ProfileController::class, 'create'])->name('profiles.create');
-    Route::post('/profiles', [\App\Http\Controllers\ProfileController::class, 'store'])->name('profiles.store');
-    Route::post('/profiles/{profile}/switch', [\App\Http\Controllers\ProfileController::class, 'switch'])->name('profiles.switch');
-    Route::delete('/profiles/{profile}', [\App\Http\Controllers\ProfileController::class, 'destroy'])->name('profiles.destroy');
+
 
     // Reviews
     Route::post('/movies/{movie}/reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->name('reviews.store');
@@ -63,8 +58,7 @@ Route::middleware('auth')->group(function () {
     // Reviews Story
     Route::get('/reviews-history', [\App\Http\Controllers\ReviewController::class, 'history'])->name('reviews.history.index');
 
-    // Referral
-    Route::get('/referral', [\App\Http\Controllers\ReferralController::class, 'index'])->name('referral.index');
+
 
     // Recommendation Debug
     Route::get('/recommendation-debug', [MovieController::class, 'debugRecommendations'])->name('movies.debug');

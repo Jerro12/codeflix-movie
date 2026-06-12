@@ -17,12 +17,6 @@
                     <a href="{{ route('settings.security') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
                         <i class="fa-solid fa-shield w-5"></i> Keamanan
                     </a>
-                    <a href="{{ route('profiles.index') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
-                        <i class="fa-solid fa-users w-5"></i> Profil
-                    </a>
-                    <a href="{{ route('referral.index') }}" class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-codeflix-card rounded-xl transition">
-                        <i class="fa-solid fa-gift w-5"></i> Undang Teman
-                    </a>
                 </nav>
             </div>
 
@@ -106,36 +100,6 @@
                     </div>
                 </form>
 
-                <!-- Preferences -->
-                <div class="bg-codeflix-card rounded-2xl p-6 space-y-6">
-                    <h2 class="font-semibold text-white">Preferensi</h2>
-
-                    <div class="space-y-4">
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <div>
-                                <p class="text-white font-medium">Notifikasi Email</p>
-                                <p class="text-sm text-gray-400">Terima pembaruan tentang rilis baru</p>
-                            </div>
-                            <input type="checkbox" class="w-5 h-5 rounded border-gray-700 bg-codeflix-dark text-codeflix-primary focus:ring-codeflix-primary">
-                        </label>
-
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <div>
-                                <p class="text-white font-medium">Putar Otomatis Episode Berikutnya</p>
-                                <p class="text-sm text-gray-400">Secara otomatis memutar episode berikutnya dalam serial</p>
-                            </div>
-                            <input type="checkbox" checked class="w-5 h-5 rounded border-gray-700 bg-codeflix-dark text-codeflix-primary focus:ring-codeflix-primary">
-                        </label>
-
-                        <label class="flex items-center justify-between cursor-pointer">
-                            <div>
-                                <p class="text-white font-medium">Putar Otomatis Pratinjau</p>
-                                <p class="text-sm text-gray-400">Putar trailer saat menjelajah</p>
-                            </div>
-                            <input type="checkbox" checked class="w-5 h-5 rounded border-gray-700 bg-codeflix-dark text-codeflix-primary focus:ring-codeflix-primary">
-                        </label>
-                    </div>
-                </div>
 
                 <!-- Danger Zone -->
                 <div class="bg-red-500/10 border border-red-500/30 rounded-2xl p-6">
