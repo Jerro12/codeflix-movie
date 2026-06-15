@@ -23,7 +23,7 @@
             <!-- Main Content -->
             <div class="lg:col-span-3 space-y-6">
                 <!-- Change Password -->
-                <form action="{{ route('password.update') }}" method="POST">
+                <form action="{{ route('user-password.update') }}" method="POST">
                     @csrf
                     @method('PUT')
                     
@@ -32,17 +32,30 @@
                             <i class="fa-solid fa-key text-codeflix-primary"></i> Ganti Kata Sandi
                         </h2>
 
+                        @if (session('status') === 'password-updated')
+                            <div class="bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-4 py-3 rounded-xl flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-emerald-400"></i>
+                                <span>Kata sandi berhasil diperbarui!</span>
+                            </div>
+                        @endif
+
                         <div>
                             <label class="block text-sm text-gray-400 mb-2">Kata Sandi Saat Ini</label>
                             <input type="password" name="current_password" required
-                                   class="w-full bg-codeflix-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary">
+                                   class="w-full bg-codeflix-dark border {{ $errors->updatePassword->has('current_password') ? 'border-red-500' : 'border-gray-700' }} rounded-xl px-4 py-3 text-white focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary">
+                            @error('current_password', 'updatePassword')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="grid md:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm text-gray-400 mb-2">Kata Sandi Baru</label>
                                 <input type="password" name="password" required
-                                       class="w-full bg-codeflix-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary">
+                                       class="w-full bg-codeflix-dark border {{ $errors->updatePassword->has('password') ? 'border-red-500' : 'border-gray-700' }} rounded-xl px-4 py-3 text-white focus:border-codeflix-primary focus:ring-1 focus:ring-codeflix-primary">
+                                @error('password', 'updatePassword')
+                                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
                             <div>
                                 <label class="block text-sm text-gray-400 mb-2">Konfirmasi Kata Sandi Baru</label>
