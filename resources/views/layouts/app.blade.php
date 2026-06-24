@@ -163,9 +163,9 @@
     <!-- Footer -->
     <footer class="bg-codeflix-darker border-t border-gray-800 py-12 mt-auto">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <!-- Brand -->
-                <div class="col-span-2 md:col-span-1">
+                <div class="col-span-1 sm:col-span-2 md:col-span-1">
                     <img src="{{ asset('assets/img/codeflix_logo.png') }}" alt="Codeflix" class="h-8 mb-4">
                     <p class="text-codeflix-muted text-sm">
                         Stream unlimited movies and TV shows on any device.

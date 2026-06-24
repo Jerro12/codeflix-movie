@@ -21,7 +21,7 @@
     <!-- Watchlist Button -->
     @auth
     <button onclick="event.preventDefault(); event.stopPropagation(); toggleWatchlist({{ $movie->id }}, this)" 
-            class="absolute top-2 right-2 z-30 w-8 h-8 bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-codeflix-primary hover:scale-110 cursor-pointer {{ Auth::user()->hasInWatchlist($movie->id) ? 'bg-codeflix-primary opacity-100' : '' }}"
+            class="absolute top-2 right-2 z-30 w-8 h-8 bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all hover:bg-codeflix-primary hover:scale-110 cursor-pointer {{ Auth::user()->hasInWatchlist($movie->id) ? 'bg-codeflix-primary opacity-100' : '' }}"
             id="watchlist-btn-{{ $movie->id }}">
         <i class="fa-solid {{ Auth::user()->hasInWatchlist($movie->id) ? 'fa-check' : 'fa-plus' }} text-white text-sm"></i>
     </button>

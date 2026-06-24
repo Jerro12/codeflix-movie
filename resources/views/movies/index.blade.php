@@ -12,7 +12,7 @@
             <span class="inline-flex items-center gap-2 bg-codeflix-primary/20 text-codeflix-primary px-3 py-1 rounded-full text-sm font-medium mb-4">
                 <i class="fa-solid fa-star"></i> Unggulan
             </span>
-            <h1 class="font-outfit text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
+            <h1 class="font-outfit text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">
                 {{ $featuredMovie->title }}
             </h1>
             <div class="flex items-center gap-4 text-gray-300 mb-4">

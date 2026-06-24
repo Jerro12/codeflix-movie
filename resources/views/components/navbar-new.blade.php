@@ -168,8 +168,8 @@
                         </div>
                     </div>
                 @else
-                    <a href="{{ route('login') }}" class="font-medium text-gray-300 hover:text-white">Masuk</a>
-                    <a href="{{ route('register') }}" class="bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-medium px-4 py-2 rounded-lg">
+                    <a href="{{ route('login') }}" class="font-medium text-gray-300 hover:text-white hidden sm:inline-block">Masuk</a>
+                    <a href="{{ route('register') }}" class="bg-codeflix-primary hover:bg-codeflix-primary/80 text-white font-medium px-4 py-2 rounded-lg hidden sm:inline-flex items-center justify-center">
                         Mulai
                     </a>
                 @endauth
@@ -185,15 +185,56 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-codeflix-darker border-t border-gray-800">
         <div class="px-4 py-4 space-y-3">
-            <a href="{{ route('home') }}" class="block py-2 text-white">Beranda</a>
-            <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300">Film</a>
-            <!-- <a href="{{ route('series.index') }}" class="block py-2 text-gray-300">Serial</a> -->
-            <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300">Daftar Saya</a>
+            <a href="{{ route('home') }}" class="block py-2 text-white hover:text-codeflix-primary transition">Beranda</a>
+            <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300 hover:text-codeflix-primary transition">Film</a>
+            <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300 hover:text-codeflix-primary transition">Daftar Saya</a>
+            
+            @auth
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" class="block py-2 text-gray-300 hover:text-codeflix-primary transition">Dasbor Admin</a>
+                @endif
+                <a href="{{ route('settings.index') }}" class="block py-2 text-gray-300 hover:text-codeflix-primary transition">Pengaturan Akun</a>
+                <a href="{{ route('reviews.history.index') }}" class="block py-2 text-gray-300 hover:text-codeflix-primary transition">Cerita Ulasan</a>
+
+                <!-- Mode Riset Mobile Section -->
+                <div class="pt-3 pb-2 border-t border-gray-800">
+                    <p class="text-xs text-yellow-500 font-bold flex items-center gap-1.5 mb-2">
+                        <i class="fa-solid fa-flask"></i> Mode Riset (K={{ request('k', 5) }})
+                    </p>
+                    <div class="grid grid-cols-4 gap-2 mb-2">
+                        @foreach([3, 5, 10, 20] as $kVal)
+                            <a href="{{ request()->fullUrlWithQuery(['k' => $kVal]) }}" 
+                               class="text-center py-1.5 rounded-lg text-xs {{ request('k', 5) == $kVal ? 'bg-yellow-500/20 text-yellow-500 font-bold border border-yellow-500/30' : 'bg-gray-900 text-gray-300 hover:bg-gray-800' }} transition">
+                                K = {{ $kVal }}
+                            </a>
+                        @endforeach
+                    </div>
+                    <a href="{{ route('movies.debug') }}" class="flex items-center gap-2 py-2 text-xs text-yellow-500 hover:underline">
+                        <i class="fa-solid fa-calculator"></i>
+                        Lihat Proses Hitung (Debug)
+                    </a>
+                </div>
+
+                <form action="{{ route('logout') }}" method="POST" class="pt-2 border-t border-gray-800">
+                    @csrf
+                    <button type="submit" class="w-full text-left py-2 text-red-500 hover:text-red-400 transition">Keluar</button>
+                </form>
+            @else
+                <div class="flex flex-col gap-2 pt-2 border-t border-gray-800">
+                    <a href="{{ route('login') }}" class="block text-center py-2.5 text-gray-300 hover:text-white bg-gray-800 rounded-lg transition">Masuk</a>
+                    <a href="{{ route('register') }}" class="block text-center py-2.5 text-white bg-codeflix-primary hover:bg-codeflix-primary/80 rounded-lg font-medium transition">Mulai</a>
+                </div>
+            @endauth
             
             <!-- Mobile Search -->
-            <form action="{{ route('movies.search') }}" method="GET" class="pt-2">
-                <input type="text" name="q" placeholder="Cari..." 
-                       class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white">
+            <form action="{{ route('movies.search') }}" method="GET" class="pt-2 border-t border-gray-800">
+                <div class="relative">
+                    <input type="text" name="q" placeholder="Cari..." 
+                           class="w-full bg-gray-900 border border-gray-700 rounded-lg pl-4 pr-10 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-codeflix-primary">
+                    <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                        <i class="fa-solid fa-search"></i>
+                    </button>
+                </div>
             </form>
         </div>
     </div>

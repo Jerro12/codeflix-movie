@@ -5,16 +5,23 @@
              class="w-full aspect-[2/3] object-cover">
     </a>
     
-    <!-- Rating Badge -->
-    <div class="absolute top-2 left-2 bg-black/70 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
-        <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
-        <span class="text-white text-sm font-medium">{{ number_format($movie->average_rating ?? 0, 1) }}</span>
+    <!-- Rating & Age Badge -->
+    <div class="absolute top-2 left-2 z-20 flex flex-col gap-1">
+        <div class="bg-black/70 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1">
+            <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
+            <span class="text-white text-sm font-medium">{{ number_format($movie->average_rating ?? 0, 1) }}</span>
+        </div>
+        @if($movie->age_rating)
+        <div class="bg-codeflix-primary/80 backdrop-blur-sm px-2 py-0.5 rounded-lg text-center">
+            <span class="text-white text-[10px] font-bold uppercase">{{ $movie->age_rating }}</span>
+        </div>
+        @endif
     </div>
 
     <!-- Watchlist Button -->
     @auth
     <button onclick="event.preventDefault(); toggleWatchlist({{ $movie->id }}, this)" 
-            class="absolute top-2 right-2 w-8 h-8 bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-codeflix-primary hover:scale-110 {{ Auth::user()->hasInWatchlist($movie->id) ? 'bg-codeflix-primary opacity-100' : '' }}"
+            class="absolute top-2 right-2 w-8 h-8 bg-black/70 backdrop-blur-sm rounded-full flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all hover:bg-codeflix-primary hover:scale-110 {{ Auth::user()->hasInWatchlist($movie->id) ? 'bg-codeflix-primary opacity-100' : '' }}"
             id="watchlist-btn-{{ $movie->id }}">
         <i class="fa-solid {{ Auth::user()->hasInWatchlist($movie->id) ? 'fa-check' : 'fa-plus' }} text-white text-sm"></i>
     </button>
