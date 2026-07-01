@@ -33,9 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('🎥 Seeding Movies (150+)...');
         $this->call(MovieSeeder::class);
         
-        $this->command->info('📺 Seeding Series (50+ with 800+ episodes)...');
-        $this->call(SeriesSeeder::class);
-        
+
         $this->command->info('⭐ Seeding Ratings...');
         $this->call(RatingSeeder::class);
         

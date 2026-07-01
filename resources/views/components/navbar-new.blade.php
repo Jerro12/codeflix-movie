@@ -15,12 +15,6 @@
                 <a href="{{ route('movies.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('movies.*') ? 'text-codeflix-primary' : '' }}">
                     Film
                 </a>
-                <!-- <a href="{{ route('series.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('series.*') ? 'text-codeflix-primary' : '' }}">
-                    Serial
-                </a> -->
-                <a href="{{ route('watchlist.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('watchlist.*') ? 'text-codeflix-primary' : '' }}">
-                    Daftar Saya
-                </a>
 
                 <!-- Categories Dropdown -->
                 <div class="relative group">
@@ -187,7 +181,7 @@
         <div class="px-4 py-4 space-y-3">
             <a href="{{ route('home') }}" class="block py-2 text-white hover:text-codeflix-primary transition">Beranda</a>
             <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300 hover:text-codeflix-primary transition">Film</a>
-            <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300 hover:text-codeflix-primary transition">Daftar Saya</a>
+
             
             @auth
                 @if(Auth::user()->isAdmin())

@@ -177,8 +177,7 @@
                     <h4 class="font-outfit font-semibold text-white mb-4">Browse</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
                         <li><a href="{{ route('movies.index') }}" class="hover:text-codeflix-primary">Movies</a></li>
-                        <li><a href="{{ route('series.index') }}" class="hover:text-codeflix-primary">Series</a></li>
-                        <li><a href="{{ route('watchlist.index') }}" class="hover:text-codeflix-primary">My List</a></li>
+
                         <li><a href="{{ route('movies.search') }}" class="hover:text-codeflix-primary">Search</a></li>
                     </ul>
                 </div>

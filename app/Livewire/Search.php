@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Movie;
-use App\Models\Series;
+
 use Livewire\Component;
 
 class Search extends Component
@@ -33,23 +33,7 @@ class Search extends Component
                     ];
                 });
 
-            $series = Series::where('title', 'like', "%{$this->query}%")
-                ->orWhere('description', 'like', "%{$this->query}%")
-                ->limit(3)
-                ->get(['id', 'title', 'slug', 'poster', 'release_year'])
-                ->map(function ($s) {
-                    return [
-                        'id' => $s->id,
-                        'title' => $s->title,
-                        'slug' => $s->slug,
-                        'poster' => $s->poster,
-                        'year' => $s->release_year,
-                        'type' => 'series',
-                        'url' => '#', // TODO: Add series route
-                    ];
-                });
-
-            $this->results = $movies->concat($series)->toArray();
+            $this->results = $movies->toArray();
             $this->showResults = true;
         } else {
             $this->results = [];

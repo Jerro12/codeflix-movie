@@ -15,12 +15,6 @@
                 <a href="{{ route('movies.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('movies.*') ? 'text-codeflix-primary' : '' }}">
                     Movies
                 </a>
-                <a href="#" class="font-medium text-gray-300 hover:text-codeflix-primary">
-                    Series
-                </a>
-                <a href="{{ route('watchlist.index') }}" class="font-medium text-gray-300 hover:text-codeflix-primary {{ request()->routeIs('watchlist.*') ? 'text-codeflix-primary' : '' }}">
-                    My List
-                </a>
 
                 <!-- Categories Dropdown -->
                 <div class="relative group">
@@ -142,8 +136,7 @@
         <div class="px-4 py-4 space-y-3">
             <a href="{{ route('home') }}" class="block py-2 text-white">Home</a>
             <a href="{{ route('movies.index') }}" class="block py-2 text-gray-300">Movies</a>
-            <a href="#" class="block py-2 text-gray-300">Series</a>
-            <a href="{{ route('watchlist.index') }}" class="block py-2 text-gray-300">My List</a>
+
             
             <!-- Mobile Search -->
             <form action="{{ route('movies.search') }}" method="GET" class="pt-2">

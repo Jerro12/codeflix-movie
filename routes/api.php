@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MovieController;
-use App\Http\Controllers\Api\ProfileController;
-use App\Http\Controllers\Api\WatchlistController;
-use App\Http\Controllers\TransactionController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Payment callback (public, rate limited)
-Route::post('/payment/callback', [TransactionController::class, 'callback'])
-    ->middleware('throttle:payment')
-    ->name('payment.callback');
+
 
 // Authentication (public, stricter rate limit)
 Route::prefix('auth')->middleware('throttle:auth')->group(function () {
@@ -48,14 +44,5 @@ Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
     // Recommendations
     Route::get('/recommendations', [MovieController::class, 'recommendations']);
 
-    // Watchlist
-    Route::prefix('watchlist')->group(function () {
-        Route::get('/', [WatchlistController::class, 'index']);
-        Route::post('/', [WatchlistController::class, 'store']);
-        Route::delete('/{movieId}', [WatchlistController::class, 'destroy']);
-    });
 
-    // Watch progress
-    Route::get('/continue-watching', [WatchlistController::class, 'continueWatching']);
-    Route::post('/watch-progress', [WatchlistController::class, 'updateProgress']);
 });

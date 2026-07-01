@@ -177,8 +177,7 @@
                     <h4 class="font-outfit font-semibold text-white mb-4">Jelajahi</h4>
                     <ul class="space-y-2 text-sm text-codeflix-muted">
                         <li><a href="{{ route('movies.index') }}" class="hover:text-codeflix-primary">Film</a></li>
-                        <li><a href="{{ route('series.index') }}" class="hover:text-codeflix-primary">Serial</a></li>
-                        <li><a href="{{ route('watchlist.index') }}" class="hover:text-codeflix-primary">Daftar Saya</a></li>
+
                         <li><a href="{{ route('movies.search') }}" class="hover:text-codeflix-primary">Cari</a></li>
                     </ul>
                 </div>

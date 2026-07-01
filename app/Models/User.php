@@ -126,23 +126,6 @@ class User extends Authenticatable
         return $this->birth_date ? $this->birth_date->age : null;
     }
 
-    /**
-     * Get all of the user's memberships.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Membership>
-     */
-    public function memberships()
-    {
-        return $this->hasMany(Membership::class);
-    }
-
-    /**
-     * Get the user's active membership.
-     */
-    public function activeMembership()
-    {
-        return $this->hasOne(Membership::class)->where('active', true)->latestOfMany();
-    }
 
     public function devices()
     {

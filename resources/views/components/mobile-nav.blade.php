@@ -14,11 +14,7 @@
         </a>
         
         @auth
-        <a href="{{ route('watchlist.index') }}" class="flex flex-col items-center gap-1 px-4 py-2 {{ request()->routeIs('watchlist.*') ? 'text-codeflix-primary' : 'text-gray-400' }}">
-            <i class="fa-solid fa-bookmark text-xl"></i>
-            <span class="text-xs">Daftar Saya</span>
-        </a>
-        
+
         <a href="{{ route('reviews.history.index') }}" class="flex flex-col items-center gap-1 px-4 py-2 {{ request()->routeIs('reviews.history.*') ? 'text-codeflix-primary' : 'text-gray-400' }}">
             <i class="fa-solid fa-star-half-stroke text-xl"></i>
             <span class="text-xs">Ulasan</span>
@@ -29,11 +25,7 @@
             <span class="text-xs">Profil</span>
         </a>
         @else
-        <a href="{{ route('series.index') }}" class="flex flex-col items-center gap-1 px-4 py-2 {{ request()->routeIs('series.*') ? 'text-codeflix-primary' : 'text-gray-400' }}">
-            <i class="fa-solid fa-tv text-xl"></i>
-            <span class="text-xs">Serial</span>
-        </a>
-        
+
         <a href="{{ route('login') }}" class="flex flex-col items-center gap-1 px-4 py-2 text-gray-400">
             <i class="fa-solid fa-right-to-bracket text-xl"></i>
             <span class="text-xs">Masuk</span>

@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\WatchlistController;
-use App\Http\Controllers\WatchHistoryController;
+
+
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MovieController as AdminMovieController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
@@ -22,9 +21,6 @@ Route::get('/movies', [MovieController::class, 'all'])->name('movies.index');
 Route::get('/movies/search', [MovieController::class, 'search'])->name('movies.search');
 Route::get('/movies/{movie:slug}', [MovieController::class, 'show'])->name('movies.show')->middleware('age.check');
 
-// Series Routes
-Route::get('/series', [\App\Http\Controllers\SeriesController::class, 'index'])->name('series.index');
-Route::get('/series/{series:slug}', [\App\Http\Controllers\SeriesController::class, 'show'])->name('series.show');
 
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
 
@@ -32,15 +28,12 @@ Route::post('/logout', function (Request $request) {
     return app(\Laravel\Fortify\Http\Controllers\AuthenticatedSessionController::class)->destroy($request);
 })->name('logout')->middleware(['auth', 'logoutDevice']);
 
-Route::post('/checkout', [TransactionController::class, 'checkout'])->name('checkout');
+
 
 // Watchlist & Watch History Routes (authenticated users)
 Route::middleware('auth')->group(function () {
-    Route::get('/my-list', [WatchlistController::class, 'index'])->name('watchlist.index');
-    Route::post('/watchlist/{movie}/toggle', [WatchlistController::class, 'toggle'])->name('watchlist.toggle');
-    Route::get('/watchlist/{movie}/check', [WatchlistController::class, 'check'])->name('watchlist.check');
-    Route::post('/watch-progress', [WatchHistoryController::class, 'updateProgress'])->name('watch.progress');
-    Route::get('/continue-watching', [WatchHistoryController::class, 'getContinueWatching'])->name('watch.continue');
+
+
 
 
 

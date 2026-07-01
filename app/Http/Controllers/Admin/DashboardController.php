@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use App\Models\User;
 use App\Models\Transaction;
-use App\Models\Membership;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
